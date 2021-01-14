@@ -11,3 +11,13 @@
 
 - [wallet-connect](./packages/wallet_connect): wallet connect for flutter App
 
+
+
+
+
+## packages managed by melos
+
+- https://github.com/invertase/melos
+- https://docs.page/invertase/melos
+- https://github.com/fluttercommunity/plus_plugins
+- https://github.com/aws-amplify/amplify-flutter
