@@ -12,12 +12,8 @@
 - [wallet-connect](./packages/wallet_connect): wallet connect for flutter App
 
 
+## awesome flutter/dart packages index:
+
+- https://github.com/better-dart/pkg/wiki
 
 
-
-## packages managed by melos
-
-- https://github.com/invertase/melos
-- https://docs.page/invertase/melos
-- https://github.com/fluttercommunity/plus_plugins
-- https://github.com/aws-amplify/amplify-flutter
