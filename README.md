@@ -41,7 +41,7 @@
 ```yaml
 
   # used by git repo:
-  wallet_connect:
+  dust:
     git:
       url: https://github.com/better-dart/pkg.git   # repo http clone url
       ref: "ced9dab"                                # git tag or git commit-id
