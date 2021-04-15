@@ -9,23 +9,27 @@
 
 ## Dart/Flutter Packages:
 
-## better-ui:
-
 - https://github.com/better-dart/pkg
 
 
-```
+## better-ui:
 
-# used by git repo:
-better_ui:
-  git:
-    url: https://github.com/better-dart/pkg.git   # repo http clone url
-    ref: "ced9dab"                                  # git tag or git commit-id
-    path: packages/better_ui                      # pkg path
 
-# used by local path:
-better_ui:
-  path: /your-local-path-to-here/better-dart/pkg/packages/better_ui # local path
+- how to use:
+
+```yaml
+
+  # used by git repo:
+  better_ui:
+    git:
+      url: https://github.com/better-dart/pkg.git   # repo http clone url
+      ref: "ced9dab"                                # git tag or git commit-id
+      path: packages/better_ui                      # pkg path
+
+
+  # used by local path:
+  better_ui:
+    path: /your-local-path-to-here/better-dart/pkg/packages/better_ui # local path
 
 ```
 
@@ -33,6 +37,21 @@ better_ui:
 
 
 - [wallet-connect](./packages/wallet_connect): wallet connect for flutter App
+
+
+- how to use:
+
+```yaml
+
+  # used by git repo:
+  wallet_connect:
+    git:
+      url: https://github.com/better-dart/pkg.git   # repo http clone url
+      ref: "ced9dab"                                # git tag or git commit-id
+      path: packages/wallet_connect                 # pkg path
+
+
+```
 
 
 ## awesome flutter/dart packages index:
