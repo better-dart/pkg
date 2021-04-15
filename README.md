@@ -1,10 +1,15 @@
 # MonoRepo for Dart/Flutter Packages:
 
-- dart packages.
-- flutter packages.
+- mono repo:
+  - [x] dart packages.
+  - [x] flutter packages.
 
 [![melos](https://img.shields.io/badge/maintained%20with-melos-f700ff.svg?style=flat-square)](https://github.com/invertase/melos)
 
+
+## Docs/Wiki:
+
+- https://github.com/better-dart/pkg/wiki
 
 
 ## Dart/Flutter Packages:
@@ -23,7 +28,7 @@
   better_ui:
     git:
       url: https://github.com/better-dart/pkg.git   # repo http clone url
-      ref: "ced9dab"                                # git tag or git commit-id
+      ref: "2234d37"                                # git tag or git commit-id
       path: packages/better_ui                      # pkg path
 
 
@@ -44,7 +49,7 @@
   dust:
     git:
       url: https://github.com/better-dart/pkg.git   # repo http clone url
-      ref: "ced9dab"                                # git tag or git commit-id
+      ref: "2234d37"                                # git tag or git commit-id
       path: packages/dust                           # pkg path
 
 ```
@@ -66,15 +71,11 @@
   wallet_connect:
     git:
       url: https://github.com/better-dart/pkg.git   # repo http clone url
-      ref: "ced9dab"                                # git tag or git commit-id
+      ref: "2234d37"                                # git tag or git commit-id
       path: packages/wallet_connect                 # pkg path
 
 
 ```
 
-
-## awesome flutter/dart packages index:
-
-- https://github.com/better-dart/pkg/wiki
 
 
