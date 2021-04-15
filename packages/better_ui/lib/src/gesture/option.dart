@@ -4,16 +4,17 @@ library swipedetector;
 ///
 ///
 class SwipeConfiguration {
-  //Vertical swipe configuration options
+  /// Vertical swipe configuration options
   double verticalSwipeMaxWidthThreshold = 50.0;
   double verticalSwipeMinDisplacement = 100.0;
   double verticalSwipeMinVelocity = 300.0;
 
-  //Horizontal swipe configuration options
+  /// Horizontal swipe configuration options
   double horizontalSwipeMaxHeightThreshold = 50.0;
   double horizontalSwipeMinDisplacement = 100.0;
   double horizontalSwipeMinVelocity = 300.0;
 
+  ///
   SwipeConfiguration({
     double verticalSwipeMaxWidthThreshold,
     double verticalSwipeMinDisplacement,

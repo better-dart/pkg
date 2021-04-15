@@ -8,11 +8,22 @@ import 'option.dart';
 /// 滑动手势监听:
 ///
 class SwipeDetector extends StatelessWidget {
+  ///
   final Widget child;
+
+  ///
   final Function() onSwipeUp;
+
+  ///
   final Function() onSwipeDown;
+
+  ///
   final Function() onSwipeLeft;
+
+  ///
   final Function() onSwipeRight;
+
+  ///
   final SwipeConfiguration swipeConfiguration;
 
   // ignore: public_member_api_docs
