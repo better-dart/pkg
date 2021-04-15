@@ -19,9 +19,9 @@
 # used by git repo:
 better_ui:
   git:
-    url: https://github.com/better-dart/pkg.git
-    ref: c5bef68
-    path: packages/better_ui   # pkg path
+    url: https://github.com/better-dart/pkg.git   # repo http clone url
+    ref: "ced9dab"                                  # git tag or git commit-id
+    path: packages/better_ui                      # pkg path
 
 # used by local path:
 better_ui:
