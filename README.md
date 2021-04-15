@@ -16,7 +16,10 @@
 
 ```
 
-
+better_ui:
+  git:
+    url: https://github.com/better-dart/pkg.git
+    ref:
 
 ```
 

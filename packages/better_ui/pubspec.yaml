@@ -1,8 +1,8 @@
 name: better_ui
 description: A Flutter UI package.
 version: 0.0.1
-author:
-homepage:
+author: hhglory@outlook.com
+homepage: https://github.com/better-dart/pkg
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
