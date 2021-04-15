@@ -16,14 +16,21 @@
 
 ```
 
+# used by git repo:
 better_ui:
   git:
     url: https://github.com/better-dart/pkg.git
-    ref:
+    ref: c5bef68
+    path: packages/better_ui   # pkg path
+
+# used by local path:
+better_ui:
+  path: /your-local-path-to-here/better-dart/pkg/packages/better_ui # local path
 
 ```
 
-##
+## wallet-connect:
+
 
 - [wallet-connect](./packages/wallet_connect): wallet connect for flutter App
 
