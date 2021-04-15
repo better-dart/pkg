@@ -33,6 +33,25 @@
 
 ```
 
+## dust:
+
+- dart common utils.
+- how to use:
+
+```yaml
+
+  # used by git repo:
+  wallet_connect:
+    git:
+      url: https://github.com/better-dart/pkg.git   # repo http clone url
+      ref: "ced9dab"                                # git tag or git commit-id
+      path: packages/dust                           # pkg path
+
+```
+
+
+
+
 ## wallet-connect:
 
 
