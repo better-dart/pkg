@@ -24,3 +24,6 @@ git-push:
 	git push origin main
 
 
+# https://github.com/hhstore/blog/issues/245
+create-pkg:
+	cd packages; flutter create --template=package better_ui
