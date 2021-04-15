@@ -6,6 +6,7 @@ import 'option.dart';
 
 ///
 /// 滑动手势监听:
+///   - https://github.com/TEDConsulting/swipedetector
 ///
 class SwipeDetector extends StatelessWidget {
   ///
