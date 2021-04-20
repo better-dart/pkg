@@ -20,6 +20,9 @@ clean:
 get:
 	flutter pub get
 
+get.dust:
+	cd packages/dust; flutter pub get
+
 git-push:
 	git push origin main
 
