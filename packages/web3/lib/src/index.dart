@@ -1,6 +1,4 @@
-export 'config/token.dart';
-export 'config.dart';
+export 'config/index.dart';
 export 'eth.dart';
-export 'model/token.dart';
-export 'model.dart';
+export 'model/index.dart';
 export 'wallet.dart';
