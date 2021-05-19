@@ -24,7 +24,7 @@ get.dust:
 get.web3:
 	cd packages/web3; flutter pub get
 
-git-push:
+git.push:
 	git push origin main
 
 
