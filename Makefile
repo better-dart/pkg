@@ -17,21 +17,24 @@ clean:
 
 ################################################################
 
-
+# install require libs:
 get.dust:
 	cd packages/dust; flutter pub get
 
 get.web3:
 	cd packages/web3; flutter pub get
 
-git.push:
-	git push origin main
-
+################################################################
 
 # https://github.com/hhstore/blog/issues/245
-create-pkg:
+new.pkg:
 	cd packages; flutter create --template=package better_ui
 
+
+################################################################
+
+git.push:
+	git push origin main
 
 git.commit.clean:
 	git checkout --orphan newMain
