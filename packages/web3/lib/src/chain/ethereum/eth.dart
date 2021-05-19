@@ -1,14 +1,12 @@
 import 'package:bip32/bip32.dart' as bip32;
 import 'package:bip39/bip39.dart' as bip39;
-import 'package:dust/dust.dart';
 import 'package:http/http.dart';
-import 'package:meta/meta.dart';
 import 'package:wallet_core/wallet_core.dart' as fuse_wallet;
 import 'package:web3dart/credentials.dart';
 import 'package:web3dart/crypto.dart';
 import 'package:web3dart/web3dart.dart';
 
-import 'index.dart';
+import '../../index.dart';
 
 // 1 eth = 1000000000000000000 wei ( 18个0)
 BigInt ethUnit = BigInt.from(10).pow(18);
