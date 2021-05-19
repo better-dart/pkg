@@ -30,7 +30,7 @@ var EthKovan = EthNetwork['kovan'];
 /// 2a8832f9bad44152a976a3be1f32c328
 /// fecf99e5d4c54dc489aa57a7cdd29114
 ///
-var infuraKey = 'put_your_infura_key_here';
+var infuraKey = '2a8832f9bad44152a976a3be1f32c328';
 
 void setInFuraKey({String secretKey}) {
   infuraKey = secretKey ?? '2a8832f9bad44152a976a3be1f32c328';

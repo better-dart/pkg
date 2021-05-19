@@ -10,4 +10,9 @@
 
 ## quickstart:
 
-- 
+-
+
+
+## ref:
+
+- https://github.com/trustwallet/wallet-core
