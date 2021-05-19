@@ -31,3 +31,14 @@ git-push:
 # https://github.com/hhstore/blog/issues/245
 create-pkg:
 	cd packages; flutter create --template=package better_ui
+
+
+git.commit.clean:
+	git checkout --orphan newMain
+	git add -A
+	git commit -am "clean"
+
+git.change.main:
+	git branch -D main
+	git branch -m main
+	git push -f origin main
