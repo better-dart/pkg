@@ -51,7 +51,8 @@ dev_dependencies:
     sdk: flutter
   dotenv:
   flutter_dotenv:
-
+  protobuf: ^1.1.0
+  protoc_plugin:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

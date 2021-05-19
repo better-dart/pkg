@@ -1,5 +1,11 @@
 ################################################################
 
+
+# gen require:
+include packages/web3/Makefile
+
+################################################################
+
 setup:
 	# fix error: template not found
 	export PUB_HOSTED_URL=https://pub.dartlang.org; \
