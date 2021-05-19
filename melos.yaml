@@ -1,0 +1,59 @@
+name: amplify_flutter_repository
+
+packages:
+  - packages/**
+  - example/*
+  - packages/**/example/*
+
+scripts:
+  copy_dummy_config: >
+    melos exec --scope="*example*" --fail-fast -- \
+      cp ../../../.circleci/dummy_amplifyconfiguration.dart lib/amplifyconfiguration.dart
+
+  build:examples:ios: >
+    melos exec -c 1 --scope="*example*" --fail-fast -- \
+      flutter build ios --no-codesign
+
+  build:examples:android: >
+    melos exec -c 1 --scope="*example*" --fail-fast -- \
+      flutter build apk --debug --verbose
+
+  test:unit:flutter: >
+    ./.circleci/test_all_plugins.sh flutter-test && exit 0
+
+  test:unit:android: >
+    ./.circleci/test_all_plugins.sh android-test && exit 0
+
+  test:unit:ios: >
+    ./.circleci/test_all_plugins.sh ios-test && exit 0
+
+  upload:coverage:ios: >
+    ./build-support/codecov.sh -F ios-unit-tests
+
+  upload:coverage:flutter: >
+    ./build-support/codecov.sh -F flutter-unit-tests
+
+  upload:coverage:android: >
+    ./build-support/codecov.sh -F android-unit-tests
+
+  format: >
+    melos exec -c 1 -- \
+      flutter format .
+
+  analyze: >
+    melos exec -c 1 --no-private --ignore="*example*" -- \
+      pub global run tuneup check
+
+  lint:pub: >
+    melos exec -c 5 --fail-fast --no-private --ignore="*example*" -- \
+      pub publish --dry-run
+
+  postbootstrap: >
+    (tuneup --version || pub global activate tuneup) && melos run copy_dummy_config
+
+  postclean: >
+    melos exec -- \
+      rm -rf ./build ./android/.gradle ./ios/.symlinks ./ios/Pods ./android/.idea ./.idea
+
+dev_dependencies:
+  pedantic: ^1.9.0
