@@ -2,7 +2,7 @@
 
 
 # gen require:
-include packages/web3/Makefile
+# include packages/web3/Makefile
 
 ################################################################
 
