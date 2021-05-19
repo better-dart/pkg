@@ -16,11 +16,11 @@ const iconUNI = '${assetsRoot}/etc.png';
 ///
 ///
 ///
-var CoinETH = EthTokens['ETH'];
-var CoinUSDT = EthTokens['USDT'];
-var CoinBUSD = EthTokens['BUSD'];
-var CoinUNI = EthTokens['UNI'];
-var CoinDAI = EthTokens['DAI'];
+var coinETH = ethTokens['ETH'];
+var coinUSDT = ethTokens['USDT'];
+var coinBUSD = ethTokens['BUSD'];
+var coinUNI = ethTokens['UNI'];
+var coinDAI = ethTokens['DAI'];
 
 ///
 /// eth token 合约地址信息:
@@ -38,8 +38,8 @@ var CoinDAI = EthTokens['DAI'];
 ///     - USDT: https://kovan.etherscan.io/token/0xf3e0d7bf58c5d455d31ef1c2d5375904df525105
 ///     - univ2: https://kovan.etherscan.io/dapp/0xf4c83715ca56145c5d700c3b2bfc5c0324050792
 ///     - daiV1: https://kovan.etherscan.io/token/0xc4375b7de8af5a38a93548eb8453a498222c4ff2
-var EthTokens = <String, TokenMeta>{
-  'ETH': TokenMeta(
+var ethTokens = <String, TokenOption>{
+  'ETH': TokenOption(
     symbol: 'ETH',
     name: 'ETH',
     logo: iconETH,
@@ -48,7 +48,7 @@ var EthTokens = <String, TokenMeta>{
   ///
   ///
   ///
-  'USDT': TokenMeta(
+  'USDT': TokenOption(
     address: '0xdAC17F958D2ee523a2206206994597C13D831ec7',
     addressTest: '0xf3e0d7bf58c5d455d31ef1c2d5375904df525105',
     // 测试链地址: kovan
@@ -62,7 +62,7 @@ var EthTokens = <String, TokenMeta>{
     decimals: 6,
   ),
 
-  'DAI': TokenMeta(
+  'DAI': TokenOption(
     address: '0x6B175474E89094C44Da98b954EedeAC495271d0F',
     addressTest: '0xc4375b7de8af5a38a93548eb8453a498222c4ff2',
     symbol: 'DAI',
@@ -73,7 +73,7 @@ var EthTokens = <String, TokenMeta>{
     decimals: 18,
   ),
 
-  'UNI': TokenMeta(
+  'UNI': TokenOption(
     address: '0x1f9840a85d5af5bf1d1762f925bdaddc4201f984',
     addressTest: '0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984',
     // 有效, 测试专用
@@ -85,7 +85,7 @@ var EthTokens = <String, TokenMeta>{
     decimals: 18,
   ),
 
-  'BUSD': TokenMeta(
+  'BUSD': TokenOption(
     address: '0x4Fabb145d64652a948d72533023f6E7A623C7C53',
     addressTest: '0x23c587972b49d593531e56c8c659a8d22b12ec1e',
     symbol: 'BUSD',

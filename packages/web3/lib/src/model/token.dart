@@ -1,7 +1,7 @@
 ///
 /// token 信息格式:
 ///
-class TokenMeta {
+class TokenOption {
   /// 正式链
   String address;
 
@@ -20,7 +20,7 @@ class TokenMeta {
   bool isErc721;
   int decimals;
 
-  TokenMeta({
+  TokenOption({
     this.address,
     this.addressTest,
     this.symbol,
