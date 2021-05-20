@@ -2,7 +2,6 @@ import 'package:bip32/bip32.dart' as bip32;
 import 'package:bip39/bip39.dart' as bip39;
 import 'package:http/http.dart';
 import 'package:wallet_core/wallet_core.dart' as fuse_wallet;
-import 'package:web3/src/proto/Binance.pb.dart';
 import 'package:web3dart/credentials.dart';
 import 'package:web3dart/crypto.dart';
 import 'package:web3dart/web3dart.dart';
@@ -239,30 +238,8 @@ class EthWallet {
     return sdkWeb3.credentialsFromPrivateKey(privateKey);
   }
 
-  ///
-  /// token swap:
-  ///   - 参考 callContractOffChain() 方法
-  ///
-  Future<String> swapEthToToken({
-    @required String privateKey,
-    @required String fromAddress,
-    @required String toAddress,
-    @required String data,
-  }) async {
-    /// 签名结果:
-    String signature = await signToken(
-      privateKey: privateKey,
-      contractAddress: fromAddress,
-      walletAddress: toAddress,
-      data: data,
-    );
-
-    /// 广播交易+返回 txID
-    var txID = await sdkWeb3.sendRawTx(signedStr: signature);
-    return txID;
-  }
-
   /// swap token <-> eth:
+  ///   - 参考 callContractOffChain() 方法
   Future<String> swapToken({
     @required String privateKey,
     @required String fromAddress,
@@ -293,6 +270,8 @@ class EthWallet {
     BigInt value, // chainType=ETH, eth2token, set value //  token2eth, set 0
     String nonce,
   }) async {
+    var count = await sdkWeb3.getTransactionCount(EthereumAddress.fromHex(walletAddress)) + 1;
+
     /// 签名:
     String signature = await signOffChain(
       privateKey: privateKey,
@@ -302,7 +281,7 @@ class EthWallet {
       value: value ?? BigInt.from(0),
       // 合约数据
       data: data,
-      nonce: nonce ?? await sdkWeb3.getTransactionCount(EthereumAddress.fromHex(walletAddress)) + 1,
+      nonce: nonce ?? '0x${count.toRadixString(16)}',
       gasPrice: BigInt.from(0),
       gasLimit: BigInt.from(700000),
     );
@@ -326,7 +305,7 @@ class EthWallet {
     BigInt gasLimit,
   }) async {
     /// set cred for sign:
-    sdkFuse.setCredentials(privateKey);
+    await sdkFuse.setCredentials(privateKey);
 
     /// TODO : 地址 from, to 可能有问题
     return sdkFuse.signOffChain(fromAddress, toAddress, value, data, nonce, gasPrice, gasLimit);
