@@ -238,6 +238,31 @@ class EthWallet {
     return sdkWeb3.credentialsFromPrivateKey(privateKey);
   }
 
+  ///
+  ///
+  ///
+  Future<String> swapToken2({
+    @required String privateKey,
+    @required String fromAddress,
+    @required String toAddress,
+    @required String data,
+    BigInt value, // chainType=ETH, eth2token, set value //  token2eth, set 0
+  }) async {
+    var cred = await getCredentials(privateKey);
+
+    return sdkWeb3.sendTransaction(
+      cred,
+      Transaction(
+        from: EthereumAddress.fromHex(fromAddress),
+        to: EthereumAddress.fromHex(toAddress),
+        data: hexToBytes(data),
+        value: EtherAmount.inWei(value),
+        maxGas: 10000000, // todo: need fix
+      ),
+      fetchChainIdFromNetworkId: true,
+    );
+  }
+
   /// swap token <-> eth:
   ///   - 参考 callContractOffChain() 方法
   Future<String> swapToken({
@@ -255,6 +280,8 @@ class EthWallet {
       data: data,
       value: value,
     );
+
+    // var signed = hexToBytes(signature);
 
     /// 广播交易+返回 txID
     var txID = await sdkWeb3.sendRawTx(signedStr: signature);
@@ -281,9 +308,9 @@ class EthWallet {
       value: value ?? BigInt.from(0),
       // 合约数据
       data: data,
-      nonce: nonce ?? '0x${count.toRadixString(16)}',
+      nonce: nonce ?? BigInt.from(count),
       gasPrice: BigInt.from(0),
-      gasLimit: BigInt.from(700000),
+      gasLimit: BigInt.from(9000000),
     );
     return signature;
   }
@@ -300,7 +327,7 @@ class EthWallet {
     BigInt value,
     // 注意!
     String data,
-    String nonce,
+    BigInt nonce,
     BigInt gasPrice,
     BigInt gasLimit,
   }) async {
@@ -308,6 +335,6 @@ class EthWallet {
     await sdkFuse.setCredentials(privateKey);
 
     /// TODO : 地址 from, to 可能有问题
-    return sdkFuse.signOffChain(fromAddress, toAddress, value, data, nonce, gasPrice, gasLimit);
+    return sdkFuse.signOffChain2(fromAddress, toAddress, value, data, nonce, gasPrice, gasLimit);
   }
 }
