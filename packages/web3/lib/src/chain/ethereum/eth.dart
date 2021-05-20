@@ -2,6 +2,7 @@ import 'package:bip32/bip32.dart' as bip32;
 import 'package:bip39/bip39.dart' as bip39;
 import 'package:http/http.dart';
 import 'package:wallet_core/wallet_core.dart' as fuse_wallet;
+import 'package:web3/src/proto/Binance.pb.dart';
 import 'package:web3dart/credentials.dart';
 import 'package:web3dart/crypto.dart';
 import 'package:web3dart/web3dart.dart';
@@ -17,21 +18,18 @@ BigInt ethUnit = BigInt.from(10).pow(18);
 class EthWalletGroup {
   /// 正式链:
   final _main = EthWallet(
-    () async => true,
     url: NetworkProxy['ETH']['mainnet'].httpUrl,
     networkId: NetworkProxy['ETH']['mainnet'].networkID,
   );
 
   /// 测试链:
   final _testKovan = EthWallet(
-    () async => true,
     url: NetworkProxy['ETH']['kovan'].httpUrl,
     networkId: NetworkProxy['ETH']['kovan'].networkID,
   );
 
   ///
   /// auto select:
-  ///
   EthWallet client({bool isTestNet = true}) {
     return isTestNet ? _testKovan : _main;
   }
@@ -44,41 +42,26 @@ class EthWalletGroup {
 /// eth 钱包:
 class EthWallet {
   /// fuse wallet:
-  fuse_wallet.Web3 fuse;
+  fuse_wallet.Web3 sdkFuse;
 
   /// web3 dart:
-  Web3Client web3;
+  Web3Client sdkWeb3;
 
-  EthWallet(
-    Future<bool> Function() approveCb, {
-    String url,
-    int networkId,
-    String defaultCommunityAddress,
-    String communityManagerAddress,
-    String transferManagerAddress,
-    String daiPointsManagerAddress,
-    int defaultGasLimit,
+  ///////////////////////////////////////////////////////////////////////////
+
+  EthWallet({
+    @required String url,
+    @required int networkId,
   }) {
-    // fuse wallet:
-    fuse = fuse_wallet.Web3(
-      approveCb,
-      url: url,
-      networkId: networkId,
-      defaultCommunityAddress: defaultCommunityAddress,
-      communityManagerAddress: communityManagerAddress,
-      transferManagerAddress: transferManagerAddress,
-      daiPointsManagerAddress: daiPointsManagerAddress,
-      defaultGasLimit: defaultGasLimit,
-    );
+    /// web3 client:
+    sdkWeb3 = Web3Client(url, Client());
 
-    // web3 client:
-    web3 = Web3Client(url, Client());
+    /// fuse wallet:
+    sdkFuse = fuse_wallet.Web3(() async => true, url: url, networkId: networkId);
   }
 
   /// 助记词:
-  String genMnemonic() {
-    return bip39.generateMnemonic();
-  }
+  String genMnemonic() => bip39.generateMnemonic();
 
   /// 私钥:
   String privateKeyFromMnemonic(String mnemonic) {
@@ -98,10 +81,10 @@ class EthWallet {
   /// 获取钱包地址:
   Future<String> getAddress({String privateKey}) async {
     if (privateKey.isNotEmpty) {
-      await fuse.setCredentials(privateKey);
+      await sdkFuse.setCredentials(privateKey);
     }
 
-    return fuse.getAddress();
+    return sdkFuse.getAddress();
   }
 
   /// 单位转换: wei -> ether
@@ -144,13 +127,13 @@ class EthWallet {
 
     if (contractAddress != null) {
       /// token 查询:
-      BigInt ret = await fuse.getTokenBalance(contractAddress, address: address);
+      BigInt ret = await sdkFuse.getTokenBalance(contractAddress, address: address);
 
       /// 单位换算:
       balance = toEther(fromWei: ret, decimals: decimals);
     } else {
       /// 主链查询:
-      var ret = await fuse.getBalance(address: address);
+      var ret = await sdkFuse.getBalance(address: address);
 
       /// 单位换算:
       balance = toEther(fromWei: ret.getInWei, decimals: decimals);
@@ -165,7 +148,7 @@ class EthWallet {
     String toAddress,
     int amountInWei,
   ) async {
-    return fuse.transferOffChain(fromAddress, toAddress, amountInWei);
+    return sdkFuse.transferOffChain(fromAddress, toAddress, amountInWei);
   }
 
   /// 广播交易:
@@ -180,7 +163,7 @@ class EthWallet {
     String nonce,
   }) async {
     /// set privateKey:
-    await fuse.setCredentials(privateKey);
+    await sdkFuse.setCredentials(privateKey);
 
     var from = EthereumAddress.fromHex(toAddress);
     var to = EthereumAddress.fromHex(toAddress);
@@ -189,7 +172,7 @@ class EthWallet {
     var amount = EtherAmount.fromUnitAndValue(EtherUnit.wei, amountInWei);
 
     /// nonce: fix
-    var nonce = await fuse.getTxNonce(address: fromAddress);
+    var nonce = await sdkFuse.getTxNonce(address: fromAddress);
 
     /// convert:
     var rawData = hexToBytes(data);
@@ -205,7 +188,7 @@ class EthWallet {
     );
 
     /// send tx:
-    var txID = await fuse.sendTx(rawTx);
+    var txID = await sdkFuse.sendTx(rawTx);
     logger.d('web3 sdk sendTx: txID: $txID, tx:$rawTx');
     return txID;
   }
@@ -221,13 +204,13 @@ class EthWallet {
     var txID = '';
 
     /// set privateKey:
-    await fuse.setCredentials(privateKey);
+    await sdkFuse.setCredentials(privateKey);
 
     /// do tx:
     try {
       /// 合约 Token:
       if (contractAddress != null) {
-        txID = await fuse.tokenTransfer(contractAddress, toAddress, amount);
+        txID = await sdkFuse.tokenTransfer(contractAddress, toAddress, amount);
         logger.i('do wallet token transfer done: $contractAddress, $toAddress, amount:$amount, $txID');
       } else {
         var amountInWei = toWei(fromEther: amount).toInt();
@@ -238,7 +221,7 @@ class EthWallet {
         }
 
         /// 主链 ETH:
-        txID = await fuse.transfer(toAddress, amountInWei);
+        txID = await sdkFuse.transfer(toAddress, amountInWei);
         logger.i('do wallet transfer done: to:$toAddress, amount:$amount, wei:$amountInWei, $txID');
       }
     } catch (e, s) {
@@ -250,4 +233,79 @@ class EthWallet {
   void approve({
     String chainType,
   }) {}
+
+  /// 签名身份:
+  Future<Credentials> getCredentials(String privateKey) async {
+    return sdkWeb3.credentialsFromPrivateKey(privateKey);
+  }
+
+  ///
+  /// token swap:
+  ///   - 参考 callContractOffChain() 方法
+  ///
+  Future<String> swapETHToToken({
+    @required String privateKey,
+    @required String fromAddress,
+    @required String toAddress,
+    @required String data,
+  }) async {
+    /// 签名结果:
+    String signature = await signToken(
+      privateKey: privateKey,
+      contractAddress: fromAddress,
+      walletAddress: toAddress,
+      data: data,
+    );
+
+    /// 广播交易+返回 txID
+    var txID = await sdkWeb3.sendRawTx(signedStr: signature);
+    return txID;
+  }
+
+  /// token swap: 签名
+  Future<String> signToken({
+    @required String privateKey,
+    @required String contractAddress,
+    @required String walletAddress,
+    @required String data,
+    String nonce,
+  }) async {
+    /// 签名:
+    String signature = await signOffChain(
+      privateKey: privateKey,
+      fromAddress: contractAddress,
+      toAddress: walletAddress,
+      // 为0
+      value: BigInt.from(0),
+      // 合约数据
+      data: data,
+      nonce: nonce,
+      gasPrice: BigInt.from(0),
+      gasLimit: BigInt.from(700000),
+    );
+    return signature;
+  }
+
+  /// 签名参数:
+  Future<String> signOffChain({
+    // 钱包私钥:
+    @required String privateKey,
+    // 合约地址:
+    @required String fromAddress,
+    // 钱包地址:
+    @required String toAddress,
+    // 注意!
+    BigInt value,
+    // 注意!
+    String data,
+    String nonce,
+    BigInt gasPrice,
+    BigInt gasLimit,
+  }) async {
+    /// set cred for sign:
+    sdkFuse.setCredentials(privateKey);
+
+    /// TODO : 地址 from, to 可能有问题
+    return sdkFuse.signOffChain(fromAddress, toAddress, value, data, nonce, gasPrice, gasLimit);
+  }
 }
