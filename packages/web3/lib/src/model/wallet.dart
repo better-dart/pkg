@@ -1,3 +1,5 @@
+import 'package:web3/src/index.dart';
+
 ///
 /// 生成 HD 钱包:
 ///
@@ -11,7 +13,7 @@ class HDWallet {
   /// 钱包地址:
   String publicAddress;
 
-  HDWallet({this.mnemonic, this.privateKey, this.publicAddress});
+  HDWallet({@required this.mnemonic, @required this.privateKey, @required this.publicAddress});
 
   @override
   String toString() {
