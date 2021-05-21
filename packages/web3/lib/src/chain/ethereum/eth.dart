@@ -239,14 +239,15 @@ class EthWallet {
   }
 
   ///
+  /// 此版本有效:
   ///
-  ///
-  Future<String> swapToken2({
+  Future<String> swapToken({
     @required String privateKey,
     @required String fromAddress,
     @required String toAddress,
     @required String data,
     BigInt value, // chainType=ETH, eth2token, set value //  token2eth, set 0
+    int maxGas,
   }) async {
     var cred = await getCredentials(privateKey);
 
@@ -256,16 +257,18 @@ class EthWallet {
         from: EthereumAddress.fromHex(fromAddress),
         to: EthereumAddress.fromHex(toAddress),
         data: hexToBytes(data),
-        value: EtherAmount.inWei(value),
-        maxGas: 10000000, // todo: need fix
+        value: EtherAmount.inWei(value ?? 0),
+        maxGas: maxGas ?? 10000000, // todo: need fix
       ),
       fetchChainIdFromNetworkId: true,
     );
   }
 
   /// swap token <-> eth:
+  ///   - 此版本无效
   ///   - 参考 callContractOffChain() 方法
-  Future<String> swapToken({
+  ///
+  Future<String> swapTokenOld({
     @required String privateKey,
     @required String fromAddress,
     @required String toAddress,
