@@ -31,22 +31,22 @@ dependencies:
 
 
 #  wallet_core:
-#  wallet_core:
-#    git:
-#      url: https://github.com/better-dart/fuse_wallet_core.git
-#      ref: hotfix-v2021-04-06      # commit id
-
   wallet_core:
-    path: /Users/henry/Documents/iSpace/better-dart/fuse_wallet_core
+    git:
+      url: https://github.com/better-dart/fuse_wallet_core.git
+      ref: hotfix-v2021-04-06      # commit id
+
+#  wallet_core:
+#    path: /Users/henry/Documents/iSpace/better-dart/fuse_wallet_core
 
 #  web3dart:
-#  web3dart:
-#    git:
-#      url: https://github.com/better-dart/web3dart.git
-#      ref: hotfix-v1.2.3 # branch
-
   web3dart:
-    path: /Users/henry/Documents/iSpace/better-dart/web3dart
+    git:
+      url: https://github.com/better-dart/web3dart.git
+      ref: hotfix-v1.2.3 # branch
+
+#  web3dart:
+#    path: /Users/henry/Documents/iSpace/better-dart/web3dart
 
 
 dev_dependencies:
