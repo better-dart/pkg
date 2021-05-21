@@ -59,6 +59,21 @@ class EthWallet {
     sdkFuse = fuse_wallet.Web3(() async => true, url: url, networkId: networkId);
   }
 
+  /// 生成 HD 钱包:
+  Future<HDWallet> genHDWallet() async {
+    var mnemonic = genMnemonic();
+    var privateKey = privateKeyFromMnemonic(mnemonic);
+
+    /// 注意: 地址转成小写!
+    var publicAddress = (await genPublicAddress(privateKey)).hex.toLowerCase();
+
+    return HDWallet(
+      mnemonic: genMnemonic(),
+      privateKey: privateKey,
+      publicAddress: publicAddress,
+    );
+  }
+
   /// 助记词:
   String genMnemonic() => bip39.generateMnemonic();
 
@@ -204,76 +219,76 @@ class EthWallet {
   ///   - 此版本无效
   ///   - 参考 callContractOffChain() 方法
   ///
-  // Future<String> swapTokenOld({
-  //   @required String privateKey,
-  //   @required String fromAddress,
-  //   @required String toAddress,
-  //   @required String data,
-  //   BigInt value, // chainType=ETH, eth2token, set value //  token2eth, set 0
-  // }) async {
-  //   /// 签名结果:
-  //   String signature = await signToken(
-  //     privateKey: privateKey,
-  //     contractAddress: fromAddress,
-  //     walletAddress: toAddress,
-  //     data: data,
-  //     value: value,
-  //   );
-  //
-  //   // var signed = hexToBytes(signature);
-  //
-  //   /// 广播交易+返回 txID
-  //   var txID = await sdkWeb3.sendRawTx(signedStr: signature);
-  //   return txID;
-  // }
+// Future<String> swapTokenOld({
+//   @required String privateKey,
+//   @required String fromAddress,
+//   @required String toAddress,
+//   @required String data,
+//   BigInt value, // chainType=ETH, eth2token, set value //  token2eth, set 0
+// }) async {
+//   /// 签名结果:
+//   String signature = await signToken(
+//     privateKey: privateKey,
+//     contractAddress: fromAddress,
+//     walletAddress: toAddress,
+//     data: data,
+//     value: value,
+//   );
+//
+//   // var signed = hexToBytes(signature);
+//
+//   /// 广播交易+返回 txID
+//   var txID = await sdkWeb3.sendRawTx(signedStr: signature);
+//   return txID;
+// }
 
   /// token swap: 签名
-  // Future<String> signToken({
-  //   @required String privateKey,
-  //   @required String contractAddress,
-  //   @required String walletAddress,
-  //   @required String data,
-  //   BigInt value, // chainType=ETH, eth2token, set value //  token2eth, set 0
-  //   String nonce,
-  // }) async {
-  //   var count = await sdkWeb3.getTransactionCount(EthereumAddress.fromHex(walletAddress)) + 1;
-  //
-  //   /// 签名:
-  //   String signature = await signOffChain(
-  //     privateKey: privateKey,
-  //     fromAddress: contractAddress,
-  //     toAddress: walletAddress,
-  //     // 为0
-  //     value: value ?? BigInt.from(0),
-  //     // 合约数据
-  //     data: data,
-  //     nonce: nonce ?? BigInt.from(count),
-  //     gasPrice: BigInt.from(0),
-  //     gasLimit: BigInt.from(9000000),
-  //   );
-  //   return signature;
-  // }
+// Future<String> signToken({
+//   @required String privateKey,
+//   @required String contractAddress,
+//   @required String walletAddress,
+//   @required String data,
+//   BigInt value, // chainType=ETH, eth2token, set value //  token2eth, set 0
+//   String nonce,
+// }) async {
+//   var count = await sdkWeb3.getTransactionCount(EthereumAddress.fromHex(walletAddress)) + 1;
+//
+//   /// 签名:
+//   String signature = await signOffChain(
+//     privateKey: privateKey,
+//     fromAddress: contractAddress,
+//     toAddress: walletAddress,
+//     // 为0
+//     value: value ?? BigInt.from(0),
+//     // 合约数据
+//     data: data,
+//     nonce: nonce ?? BigInt.from(count),
+//     gasPrice: BigInt.from(0),
+//     gasLimit: BigInt.from(9000000),
+//   );
+//   return signature;
+// }
 
   /// 签名参数:
-  // Future<String> signOffChain({
-  //   // 钱包私钥:
-  //   @required String privateKey,
-  //   // 合约地址:
-  //   @required String fromAddress,
-  //   // 钱包地址:
-  //   @required String toAddress,
-  //   // 注意!
-  //   BigInt value,
-  //   // 注意!
-  //   String data,
-  //   BigInt nonce,
-  //   BigInt gasPrice,
-  //   BigInt gasLimit,
-  // }) async {
-  //   /// set cred for sign:
-  //   await sdkFuse.setCredentials(privateKey);
-  //
-  //   /// TODO : 地址 from, to 可能有问题
-  //   return sdkFuse.signOffChain2(fromAddress, toAddress, value, data, nonce, gasPrice, gasLimit);
-  // }
+// Future<String> signOffChain({
+//   // 钱包私钥:
+//   @required String privateKey,
+//   // 合约地址:
+//   @required String fromAddress,
+//   // 钱包地址:
+//   @required String toAddress,
+//   // 注意!
+//   BigInt value,
+//   // 注意!
+//   String data,
+//   BigInt nonce,
+//   BigInt gasPrice,
+//   BigInt gasLimit,
+// }) async {
+//   /// set cred for sign:
+//   await sdkFuse.setCredentials(privateKey);
+//
+//   /// TODO : 地址 from, to 可能有问题
+//   return sdkFuse.signOffChain2(fromAddress, toAddress, value, data, nonce, gasPrice, gasLimit);
+// }
 }
