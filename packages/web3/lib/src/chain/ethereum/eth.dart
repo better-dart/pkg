@@ -77,15 +77,6 @@ class EthWallet {
     return address;
   }
 
-  /// 获取钱包地址:
-  Future<String> getAddress({String privateKey}) async {
-    if (privateKey.isNotEmpty) {
-      await sdkFuse.setCredentials(privateKey);
-    }
-
-    return sdkFuse.getAddress();
-  }
-
   /// 单位转换: wei -> ether
   ///   - bigInt 有坑: 只有 x/y = double 值是正确的
   ///
@@ -141,57 +132,6 @@ class EthWallet {
     return balance;
   }
 
-  /// 转账:
-  Future<Map<String, dynamic>> transferOffChain(
-    String fromAddress,
-    String toAddress,
-    int amountInWei,
-  ) async {
-    return sdkFuse.transferOffChain(fromAddress, toAddress, amountInWei);
-  }
-
-  /// 广播交易:
-  Future<String> sendRawTx({
-    @required String privateKey,
-    @required String fromAddress,
-    @required String toAddress,
-    @required String data,
-    @required BigInt amountInWei, // amount
-    int maxGas,
-    String gasPrice,
-    String nonce,
-  }) async {
-    /// set privateKey:
-    await sdkFuse.setCredentials(privateKey);
-
-    var from = EthereumAddress.fromHex(toAddress);
-    var to = EthereumAddress.fromHex(toAddress);
-
-    /// todo: fix unit
-    var amount = EtherAmount.fromUnitAndValue(EtherUnit.wei, amountInWei);
-
-    /// nonce: fix
-    var nonce = await sdkFuse.getTxNonce(address: fromAddress);
-
-    /// convert:
-    var rawData = hexToBytes(data);
-    logger.d('web3 sendTx:  rawData:$rawData');
-    logger.d('web3 sendTx: privateKey: $privateKey, amount: $amountInWei, txData:$data');
-
-    var rawTx = Transaction(
-      from: from,
-      to: to,
-      value: amount,
-      data: rawData,
-      nonce: nonce, // required
-    );
-
-    /// send tx:
-    var txID = await sdkFuse.sendTx(rawTx);
-    logger.d('web3 sdk sendTx: txID: $txID, tx:$rawTx');
-    return txID;
-  }
-
   /// 转账: 合并 ETH + ETH Tokens
   /// TODO: 本地存储+更新 nonce
   Future<String> transfer({
@@ -229,10 +169,6 @@ class EthWallet {
     return txID;
   }
 
-  void approve({
-    String chainType,
-  }) {}
-
   /// 签名身份:
   Future<Credentials> getCredentials(String privateKey) async {
     return sdkWeb3.credentialsFromPrivateKey(privateKey);
@@ -268,76 +204,76 @@ class EthWallet {
   ///   - 此版本无效
   ///   - 参考 callContractOffChain() 方法
   ///
-  Future<String> swapTokenOld({
-    @required String privateKey,
-    @required String fromAddress,
-    @required String toAddress,
-    @required String data,
-    BigInt value, // chainType=ETH, eth2token, set value //  token2eth, set 0
-  }) async {
-    /// 签名结果:
-    String signature = await signToken(
-      privateKey: privateKey,
-      contractAddress: fromAddress,
-      walletAddress: toAddress,
-      data: data,
-      value: value,
-    );
-
-    // var signed = hexToBytes(signature);
-
-    /// 广播交易+返回 txID
-    var txID = await sdkWeb3.sendRawTx(signedStr: signature);
-    return txID;
-  }
+  // Future<String> swapTokenOld({
+  //   @required String privateKey,
+  //   @required String fromAddress,
+  //   @required String toAddress,
+  //   @required String data,
+  //   BigInt value, // chainType=ETH, eth2token, set value //  token2eth, set 0
+  // }) async {
+  //   /// 签名结果:
+  //   String signature = await signToken(
+  //     privateKey: privateKey,
+  //     contractAddress: fromAddress,
+  //     walletAddress: toAddress,
+  //     data: data,
+  //     value: value,
+  //   );
+  //
+  //   // var signed = hexToBytes(signature);
+  //
+  //   /// 广播交易+返回 txID
+  //   var txID = await sdkWeb3.sendRawTx(signedStr: signature);
+  //   return txID;
+  // }
 
   /// token swap: 签名
-  Future<String> signToken({
-    @required String privateKey,
-    @required String contractAddress,
-    @required String walletAddress,
-    @required String data,
-    BigInt value, // chainType=ETH, eth2token, set value //  token2eth, set 0
-    String nonce,
-  }) async {
-    var count = await sdkWeb3.getTransactionCount(EthereumAddress.fromHex(walletAddress)) + 1;
-
-    /// 签名:
-    String signature = await signOffChain(
-      privateKey: privateKey,
-      fromAddress: contractAddress,
-      toAddress: walletAddress,
-      // 为0
-      value: value ?? BigInt.from(0),
-      // 合约数据
-      data: data,
-      nonce: nonce ?? BigInt.from(count),
-      gasPrice: BigInt.from(0),
-      gasLimit: BigInt.from(9000000),
-    );
-    return signature;
-  }
+  // Future<String> signToken({
+  //   @required String privateKey,
+  //   @required String contractAddress,
+  //   @required String walletAddress,
+  //   @required String data,
+  //   BigInt value, // chainType=ETH, eth2token, set value //  token2eth, set 0
+  //   String nonce,
+  // }) async {
+  //   var count = await sdkWeb3.getTransactionCount(EthereumAddress.fromHex(walletAddress)) + 1;
+  //
+  //   /// 签名:
+  //   String signature = await signOffChain(
+  //     privateKey: privateKey,
+  //     fromAddress: contractAddress,
+  //     toAddress: walletAddress,
+  //     // 为0
+  //     value: value ?? BigInt.from(0),
+  //     // 合约数据
+  //     data: data,
+  //     nonce: nonce ?? BigInt.from(count),
+  //     gasPrice: BigInt.from(0),
+  //     gasLimit: BigInt.from(9000000),
+  //   );
+  //   return signature;
+  // }
 
   /// 签名参数:
-  Future<String> signOffChain({
-    // 钱包私钥:
-    @required String privateKey,
-    // 合约地址:
-    @required String fromAddress,
-    // 钱包地址:
-    @required String toAddress,
-    // 注意!
-    BigInt value,
-    // 注意!
-    String data,
-    BigInt nonce,
-    BigInt gasPrice,
-    BigInt gasLimit,
-  }) async {
-    /// set cred for sign:
-    await sdkFuse.setCredentials(privateKey);
-
-    /// TODO : 地址 from, to 可能有问题
-    return sdkFuse.signOffChain2(fromAddress, toAddress, value, data, nonce, gasPrice, gasLimit);
-  }
+  // Future<String> signOffChain({
+  //   // 钱包私钥:
+  //   @required String privateKey,
+  //   // 合约地址:
+  //   @required String fromAddress,
+  //   // 钱包地址:
+  //   @required String toAddress,
+  //   // 注意!
+  //   BigInt value,
+  //   // 注意!
+  //   String data,
+  //   BigInt nonce,
+  //   BigInt gasPrice,
+  //   BigInt gasLimit,
+  // }) async {
+  //   /// set cred for sign:
+  //   await sdkFuse.setCredentials(privateKey);
+  //
+  //   /// TODO : 地址 from, to 可能有问题
+  //   return sdkFuse.signOffChain2(fromAddress, toAddress, value, data, nonce, gasPrice, gasLimit);
+  // }
 }
