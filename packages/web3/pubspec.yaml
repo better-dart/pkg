@@ -28,7 +28,12 @@ dependencies:
   bip32: ^1.0.7
   hex: ^0.1.2
 
-
+  #
+  # wallet_hd: ^0.0.2 # 依赖待fix
+#  pointycastle: ^1.0.0 #^2.0.0
+#  bs58check: ^1.0.1
+#  tweetnacl: ^0.3.1
+#  bech32:
 
 #  wallet_core:
   wallet_core:
