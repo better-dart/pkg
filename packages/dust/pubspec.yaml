@@ -14,6 +14,9 @@ dependencies:
 
   logger: ^0.9.4
 
+  # rss feed parse:
+  webfeed: ^0.6.0
+
 
 dev_dependencies:
   flutter_test:
