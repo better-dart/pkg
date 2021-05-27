@@ -49,7 +49,7 @@ create-pkg:
   better_ui:
     git:
       url: https://github.com/better-dart/pkg.git   # repo http clone url
-      ref: "2234d37"                                # git tag or git commit-id
+      ref: "c273f20"                                # git tag or git commit-id
       path: packages/better_ui                      # pkg path
 
 
@@ -70,7 +70,7 @@ create-pkg:
   dust:
     git:
       url: https://github.com/better-dart/pkg.git   # repo http clone url
-      ref: "2234d37"                                # git tag or git commit-id
+      ref: "c273f20"                                # git tag or git commit-id
       path: packages/dust                           # pkg path
 
 ```
@@ -92,7 +92,7 @@ create-pkg:
   wallet_connect:
     git:
       url: https://github.com/better-dart/pkg.git   # repo http clone url
-      ref: "2234d37"                                # git tag or git commit-id
+      ref: "c273f20"                                # git tag or git commit-id
       path: packages/wallet_connect                 # pkg path
 
 
@@ -110,7 +110,7 @@ create-pkg:
   web3:
     git:
       url: https://github.com/better-dart/pkg.git   # repo http clone url
-      ref: "100b3d6a"                               # git tag or git commit-id
+      ref: "c273f20"                                # git tag or git commit-id
       path: packages/web3                           # pkg path
 
 
