@@ -1,5 +1,5 @@
 /// 3rd libs:
-export 'package:dust/dust.dart';
+export 'package:kit/kit.dart';
 export 'package:meta/meta.dart';
 
 /// internal:

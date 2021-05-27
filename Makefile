@@ -71,3 +71,12 @@ pkg.release.better_ui.check:
 
 pkg.release.better_ui:
 	cd packages/better_ui; dart pub publish -v
+
+
+# dust:
+pkg.release.web3.check:
+	cd packages/web3; dart pub publish --dry-run
+
+pkg.release.web3:
+	cd packages/web3; dart pub publish -v
+

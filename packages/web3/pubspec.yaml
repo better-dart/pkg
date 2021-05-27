@@ -1,7 +1,6 @@
 name: web3
 description: web3dart wrapper.
 version: 0.0.1
-author: hhglory@outlook.com
 homepage: https://github.com/better-dart/pkg
 
 environment:
@@ -12,14 +11,11 @@ dependencies:
   flutter:
     sdk: flutter
 
-  meta:
-
-  # dart utils:
-  dust:
-    git:
-      url: https://github.com/better-dart/pkg.git   # repo http clone url
-      ref: "babee6d"                                # git tag or git commit-id
-      path: packages/dust                           # pkg path
+  meta: ^1.3.0-nullsafety.3
+  kit: ^0.0.2
+  fixnum: ^0.10.11
+  http: ^0.12.2
+  protobuf: ^1.1.0
 
   #
   #
@@ -59,7 +55,6 @@ dev_dependencies:
     sdk: flutter
   dotenv:
   flutter_dotenv:
-  protobuf: ^1.1.0
   protoc_plugin:
 
 # For information on the generic Dart part of this file, see the
