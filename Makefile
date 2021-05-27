@@ -34,7 +34,7 @@ get.web3:
 
 # https://github.com/hhstore/blog/issues/245
 new.pkg:
-	cd packages; flutter create --template=package better_ui
+	cd packages; flutter create --template=package kit
 
 
 ################################################################
@@ -51,3 +51,23 @@ git.change.main:
 	git branch -D main
 	git branch -m main
 	git push -f origin main
+
+
+################################################
+# publish package:
+################################################
+
+# dust:
+pkg.release.kit.check:
+	cd packages/kit; dart pub publish --dry-run
+
+pkg.release.kit:
+	cd packages/kit; dart pub publish -v
+
+
+# better_ui:
+pkg.release.better_ui.check:
+	cd packages/better_ui; dart pub publish --dry-run
+
+pkg.release.better_ui:
+	cd packages/better_ui; dart pub publish -v

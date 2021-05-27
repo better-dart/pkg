@@ -1,3 +1,3 @@
-library dust;
+library kit;
 
 export 'src/index.dart';

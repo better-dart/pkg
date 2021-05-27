@@ -1,9 +1,9 @@
-export 'package:dust/dust.dart';
 export 'package:flutter/material.dart';
 export 'package:flutter/services.dart';
 export 'package:flutter_svg/flutter_svg.dart';
 export 'package:flutter_swiper/flutter_swiper.dart';
 export 'package:get/get.dart';
+export 'package:kit/kit.dart';
 
 export 'color/index.dart';
 export 'const/index.dart';

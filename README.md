@@ -117,3 +117,18 @@ create-pkg:
 ```
 
 
+## publish pkg:
+
+- https://dart.cn/tools/pub/publishing
+
+
+```
+
+# double check:
+dart pub publish --dry-run
+
+
+# do publish:
+dart pub publish
+
+```

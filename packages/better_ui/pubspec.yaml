@@ -1,7 +1,6 @@
 name: better_ui
 description: A Flutter UI package.
 version: 0.0.1
-author: hhglory@outlook.com
 homepage: https://github.com/better-dart/pkg
 
 environment:
@@ -12,17 +11,11 @@ dependencies:
   flutter:
     sdk: flutter
 
-  get:
-  flutter_svg:
-  flutter_swiper:
-  cached_network_image:
-
-  # used by git repo:
-  dust:
-    git:
-      url: https://github.com/better-dart/pkg.git   # repo http clone url
-      ref: "babee6d"                                # git tag or git commit-id
-      path: packages/dust                           # pkg path
+  get: ^3.26.0
+  flutter_svg: ^0.19.1
+  flutter_swiper: ^1.1.6
+  cached_network_image: ^2.5.1
+  kit: ^0.0.1
 
 
 dev_dependencies:

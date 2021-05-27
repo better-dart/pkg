@@ -1,8 +1,8 @@
-name: dust
+name: kit
 description: A Dart common utils package.
 version: 0.0.1
-author:
 homepage: https://github.com/better-dart/pkg
+
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
@@ -16,7 +16,7 @@ dependencies:
 
   # rss feed parse:
   webfeed: ^0.6.0
-  dio:
+  dio: ^3.0.10
 
 dev_dependencies:
   flutter_test:
