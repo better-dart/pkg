@@ -18,7 +18,7 @@ dependencies:
   dust:
     git:
       url: https://github.com/better-dart/pkg.git   # repo http clone url
-      ref: "2ec4156"                                # git tag or git commit-id
+      ref: "babee6d"                                # git tag or git commit-id
       path: packages/dust                           # pkg path
 
   #
