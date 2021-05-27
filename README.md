@@ -7,7 +7,17 @@
 [![melos](https://img.shields.io/badge/maintained%20with-melos-f700ff.svg?style=flat-square)](https://github.com/invertase/melos)
 
 
-## Package List:
+## Packages:
+
+These are the available plugins in this repository.
+
+| Plugin | Pub | Points | Popularity | Likes |
+|--------|-----|--------|------------|-------|
+| [kit](./packages/kit/) | [![pub package](https://img.shields.io/pub/v/kit.svg)](https://pub.dev/packages/kit) | [![pub points](https://badges.bar/kit/pub%20points)](https://pub.dev/packages/kit/score) |  [![popularity](https://badges.bar/kit/popularity)](https://pub.dev/packages/kit/score) | [![likes](https://badges.bar/kit/likes)](https://pub.dev/packages/kit/score) |
+| [better_ui](./packages/better_ui/) | [![pub package](https://img.shields.io/pub/v/better_ui.svg)](https://pub.dev/packages/better_ui) | [![pub points](https://badges.bar/better_ui/pub%20points)](https://pub.dev/packages/better_ui/score) | [![popularity](https://badges.bar/better_ui/popularity)](https://pub.dev/packages/better_ui/score) | [![likes](https://badges.bar/better_ui/likes)](https://pub.dev/packages/better_ui/score) |
+| [web3](./packages/web3/) | [![pub package](https://img.shields.io/pub/v/web3.svg)](https://pub.dev/packages/web3) | [![pub points](https://badges.bar/web3/pub%20points)](https://pub.dev/packages/web3/score) | [![popularity](https://badges.bar/web3/popularity)](https://pub.dev/packages/web3/score) | [![likes](https://badges.bar/web3/likes)](https://pub.dev/packages/web3/score) |
+
+
 
 - [x] [better_ui](packages/better_ui): UI库, 封装通用组件, 易于使用.
 - [x] [dust](packages/dust): common utils, 基础库, 常用工具方法.
