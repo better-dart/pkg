@@ -20,7 +20,7 @@ These are the available plugins in this repository.
 
 
 - [x] [better_ui](packages/better_ui): UI库, 封装通用组件, 易于使用.
-- [x] [dust](packages/dust): common utils, 基础库, 常用工具方法.
+- [x] [kit](packages/kit): common utils, 基础库, 常用工具方法.
 - [x] [web3](packages/web3): web3 wrapper with [web3dart](https://github.com/simolus3/web3dart), 扩展封装.
 - [x] [wallet_connect](packages/wallet_connect): crypto wallet connect lib.
 
