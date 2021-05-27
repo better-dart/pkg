@@ -40,18 +40,12 @@ create-pkg:
 
 ## better-ui:
 
-
+- https://pub.dev/packages/better_ui
 - how to use:
 
 ```yaml
 
-  # used by git repo:
-  better_ui:
-    git:
-      url: https://github.com/better-dart/pkg.git   # repo http clone url
-      ref: "babee6d"                                # git tag or git commit-id
-      path: packages/better_ui                      # pkg path
-
+  better_ui: ^0.0.1
 
   # used by local path:
   better_ui:
@@ -59,20 +53,15 @@ create-pkg:
 
 ```
 
-## dust:
+## kit:
 
 - dart common utils.
 - how to use:
+- https://pub.dev/packages/kit
+
 
 ```yaml
-
-  # used by git repo:
-  dust:
-    git:
-      url: https://github.com/better-dart/pkg.git   # repo http clone url
-      ref: "babee6d"                                # git tag or git commit-id
-      path: packages/dust                           # pkg path
-
+  kit: ^0.0.1
 ```
 
 

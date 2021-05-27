@@ -6,9 +6,25 @@
 ## Getting Started
 
 
+- pkg:
+
+```
+  better_ui: ^0.0.1
+
 ```
 
+- how to use:
 
+```
+import 'package:better_ui/better_ui.dart';
+
+
+void main(){
+
+  // a lot useful components
+  ui.xxx.xx();
+
+}
 
 
 ```
