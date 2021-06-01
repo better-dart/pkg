@@ -68,9 +68,9 @@ var NetworkProxy = <String, Map<String, NetWorkOption>>{
 
     ///
     'kovan': NetWorkOption(
-      httpUrl: 'https://kovan.infura.io/v3/${infuraKey}',
+      httpUrl: 'https://kovan.infura.io/v3/${infuraKey}', // http://192.168.1.123:8548
       wsUrl: 'wss://kovan.infura.io/ws/v3/${infuraKey}',
-      networkID: 42,
+      networkID: 42, // 1337
     ),
 
     ///
