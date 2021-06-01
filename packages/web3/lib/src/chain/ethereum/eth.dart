@@ -189,6 +189,21 @@ class EthWallet {
     return sdkWeb3.credentialsFromPrivateKey(privateKey);
   }
 
+  /// 调用合约:
+  Future<String> ethCall({
+    fromAddress, // 允许空
+    @required String toAddress, // 合约地址
+    @required String data, // 数据
+    BlockNum atBlock, // 允许空
+  }) async {
+    return sdkWeb3.callRaw(
+      sender: (fromAddress != null ? EthereumAddress.fromHex(fromAddress) : null),
+      contract: (toAddress != null ? EthereumAddress.fromHex(toAddress) : null),
+      data: hexToBytes(data),
+      atBlock: atBlock,
+    );
+  }
+
   ///
   /// 此版本有效:
   ///
