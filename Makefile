@@ -77,6 +77,10 @@ pkg.release.better_ui:
 pkg.release.web3.check:
 	cd packages/web3; dart pub publish --dry-run
 
+# set pub.proxy.us first, then do:
 pkg.release.web3:
 	cd packages/web3; dart pub publish -v
+
+pkg.release.crypto_wallet:
+	cd packages/crypto_wallet; dart pub publish
 
