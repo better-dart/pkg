@@ -24,7 +24,7 @@ gen.proto.all: setup.proto
 migrate-v2:
 	fvm dart pub upgrade --null-safety
 	fvm flutter pub get
-	fvm dart migrate --skip-import-check # --ignore-errors # --skip-import-check
+	fvm dart migrate  # --ignore-errors # --skip-import-check
 
 pkg.release.check:
 	fvm dart pub publish --dry-run

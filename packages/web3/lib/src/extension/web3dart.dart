@@ -6,6 +6,13 @@ import 'package:web3dart/web3dart.dart';
 import '../../web3.dart';
 
 extension Web3DartExt on Web3Client {
+  /// bugFix: 去除参数默认值
+  Future<String> sendTransactionEx(Credentials cred, Transaction transaction) async {
+    final chainId = await getNetworkId();
+    final signed = await signTransaction(cred, transaction, chainId: chainId);
+    return sendRawTransaction(signed);
+  }
+
   Future<String> transfer(String receiverAddress, int amountInWei, String privateKey) async {
     print('transfer --> receiver: $receiverAddress, amountInWei: $amountInWei');
 
@@ -64,12 +71,7 @@ extension Web3DartExt on Web3Client {
 
   /// for token:
   Future<dynamic> getTokenBalance(String contractAddress, {required String address}) async {
-    List<dynamic> params = [];
-
-    ///
-    if (address != null && address != "") {
-      params = [EthereumAddress.fromHex(address)];
-    }
+    List<dynamic> params = [EthereumAddress.fromHex(address)];
 
     ///
     var ret = (await _readFromContract('BasicToken', contractAddress, 'balanceOf', params)).first;
@@ -102,6 +104,7 @@ extension Web3DartExt on Web3Client {
     /// 合约 abi get:
     ///
     String abi = ABI.get(contractName);
+    print('abi name: $contractName,address: $contractAddress, abi: $abi');
 
     ///
     /// deploy contract abi:
@@ -131,7 +134,7 @@ extension Web3DartExt on Web3Client {
     var _networkId = await getNetworkId();
 
     /// send:
-    String txHash = await sendTransaction(_credentials, transaction, chainId: _networkId);
+    String txHash = await sendTransaction(_credentials, transaction);
 
     /// async watch tx done: not add await
     watchTxStatus(txHash);

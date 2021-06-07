@@ -6,6 +6,7 @@ import 'package:web3dart/credentials.dart';
 import 'package:web3dart/crypto.dart';
 import 'package:web3dart/web3dart.dart';
 
+import '../../extension/index.dart';
 import '../../index.dart';
 
 // 1 eth = 1000000000000000000 wei ( 18个0)
@@ -132,7 +133,7 @@ class EthWallet {
 
     if (contractAddress != null) {
       /// token 查询:
-      BigInt ret = (await sdkWeb3.getTokenBalance(contractAddress, address: address)) as BigInt;
+      BigInt? ret = (await sdkWeb3.getTokenBalance(contractAddress, address: address)) as BigInt;
 
       /// 单位换算:
       balance = toEther(fromWei: ret, decimals: decimals!);
@@ -214,7 +215,7 @@ class EthWallet {
   }) async {
     var cred = await getCredentials(privateKey);
 
-    return sdkWeb3.sendTransaction(
+    return sdkWeb3.sendTransactionEx(
       cred,
       Transaction(
         from: EthereumAddress.fromHex(fromAddress),
@@ -223,7 +224,6 @@ class EthWallet {
         value: EtherAmount.inWei(value ?? 0 as BigInt),
         maxGas: maxGas ?? 10000000, // todo: need fix
       ),
-      fetchChainIdFromNetworkId: true,
     );
   }
 
