@@ -1,3 +1,8 @@
-## [0.0.1] - TODO: Add release date.
+## [1.0.1] - 2021-06-07
 
-* TODO: Describe initial release.
+- migrate to flutter 2.x, support null safety.
+
+
+## [0.0.1]
+
+- web3 utils, wrap web3dart.
