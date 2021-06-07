@@ -9,7 +9,7 @@ enum RssType {
 }
 
 /// 自动尝试解析 RSS 类型:
-Future rssAutoParse(url, {RssType type}) async {
+Future rssAutoParse(url, {RssType? type}) async {
   var resp;
   var feed;
 
