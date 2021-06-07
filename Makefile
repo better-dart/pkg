@@ -62,7 +62,7 @@ pkg.release.kit.check:
 	cd packages/kit; dart pub publish --dry-run
 
 pkg.release.kit:
-	cd packages/kit; dart pub publish -v
+	cd packages/kit; dart pub publish # -v
 
 
 # better_ui:
