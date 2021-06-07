@@ -6,5 +6,6 @@ export 'package:meta/meta.dart';
 export 'chain/index.dart';
 export 'config/index.dart';
 export 'core/index.dart';
+export 'extension/index.dart';
 export 'model/index.dart';
 export 'wallet.dart';

@@ -1,7 +1,7 @@
 import 'package:bip32/bip32.dart' as bip32;
 import 'package:bip39/bip39.dart' as bip39;
 import 'package:http/http.dart';
-import 'package:wallet_core/wallet_core.dart' as fuse_wallet;
+// import 'package:wallet_core/wallet_core.dart' as fuse_wallet;
 import 'package:web3dart/credentials.dart';
 import 'package:web3dart/crypto.dart';
 import 'package:web3dart/web3dart.dart';
@@ -41,7 +41,7 @@ class EthWalletGroup {
 /// eth 钱包:
 class EthWallet {
   /// fuse wallet:
-  fuse_wallet.Web3 sdkFuse;
+  // fuse_wallet.Web3 sdkFuse;
 
   /// web3 dart:
   Web3Client sdkWeb3;
@@ -56,7 +56,7 @@ class EthWallet {
     sdkWeb3 = Web3Client(url, Client());
 
     /// fuse wallet:
-    sdkFuse = fuse_wallet.Web3(() async => true, url: url, networkId: networkId);
+    // sdkFuse = fuse_wallet.Web3(() async => true, url: url, networkId: networkId);
   }
 
   /// 生成 HD 钱包:
@@ -132,13 +132,13 @@ class EthWallet {
 
     if (contractAddress != null) {
       /// token 查询:
-      BigInt ret = await sdkFuse.getTokenBalance(contractAddress, address: address);
+      BigInt ret = await sdkWeb3.getTokenBalance(contractAddress, address: address);
 
       /// 单位换算:
       balance = toEther(fromWei: ret, decimals: decimals);
     } else {
       /// 主链查询:
-      var ret = await sdkFuse.getBalance(address: address);
+      var ret = await sdkWeb3.getBalance(EthereumAddress.fromHex(address));
 
       /// 单位换算:
       balance = toEther(fromWei: ret.getInWei, decimals: decimals);
@@ -157,14 +157,11 @@ class EthWallet {
   }) async {
     var txID = '';
 
-    /// set privateKey:
-    await sdkFuse.setCredentials(privateKey);
-
     /// do tx:
     try {
       /// 合约 Token:
       if (contractAddress != null) {
-        txID = await sdkFuse.tokenTransfer(contractAddress, toAddress, amount);
+        txID = await sdkWeb3.tokenTransfer(contractAddress, toAddress, amount, privateKey);
         logger.i('do wallet token transfer done: $contractAddress, $toAddress, amount:$amount, $txID');
       } else {
         var amountInWei = toWei(fromEther: amount).toInt();
@@ -175,7 +172,7 @@ class EthWallet {
         }
 
         /// 主链 ETH:
-        txID = await sdkFuse.transfer(toAddress, amountInWei);
+        txID = await sdkWeb3.transfer(toAddress, amountInWei, privateKey);
         logger.i('do wallet transfer done: to:$toAddress, amount:$amount, wei:$amountInWei, $txID');
       }
     } catch (e, s) {
