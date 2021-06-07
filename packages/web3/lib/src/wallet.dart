@@ -17,7 +17,7 @@ class WalletCore {
     var seed = bip39.mnemonicToSeed(mnemonic);
     var root = bip32.BIP32.fromSeed(seed);
     var child = root.derivePath("m/44'/60'/0'/0/0");
-    return bytesToHex(child.privateKey);
+    return bytesToHex(child.privateKey!);
   }
 
   // 地址:
@@ -34,8 +34,8 @@ class WalletCore {
 
 // todo:
 class KeyData {
-  List<int> key;
-  List<int> chainCode;
+  List<int>? key;
+  List<int>? chainCode;
 
   KeyData({this.key, this.chainCode});
 }

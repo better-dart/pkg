@@ -23,8 +23,8 @@ import '../index.dart';
 
 /// 以太坊:
 var EthNetwork = NetworkProxy['ETH'];
-var EthMainnet = EthNetwork['mainnet'];
-var EthKovan = EthNetwork['kovan'];
+var EthMainnet = EthNetwork!['mainnet'];
+var EthKovan = EthNetwork!['kovan'];
 
 ///
 /// 2a8832f9bad44152a976a3be1f32c328
@@ -32,7 +32,7 @@ var EthKovan = EthNetwork['kovan'];
 ///
 var infuraKey = '2a8832f9bad44152a976a3be1f32c328';
 
-void setInFuraKey({String secretKey}) {
+void setInFuraKey({String? secretKey}) {
   infuraKey = secretKey ?? '2a8832f9bad44152a976a3be1f32c328';
 }
 

@@ -13,7 +13,7 @@ class HDWallet {
   /// 钱包地址:
   String publicAddress;
 
-  HDWallet({@required this.mnemonic, @required this.privateKey, @required this.publicAddress});
+  HDWallet({required this.mnemonic, required this.privateKey, required this.publicAddress});
 
   @override
   String toString() {

@@ -3,22 +3,22 @@
 ///
 class TokenOption {
   /// 正式链
-  String address;
+  String? address;
 
   /// 测试链
-  String addressTest;
+  String? addressTest;
 
   /// 符号:
-  String symbol;
+  String? symbol;
 
   /// 图片:
-  String logo;
-  String name;
+  String? logo;
+  String? name;
 
   /// 合约协议类型:
-  bool isErc20;
-  bool isErc721;
-  int decimals;
+  bool? isErc20;
+  bool? isErc721;
+  int? decimals;
 
   TokenOption({
     this.address,

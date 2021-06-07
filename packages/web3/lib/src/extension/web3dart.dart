@@ -51,9 +51,9 @@ extension Web3DartExt on Web3Client {
 
   Future<dynamic> getTokenDetails(String tokenAddress) async {
     return {
-      "name": (await _readFromContract('BasicToken', tokenAddress, 'name', []))?.first,
-      "symbol": (await _readFromContract('BasicToken', tokenAddress, 'symbol', []))?.first,
-      "decimals": (await _readFromContract('BasicToken', tokenAddress, 'decimals', []))?.first
+      "name": (await _readFromContract('BasicToken', tokenAddress, 'name', [])).first,
+      "symbol": (await _readFromContract('BasicToken', tokenAddress, 'symbol', [])).first,
+      "decimals": (await _readFromContract('BasicToken', tokenAddress, 'decimals', [])).first
     };
   }
 
@@ -63,7 +63,7 @@ extension Web3DartExt on Web3Client {
   }
 
   /// for token:
-  Future<dynamic> getTokenBalance(String contractAddress, {@required String address}) async {
+  Future<dynamic> getTokenBalance(String contractAddress, {required String address}) async {
     List<dynamic> params = [];
 
     ///
@@ -72,7 +72,7 @@ extension Web3DartExt on Web3Client {
     }
 
     ///
-    var ret = (await _readFromContract('BasicToken', contractAddress, 'balanceOf', params))?.first;
+    var ret = (await _readFromContract('BasicToken', contractAddress, 'balanceOf', params)).first;
     print('getTokenBalance: $contractAddress, $address, result: $ret');
     return ret;
   }
@@ -141,7 +141,7 @@ extension Web3DartExt on Web3Client {
 
   // wait and report:
   Future<TransactionReceipt> watchTxStatus(String txHash) async {
-    TransactionReceipt receipt;
+    TransactionReceipt? receipt;
     try {
       print('async watch tx status');
       receipt = await getTransactionReceipt(txHash);

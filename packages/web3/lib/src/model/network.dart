@@ -2,11 +2,11 @@
 ///
 ///
 class NetWorkOption {
-  String httpUrl;
-  String wsUrl;
-  String name;
-  String type;
-  int networkID;
+  String? httpUrl;
+  String? wsUrl;
+  String? name;
+  String? type;
+  int? networkID;
 
   NetWorkOption({
     this.httpUrl,

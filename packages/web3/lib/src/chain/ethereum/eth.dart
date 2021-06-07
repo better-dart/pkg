@@ -17,14 +17,14 @@ BigInt ethUnit = BigInt.from(10).pow(18);
 class EthWalletGroup {
   /// 正式链:
   final _main = EthWallet(
-    url: NetworkProxy['ETH']['mainnet'].httpUrl,
-    networkId: NetworkProxy['ETH']['mainnet'].networkID,
+    url: NetworkProxy['ETH']!['mainnet']!.httpUrl!,
+    networkId: NetworkProxy['ETH']!['mainnet']!.networkID,
   );
 
   /// 测试链:
   final _testKovan = EthWallet(
-    url: NetworkProxy['ETH']['kovan'].httpUrl,
-    networkId: NetworkProxy['ETH']['kovan'].networkID,
+    url: NetworkProxy['ETH']!['kovan']!.httpUrl!,
+    networkId: NetworkProxy['ETH']!['kovan']!.networkID,
   );
 
   ///
@@ -33,8 +33,8 @@ class EthWalletGroup {
     return isTestNet ? _testKovan : _main;
   }
 
-  NetWorkOption network({bool isTestNet = false}) {
-    return isTestNet ? NetworkProxy['ETH']['kovan'] : NetworkProxy['ETH']['mainnet'];
+  NetWorkOption? network({bool isTestNet = false}) {
+    return isTestNet ? NetworkProxy['ETH']!['kovan'] : NetworkProxy['ETH']!['mainnet'];
   }
 }
 
@@ -44,13 +44,13 @@ class EthWallet {
   // fuse_wallet.Web3 sdkFuse;
 
   /// web3 dart:
-  Web3Client sdkWeb3;
+  late Web3Client sdkWeb3;
 
   ///////////////////////////////////////////////////////////////////////////
 
   EthWallet({
-    @required String url,
-    @required int networkId,
+    required String url,
+    int? networkId,
   }) {
     /// web3 client:
     sdkWeb3 = Web3Client(url, Client());
@@ -82,7 +82,7 @@ class EthWallet {
     var seed = bip39.mnemonicToSeed(mnemonic);
     var root = bip32.BIP32.fromSeed(seed);
     var child = root.derivePath("m/44'/60'/0'/0/0");
-    return bytesToHex(child.privateKey);
+    return bytesToHex(child.privateKey!);
   }
 
   /// 获取钱包地址:
@@ -96,7 +96,7 @@ class EthWallet {
   ///   - bigInt 有坑: 只有 x/y = double 值是正确的
   ///
   double toEther({
-    @required BigInt fromWei,
+    required BigInt fromWei,
     int decimals = 18, // 转换精度位数: 默认 eth=18
   }) {
     /// 换算单位: 10^x 幂
@@ -108,7 +108,7 @@ class EthWallet {
 
   /// 单位转换:
   BigInt toWei({
-    double fromEther, // 浮点值
+    required double fromEther, // 浮点值
     int decimals = 18, // eth 默认
   }) {
     /// 换算单位: 10^x 幂
@@ -124,24 +124,24 @@ class EthWallet {
 
   /// 查询余额: 兼容 主链+token
   Future<double> getBalance({
-    @required String address, // 当前用户地址
-    String contractAddress, // 合约地址
-    int decimals = 18, // 转换精度位数: 默认 eth=18
+    required String address, // 当前用户地址
+    String? contractAddress, // 合约地址
+    int? decimals = 18, // 转换精度位数: 默认 eth=18
   }) async {
     var balance = 0.0;
 
     if (contractAddress != null) {
       /// token 查询:
-      BigInt ret = await sdkWeb3.getTokenBalance(contractAddress, address: address);
+      BigInt ret = (await sdkWeb3.getTokenBalance(contractAddress, address: address)) as BigInt;
 
       /// 单位换算:
-      balance = toEther(fromWei: ret, decimals: decimals);
+      balance = toEther(fromWei: ret, decimals: decimals!);
     } else {
       /// 主链查询:
       var ret = await sdkWeb3.getBalance(EthereumAddress.fromHex(address));
 
       /// 单位换算:
-      balance = toEther(fromWei: ret.getInWei, decimals: decimals);
+      balance = toEther(fromWei: ret.getInWei, decimals: decimals!);
     }
     print('getBalance: address=$address, contractAddress=$contractAddress, balance=$balance, decimals=$decimals');
     return balance;
@@ -150,10 +150,10 @@ class EthWallet {
   /// 转账: 合并 ETH + ETH Tokens
   /// TODO: 本地存储+更新 nonce
   Future<String> transfer({
-    @required String privateKey,
-    @required String toAddress,
-    @required num amount,
-    String contractAddress,
+    required String privateKey,
+    required String toAddress,
+    required num amount,
+    String? contractAddress,
   }) async {
     var txID = '';
 
@@ -164,7 +164,7 @@ class EthWallet {
         txID = await sdkWeb3.tokenTransfer(contractAddress, toAddress, amount, privateKey);
         logger.i('do wallet token transfer done: $contractAddress, $toAddress, amount:$amount, $txID');
       } else {
-        var amountInWei = toWei(fromEther: amount).toInt();
+        var amountInWei = toWei(fromEther: amount as double).toInt();
 
         if (amountInWei <= 0) {
           logger.e('invalid amount, skip transfer,  input amount:$amount, wei:$amountInWei ');
@@ -189,13 +189,13 @@ class EthWallet {
   /// 调用合约:
   Future<String> ethCall({
     fromAddress, // 允许空
-    @required String toAddress, // 合约地址
-    @required String data, // 数据
-    BlockNum atBlock, // 允许空
+    required String toAddress, // 合约地址
+    required String data, // 数据
+    BlockNum? atBlock, // 允许空
   }) async {
     return sdkWeb3.callRaw(
       sender: (fromAddress != null ? EthereumAddress.fromHex(fromAddress) : null),
-      contract: (toAddress != null ? EthereumAddress.fromHex(toAddress) : null),
+      contract: EthereumAddress.fromHex(toAddress),
       data: hexToBytes(data),
       atBlock: atBlock,
     );
@@ -205,12 +205,12 @@ class EthWallet {
   /// 此版本有效:
   ///
   Future<String> swapToken({
-    @required String privateKey,
-    @required String fromAddress,
-    @required String toAddress,
-    @required String data,
-    BigInt value, // chainType=ETH, eth2token, set value //  token2eth, set 0
-    int maxGas,
+    required String privateKey,
+    required String fromAddress,
+    required String toAddress,
+    required String data,
+    BigInt? value, // chainType=ETH, eth2token, set value //  token2eth, set 0
+    int? maxGas,
   }) async {
     var cred = await getCredentials(privateKey);
 
@@ -220,7 +220,7 @@ class EthWallet {
         from: EthereumAddress.fromHex(fromAddress),
         to: EthereumAddress.fromHex(toAddress),
         data: hexToBytes(data),
-        value: EtherAmount.inWei(value ?? 0),
+        value: EtherAmount.inWei(value ?? 0 as BigInt),
         maxGas: maxGas ?? 10000000, // todo: need fix
       ),
       fetchChainIdFromNetworkId: true,
