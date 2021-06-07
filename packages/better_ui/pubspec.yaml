@@ -1,21 +1,21 @@
 name: better_ui
-description: A Flutter UI package.
-version: 0.0.2
+description: A Flutter UI package, null-safety.
+version: 1.0.1
 homepage: https://github.com/better-dart/pkg
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
-  flutter: ">=1.17.0"
+  sdk: '>=2.10.0 <3.0.0'
+  flutter: ">=2.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
 
-  get: ^3.26.0
-  flutter_svg: ^0.19.1
-  flutter_swiper: ^1.1.6
-  cached_network_image: ^2.5.1
-  kit: ^0.0.1
+  get: ^4.1.4
+  flutter_svg: ^0.22.0
+  flutter_swiper_null_safety: ^1.0.2
+  cached_network_image: ^3.0.0
+  kit: ^1.0.2
 
 
 dev_dependencies:

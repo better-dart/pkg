@@ -1,7 +1,7 @@
 export 'package:flutter/material.dart';
 export 'package:flutter/services.dart';
 export 'package:flutter_svg/flutter_svg.dart';
-export 'package:flutter_swiper/flutter_swiper.dart';
+export 'package:flutter_swiper_null_safety/flutter_swiper_null_safety.dart';
 export 'package:get/get.dart';
 export 'package:kit/kit.dart';
 

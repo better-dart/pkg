@@ -30,7 +30,7 @@ class BetterPage {
     Widget title,
     String titleText,
     bool centerTitle = true,
-    bool resizeToAvoidBottomPadding = false,
+    bool resizeToAvoidBottomInset = false,
     Color backgroundColor,
     VoidCallback backFn, // 返回附加函数
     Widget leading,
@@ -60,7 +60,7 @@ class BetterPage {
       bottomNavigationBar: bottomNavigationBar,
 
       /// 输入框问题:
-      resizeToAvoidBottomPadding: resizeToAvoidBottomPadding, //输入框抵住键盘 内容不随键盘滚动
+      resizeToAvoidBottomInset: resizeToAvoidBottomInset, //输入框抵住键盘 内容不随键盘滚动
     );
   }
 
@@ -183,7 +183,7 @@ class BetterPage {
             backgroundColor: pageBackgroundColor ?? (Get.isDarkMode ? null : Colors.white),
 
             /// 输入框问题:
-            resizeToAvoidBottomPadding: false, //输入框抵住键盘 内容不随键盘滚动
+            resizeToAvoidBottomInset: false, //输入框抵住键盘 内容不随键盘滚动
 
             /// 清除默认 bar: 下面基于 SliverAppBar 定制
             appBar: isSplitSysBar
@@ -381,7 +381,7 @@ class BetterPage {
         ),
 
         /// 输入框问题:
-        resizeToAvoidBottomPadding: false, //输入框抵住键盘 内容不随键盘滚动
+        resizeToAvoidBottomInset: false, //输入框抵住键盘 内容不随键盘滚动
       ),
     );
   }

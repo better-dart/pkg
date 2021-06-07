@@ -68,7 +68,7 @@ class BetterUI {
       title: title,
       titleText: titleText,
       centerTitle: centerTitle,
-      resizeToAvoidBottomPadding: resizeToAvoidBottomPadding,
+      resizeToAvoidBottomInset: resizeToAvoidBottomPadding,
       backgroundColor: backgroundColor,
       backFn: backFn,
       leading: leading,

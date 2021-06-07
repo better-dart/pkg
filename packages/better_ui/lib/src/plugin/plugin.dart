@@ -1,5 +1,3 @@
-import 'package:flutter_swiper/flutter_swiper.dart';
-
 import '../index.dart';
 
 ///
