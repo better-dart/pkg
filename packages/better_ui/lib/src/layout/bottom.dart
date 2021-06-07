@@ -14,7 +14,7 @@ class BetterBottom {
   ///
   /// 居中:
   ///
-  Widget classic({String title, void Function() backFn}) {
+  Widget classic({required String title, void Function()? backFn}) {
     return AppBar(
       title: Text(title),
       centerTitle: true,
@@ -22,7 +22,7 @@ class BetterBottom {
         icon: Icon(Icons.arrow_back_ios),
         onPressed: () {
           /// before back
-          backFn();
+          backFn!();
 
           Get.back();
         },

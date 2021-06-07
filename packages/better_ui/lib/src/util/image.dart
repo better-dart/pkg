@@ -5,9 +5,9 @@ import '../index.dart';
 
 /// 图片:
 Widget networkImage({
-  @required String url,
-  double radius,
-  double size,
+  required String url,
+  double? radius,
+  double? size,
 }) {
   print('image url: $url');
 

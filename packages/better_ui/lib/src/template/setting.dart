@@ -3,6 +3,6 @@ import 'package:flutter/material.dart';
 ///
 ///
 ///
-Widget useSettingView() {
+Widget? useSettingView() {
   return null;
 }

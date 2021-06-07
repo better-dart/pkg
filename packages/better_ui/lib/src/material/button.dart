@@ -5,7 +5,7 @@ import '../../better_ui.dart';
 ///
 class BetterButton {
   /// 后退:
-  Widget back({VoidCallback backFn, Color color, double size, EdgeInsetsGeometry margin}) => buildIcon(
+  Widget back({VoidCallback? backFn, Color? color, double? size, EdgeInsetsGeometry? margin}) => buildIcon(
         margin: margin,
         child: Icon(Icons.arrow_back_ios, size: size ?? 18, color: color),
         onTap: () {
@@ -20,35 +20,35 @@ class BetterButton {
       );
 
   /// 前进:
-  Widget forward({VoidCallback onTap, Color color, double size, EdgeInsetsGeometry margin}) => buildIcon(
+  Widget forward({VoidCallback? onTap, Color? color, double? size, EdgeInsetsGeometry? margin}) => buildIcon(
         margin: margin,
         child: Icon(Icons.arrow_forward_ios, size: size ?? 18, color: color),
         onTap: onTap,
       );
 
   /// 添加:
-  Widget add({VoidCallback onTap, Color color, double size, EdgeInsetsGeometry margin}) => buildIcon(
+  Widget add({VoidCallback? onTap, Color? color, double? size, EdgeInsetsGeometry? margin}) => buildIcon(
         margin: margin,
         child: Icon(Icons.add, size: size ?? 18, color: color),
         onTap: onTap,
       );
 
   /// 搜索:
-  Widget search({VoidCallback onTap, Color color, double size, EdgeInsetsGeometry margin}) => buildIcon(
+  Widget search({VoidCallback? onTap, Color? color, double? size, EdgeInsetsGeometry? margin}) => buildIcon(
         margin: margin,
         child: Icon(Icons.search, size: size ?? 18, color: color),
         onTap: onTap,
       );
 
   /// 关闭:
-  Widget close({VoidCallback onTap, Color color, double size, EdgeInsetsGeometry margin}) => buildIcon(
+  Widget close({VoidCallback? onTap, Color? color, double? size, EdgeInsetsGeometry? margin}) => buildIcon(
         margin: margin,
         child: Icon(Icons.close, size: size ?? 18, color: color),
         onTap: onTap,
       );
 
   /// 扫描二维码:
-  Widget qrScan({VoidCallback onTap, Color color, double size, EdgeInsetsGeometry margin}) => buildIcon(
+  Widget qrScan({VoidCallback? onTap, Color? color, double? size, EdgeInsetsGeometry? margin}) => buildIcon(
         margin: margin,
         child: SvgPicture.asset(
           iconScan,
@@ -63,20 +63,20 @@ class BetterButton {
   ////////////////////////////////////////////////////////////////////////////////////
 
   /// 三元按钮组:
-  Widget threeButtons() {
+  Widget? threeButtons() {
     return null;
   }
 
   /// 文本按钮:
   Widget buildText({
-    Widget title,
-    String titleText,
-    VoidCallback onTap,
-    Color color,
-    BorderRadiusGeometry borderRadius,
-    double width,
-    double height,
-    EdgeInsetsGeometry padding,
+    Widget? title,
+    String? titleText,
+    VoidCallback? onTap,
+    Color? color,
+    BorderRadiusGeometry? borderRadius,
+    double? width,
+    double? height,
+    EdgeInsetsGeometry? padding,
   }) {
     return InkWell(
       onTap: onTap,
@@ -91,7 +91,7 @@ class BetterButton {
         child: Center(
           child: title ??
               Text(
-                titleText,
+                titleText!,
                 style: TextStyle(color: Colors.white),
               ),
         ),
@@ -103,13 +103,13 @@ class BetterButton {
   /// 构建按钮(Icon or Text):
   ///
   Widget buildIcon({
-    @required Widget child,
-    VoidCallback onTap,
-    Color color,
-    BorderRadiusGeometry borderRadius,
-    double size,
-    EdgeInsetsGeometry margin,
-    EdgeInsetsGeometry padding,
+    required Widget child,
+    VoidCallback? onTap,
+    Color? color,
+    BorderRadiusGeometry? borderRadius,
+    double? size,
+    EdgeInsetsGeometry? margin,
+    EdgeInsetsGeometry? padding,
     bool useInk = false, // 点击效果:
   }) {
     var item = child ??
@@ -146,21 +146,21 @@ class BetterButton {
   ///   - 支持 text/icon 位置互换
   ///
   Widget buildIconText({
-    Widget title,
-    Widget icon,
+    Widget? title,
+    Widget? icon,
     String titleText = 'click',
     String iconUrl = '',
-    double iconSize,
-    double iconRadius,
+    double? iconSize,
+    double? iconRadius,
 
     ///
-    double fontSize,
-    double gapSize, // 两个组件间隙
-    Color backgroundColor,
-    BorderRadiusGeometry borderRadius,
-    EdgeInsetsGeometry padding,
-    EdgeInsetsGeometry margin,
-    GestureTapCallback onTap, // 可点击
+    double? fontSize,
+    double? gapSize, // 两个组件间隙
+    Color? backgroundColor,
+    BorderRadiusGeometry? borderRadius,
+    EdgeInsetsGeometry? padding,
+    EdgeInsetsGeometry? margin,
+    GestureTapCallback? onTap, // 可点击
     bool vertical = true, // 垂直方向布局
     bool reverse = false, // 布局顺序: 反转 (上下/左右)
   }) {

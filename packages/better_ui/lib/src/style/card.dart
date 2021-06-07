@@ -9,21 +9,21 @@ import '../index.dart';
 ///   - 支持 渐变色背景
 ///
 Widget useBox({
-  @required Widget child,
+  required Widget child,
 
   ///
   bool withCard = false, // 包装
   bool withGradient = false, // 背景渐变色
   bool withSafeArea = false, // 顶部/头部保护区域
-  double width,
-  double height,
-  BorderRadiusGeometry borderRadius,
-  EdgeInsetsGeometry padding,
-  EdgeInsetsGeometry margin,
+  double? width,
+  double? height,
+  BorderRadiusGeometry? borderRadius,
+  EdgeInsetsGeometry? padding,
+  EdgeInsetsGeometry? margin,
 
   //
-  Color backgroundColor, // 背景色
-  List<Color> backgroundColors, // 渐变色:
+  Color? backgroundColor, // 背景色
+  List<Color>? backgroundColors, // 渐变色:
   AlignmentGeometry begin = Alignment.centerLeft,
   AlignmentGeometry end = Alignment.centerRight,
 }) {
@@ -69,11 +69,11 @@ Widget useBox({
 /// 毛玻璃效果:
 ///
 Widget useGrassyBox({
-  @required Widget child,
-  double width,
-  double height,
+  required Widget child,
+  double? width,
+  double? height,
   double radius = 15.0,
-  List<Color> colors,
+  List<Color>? colors,
   AlignmentGeometry begin = Alignment.centerLeft,
   AlignmentGeometry end = Alignment.centerRight,
 }) {
@@ -100,7 +100,7 @@ Widget useGrassyBox({
 }
 
 /// 单行均匀布局: 填充/铺满间隙
-Widget wrapRowFit({@required List<Widget> children}) {
+Widget wrapRowFit({required List<Widget> children}) {
   var items = <Widget>[Spacer()];
 
   /// 添加间隙:
@@ -113,7 +113,7 @@ Widget wrapRowFit({@required List<Widget> children}) {
 
 /// 组件安全区域保护:
 Widget wrapSafeArea({
-  @required Widget child,
+  required Widget child,
   bool left = true,
   bool top = true,
   bool right = true,

@@ -8,11 +8,11 @@ class BetterListTile {
   ///
   ///
   Widget classic({
-    BetterListTileEntity data,
-    Color backgroundColor,
-    double radius,
+    required BetterListTileEntity data,
+    Color? backgroundColor,
+    double? radius,
     bool dense = false, // 压缩字体大小:
-    Color iconColor,
+    Color? iconColor,
     bool setFont = false,
   }) {
     return Container(
@@ -33,7 +33,7 @@ class BetterListTile {
         //
         title: data.titleText != null
             ? Text(
-                data.titleText,
+                data.titleText!,
                 style: setFont
                     ? TextStyle(
                         fontSize: 12,
@@ -45,7 +45,7 @@ class BetterListTile {
         //
         subtitle: data.subTitleText != null
             ? Text(
-                data.subTitleText,
+                data.subTitleText!,
                 style: setFont
                     ? TextStyle(
                         fontSize: 10,
@@ -59,7 +59,7 @@ class BetterListTile {
             ? CircleAvatar(
                 backgroundColor: Colors.transparent,
                 child: Image(
-                  image: AssetImage(data.iconStartUrl),
+                  image: AssetImage(data.iconStartUrl!),
                   color: iconColor,
                 ),
               )
@@ -70,7 +70,7 @@ class BetterListTile {
             ? CircleAvatar(
                 backgroundColor: Colors.transparent,
                 child: Image(
-                  image: AssetImage(data.iconEndUrl),
+                  image: AssetImage(data.iconEndUrl!),
                   color: iconColor,
                 ),
               )
@@ -82,7 +82,7 @@ class BetterListTile {
   ///
   /// 下拉选择:
   ///
-  Widget select({@required int itemCount, @required IndexedWidgetBuilder itemBuilder, Widget leading, Widget title, Widget subtitle}) {
+  Widget select({required int itemCount, required IndexedWidgetBuilder itemBuilder, Widget? leading, required Widget title, Widget? subtitle}) {
     return ExpansionTile(
       title: title,
       subtitle: subtitle,

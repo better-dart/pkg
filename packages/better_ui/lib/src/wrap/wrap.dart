@@ -8,14 +8,14 @@ class BetterWrap {
   /// 含输入组件的页面:
   ///   - 自动隐藏键盘输入法
   ///
-  Widget inputView({@required Widget child}) => useInputWrap(child: child);
+  Widget inputView({required Widget child}) => useInputWrap(child: child);
 
   /// 单行布局均匀分布:
-  Widget rowFit({@required List<Widget> children}) => wrapRowFit(children: children);
+  Widget rowFit({required List<Widget> children}) => wrapRowFit(children: children);
 
   /// 添加保护区域:
   Widget safeArea({
-    @required Widget child,
+    required Widget child,
     bool left = true,
     bool top = true,
     bool right = true,
@@ -29,17 +29,17 @@ class BetterWrap {
   /// - https://stackoverflow.com/questions/49706046/how-to-run-code-after-showdialog-is-dismissed-in-flutter
   void loadingDialog({
     int milliseconds = 1000,
-    Future<dynamic> Function() waitDo, // 当前异步 task
-    GestureTapCallback afterTo, // 等待完毕, 跳转操作
+    Future<dynamic> Function()? waitDo, // 当前异步 task
+    GestureTapCallback? afterTo, // 等待完毕, 跳转操作
   }) {
     ///
     ///
     ///
     showDialog(
-        context: Get.context,
+        context: Get.context!,
         builder: (context) {
           /// wait some task done:
-          waitDo();
+          waitDo!();
 
           /// 延迟:
           Future.delayed(
@@ -62,7 +62,7 @@ class BetterWrap {
         ///
         /// call after hook:
         ///
-        afterTo();
+        afterTo!();
       },
     );
   }

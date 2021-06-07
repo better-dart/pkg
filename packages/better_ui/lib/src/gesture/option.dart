@@ -16,12 +16,12 @@ class SwipeConfiguration {
 
   ///
   SwipeConfiguration({
-    double verticalSwipeMaxWidthThreshold,
-    double verticalSwipeMinDisplacement,
-    double verticalSwipeMinVelocity,
-    double horizontalSwipeMaxHeightThreshold,
-    double horizontalSwipeMinDisplacement,
-    double horizontalSwipeMinVelocity,
+    double? verticalSwipeMaxWidthThreshold,
+    double? verticalSwipeMinDisplacement,
+    double? verticalSwipeMinVelocity,
+    double? horizontalSwipeMaxHeightThreshold,
+    double? horizontalSwipeMinDisplacement,
+    double? horizontalSwipeMinVelocity,
   }) {
     if (verticalSwipeMaxWidthThreshold != null) {
       this.verticalSwipeMaxWidthThreshold = verticalSwipeMaxWidthThreshold;

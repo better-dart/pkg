@@ -5,17 +5,17 @@ import '../../better_ui.dart';
 ///
 class BetterColor {
   //
-  Color iconBlue() {
+  Color? iconBlue() {
     return Colors.blue[200];
   }
 
   //
-  Color buttonBlue() {
+  Color? buttonBlue() {
     return Colors.blue[200];
   }
 
   //
-  Color barBlue() {
+  Color? barBlue() {
     return Colors.blue[200];
   }
 

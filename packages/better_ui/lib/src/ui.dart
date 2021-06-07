@@ -49,19 +49,19 @@ class BetterUI {
 
   /// 标准页面:
   Widget buildStdView({
-    Size preferredSize, // 压缩高度 // Size.fromHeight(34.0)
-    Widget title,
-    String titleText,
+    Size? preferredSize, // 压缩高度 // Size.fromHeight(34.0)
+    Widget? title,
+    String? titleText,
     bool centerTitle = true,
     bool resizeToAvoidBottomPadding = false,
-    Color backgroundColor,
-    VoidCallback backFn, // 返回附加函数
-    Widget leading,
-    List<Widget> actions,
+    Color? backgroundColor,
+    VoidCallback? backFn, // 返回附加函数
+    Widget? leading,
+    List<Widget>? actions,
 
     ///
-    @required Widget body,
-    Widget bottomNavigationBar,
+    required Widget body,
+    Widget? bottomNavigationBar,
   }) {
     return page.stdView(
       preferredSize: preferredSize,
@@ -85,21 +85,21 @@ class BetterUI {
   ///   - 支持 滑动 标题(也支持隐藏: hasHeader = false)
   ///
   Widget buildScrollView({
-    ScrollController controller,
+    ScrollController? controller,
     String titleText = '', // 标题文本
-    Widget title, // 标题组件
-    Widget leading, // 头
-    VoidCallback backFn, // 返回附加函数
-    List<Widget> actions, // 尾
+    Widget? title, // 标题组件
+    Widget? leading, // 头
+    VoidCallback? backFn, // 返回附加函数
+    List<Widget>? actions, // 尾
 
     ///
-    List<Widget> bodySlivers, // 二选一: [bodySlivers, body] 常用: 内容布局集
-    Widget body, // 二选一: [bodySlivers, body] 嵌套一个页面(支持自身页面嵌套)
+    required List<Widget> bodySlivers, // 二选一: [bodySlivers, body] 常用: 内容布局集
+    Widget? body, // 二选一: [bodySlivers, body] 嵌套一个页面(支持自身页面嵌套)
 
     /// flex part:
-    Widget flexTitle, // 折叠标题
-    Widget flexibleSpace, // 折叠区域
-    Widget flexBackground, // 折叠背景(图片)
+    Widget? flexTitle, // 折叠标题
+    Widget? flexibleSpace, // 折叠区域
+    Widget? flexBackground, // 折叠背景(图片)
 
     ///
     bool hasAppBar = true, // 是否去除 appbar
@@ -110,12 +110,12 @@ class BetterUI {
     bool centerTitle = true, // 标题居中
     /// 页面允许滚动(最末控制)
     bool hasScrollBody = true,
-    IconThemeData iconTheme, // 图标配色
-    Color backgroundColor, // 背景色
-    Brightness brightness, // 状态栏
-    double expandedHeight, // 头部可折叠部分高度
-    double collapsedHeight, // 折叠区域高度
-    double elevation, // 底线
+    IconThemeData? iconTheme, // 图标配色
+    Color? backgroundColor, // 背景色
+    Brightness? brightness, // 状态栏
+    double? expandedHeight, // 头部可折叠部分高度
+    double? collapsedHeight, // 折叠区域高度
+    double? elevation, // 底线
   }) {
     return page.scrollView(
       controller: controller,
@@ -155,13 +155,13 @@ class BetterUI {
 
   /// 内嵌 tab 页面: 压缩标题高度
   Widget buildTabNestedView({
-    @required List<Widget> titles, // tab 标题
-    @required List<Widget> pages, // tab body
+    required List<Widget> titles, // tab 标题
+    required List<Widget> pages, // tab body
 
     ///
-    Widget drawer,
-    Widget leading,
-    List<Widget> actions, // tab actions
+    Widget? drawer,
+    Widget? leading,
+    List<Widget>? actions, // tab actions
 
     /// 转换适配 sliver 页面:
     bool toSliver = false,
@@ -192,17 +192,17 @@ class BetterUI {
   /// 构造 tab 页面:
   ///
   Widget buildTabView({
-    @required List<Widget> titles, // tab 标题
-    @required List<Widget> pages, // tab body
+    required List<Widget> titles, // tab 标题
+    required List<Widget> pages, // tab body
 
     ///
-    Widget drawer,
-    Widget leading,
-    List<Widget> actions, // tab actions
+    Widget? drawer,
+    Widget? leading,
+    List<Widget>? actions, // tab actions
 
     /// 控制 bar 标题位置: 是否避开系统状态栏
-    bool primary,
-    Size preferredSize, // 高度压缩
+    bool? primary,
+    Size? preferredSize, // 高度压缩
     bool toSliver = false,
 
     /// 避免底部空白, 页面允许滚动(最末控制)
@@ -230,16 +230,16 @@ class BetterUI {
   ///   - 默认不传参数, 会生成一个 demo 效果页面布局
   ///
   Widget buildScrollTabView({
-    ScrollController controller,
-    List<Widget> tabTitles, // 标题组件
-    List<Widget> tabPages, // 页面内容
-    Widget leading, // 头
-    VoidCallback backFn, // 返回附加函数
-    List<Widget> actions, // 尾
+    ScrollController? controller,
+    List<Widget>? tabTitles, // 标题组件
+    List<Widget>? tabPages, // 页面内容
+    Widget? leading, // 头
+    VoidCallback? backFn, // 返回附加函数
+    List<Widget>? actions, // 尾
 
     /// flex part:
-    Widget flexTitle, // 折叠标题
-    Widget flexBackground, // 折叠背景(图片)
+    Widget? flexTitle, // 折叠标题
+    Widget? flexBackground, // 折叠背景(图片)
 
     ///
     bool isBottomTitle = false,
@@ -247,16 +247,16 @@ class BetterUI {
     bool isScrollable = true, // 可滑动
     bool pinned = true,
     bool centerTitle = true, // 标题居中
-    IconThemeData iconTheme, // 图标配色
-    Color labelColor, // tab 选中颜色
-    Color unselectedLabelColor, // tab 未选中颜色
-    Color indicatorColor, // 选择器颜色
-    Color backgroundColor, // 背景色
-    double fontSize,
-    double indicatorWeight, // 选择器
-    double expandedHeight, // 头部可折叠部分高度
-    double elevation, // 底线
-    Brightness brightness, // 状态栏
+    IconThemeData? iconTheme, // 图标配色
+    Color? labelColor, // tab 选中颜色
+    Color? unselectedLabelColor, // tab 未选中颜色
+    Color? indicatorColor, // 选择器颜色
+    Color? backgroundColor, // 背景色
+    double? fontSize,
+    double? indicatorWeight, // 选择器
+    double? expandedHeight, // 头部可折叠部分高度
+    double? elevation, // 底线
+    Brightness? brightness, // 状态栏
   }) {
     return page.scrollTabView(
       controller: controller,
@@ -291,34 +291,36 @@ class BetterUI {
 
   /////////////////////////////////////////////////////////////////////////////////////////////////
 
+
+
   /// 构造 list:
   Widget buildList({
-    @required int itemCount,
-    @required IndexedWidgetBuilder itemBuilder,
+    required int itemCount,
+    required IndexedWidgetBuilder itemBuilder,
 
     /// convert:
     bool toSliver = false, // 转换成 SliverList()
 
     /// for listView:
     bool shrinkWrap = true,
-    ScrollPhysics physics, // 嵌套滑动冲突解决
-    EdgeInsetsGeometry padding,
+    ScrollPhysics? physics, // 嵌套滑动冲突解决
+    EdgeInsetsGeometry? padding,
     Axis scrollDirection = Axis.vertical,
-    ScrollController controller,
+    ScrollController? controller,
 
     /// for sep:
     bool hasSeparator = true, // 是否分割线
-    double sepIndent, // 有默认0值 !=null, 否则 = null
-    double sepEndIndent, // 有默认0值 !=null, 否则 = null
-    double sepHeight, // 间隔控制, 原默认=16.0(过大)
-    Color sepColor, // 分割线颜色
+    double? sepIndent, // 有默认0值 !=null, 否则 = null
+    double? sepEndIndent, // 有默认0值 !=null, 否则 = null
+    double? sepHeight, // 间隔控制, 原默认=16.0(过大)
+    Color? sepColor, // 分割线颜色
 
     /// for container:
-    double width,
-    double height,
-    double radius, // 圆角
-    Color bgColor, // background color
-    EdgeInsetsGeometry bgPadding,
+    double? width,
+    double? height,
+     double? radius, // 圆角
+    Color? bgColor, // background color
+    EdgeInsetsGeometry? bgPadding,
   }) {
     return layout.body.list.build(
       itemCount: itemCount,
@@ -345,8 +347,8 @@ class BetterUI {
 
   /// 构造 SliverList:
   Widget buildSliverList({
-    @required itemCount,
-    @required IndexedWidgetBuilder itemBuilder,
+    required itemCount,
+    required IndexedWidgetBuilder itemBuilder,
   }) {
     return layout.body.list.buildSliver(
       itemCount: itemCount,
@@ -358,8 +360,8 @@ class BetterUI {
 
   /// 构造 grid:
   Widget buildGrid({
-    @required int itemCount, // 计数
-    @required IndexedWidgetBuilder itemBuilder, // 构造
+    required int itemCount, // 计数
+    required IndexedWidgetBuilder itemBuilder, // 构造
 
     ///
     bool toSliver = false, // 转换成 SliverList()
@@ -368,9 +370,9 @@ class BetterUI {
     double crossAxisSpacing = 0.0, // 水平间隔
     double childAspectRatio = 1.5, // 宽高比 默认1, 控制高度
     Axis scrollDirection = Axis.vertical,
-    ScrollController controller,
+    ScrollController? controller,
     bool shrinkWrap = true,
-    EdgeInsetsGeometry padding,
+    EdgeInsetsGeometry? padding,
   }) {
     return layout.body.grid.build(
       itemCount: itemCount,
@@ -391,8 +393,8 @@ class BetterUI {
 
   /// 构造 SliverGrid:
   Widget buildSliverGrid({
-    @required int itemCount, // 计数
-    @required IndexedWidgetBuilder itemBuilder, // 构造
+    required int itemCount, // 计数
+    required IndexedWidgetBuilder itemBuilder, // 构造
 
     ///
     int crossAxisCount = 4, // 一行多少个
@@ -414,7 +416,7 @@ class BetterUI {
 
   /// wrap hook:
   /// 输入法键盘自动隐藏
-  Widget withInputWrap({@required child}) {
+  Widget withInputWrap({required child}) {
     return wrap.inputView(child: child);
   }
 }

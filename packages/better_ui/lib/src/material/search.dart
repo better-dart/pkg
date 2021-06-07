@@ -6,7 +6,7 @@ import '../../better_ui.dart';
 class BetterTextField {
   void popSearch() {
     showSearch(
-      context: Get.context,
+      context: Get.context!,
       delegate: SearchBarViewDelegate(),
     );
   }
@@ -15,12 +15,12 @@ class BetterTextField {
   ///
   ///
   Widget search({
-    TextEditingController controller,
-    ValueChanged<String> onSubmitted,
-    String hintText,
-    double width,
-    double height,
-    EdgeInsetsGeometry padding,
+    TextEditingController? controller,
+    ValueChanged<String>? onSubmitted,
+    String? hintText,
+    double? width,
+    double? height,
+    EdgeInsetsGeometry? padding,
   }) {
     return Container(
       width: width ?? Get.width * 0.8,
@@ -53,7 +53,7 @@ class BetterTextField {
           prefixIcon: Icon(Icons.search),
 
           /// 后缀图标:
-          suffixIcon: InkWell(child: Icon(Icons.close), onTap: () => controller.clear()),
+          suffixIcon: InkWell(child: Icon(Icons.close), onTap: () => controller!.clear()),
 
           /// 提示信息:
           hintText: hintText ?? ' Hint Text',
@@ -68,13 +68,13 @@ class BetterTextField {
 ///
 /// 搜索页面:
 ///
-class SearchBarViewDelegate extends SearchDelegate<String> {
-  String searchHint = '';
-  var sourceList = <String>[];
-  var suggestList = <String>[];
+class SearchBarViewDelegate extends SearchDelegate<String?> {
+  String? searchHint = '';
+  List<String>? sourceList = <String>[];
+  List<String>? suggestList = <String>[];
 
   @override
-  String get searchFieldLabel => searchHint;
+  String? get searchFieldLabel => searchHint;
 
   ///
   ///
@@ -146,7 +146,7 @@ class SearchBarViewDelegate extends SearchDelegate<String> {
     var result = <String>[];
 
     ///模拟搜索过程
-    for (var str in sourceList) {
+    for (var str in sourceList!) {
       ///query 就是输入框的 TextEditingController
       if (query.isNotEmpty && str.contains(query)) {
         result.add(str);
@@ -165,8 +165,8 @@ class SearchBarViewDelegate extends SearchDelegate<String> {
   @override
   Widget buildSuggestions(BuildContext context) {
     var suggest = query.isEmpty
-        ? suggestList
-        : sourceList
+        ? suggestList!
+        : sourceList!
             .where(
               (input) => input.startsWith(query),
             )

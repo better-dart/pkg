@@ -19,29 +19,29 @@ class betterBodyList {
   /// 典型用法:
   ///
   Widget classic({
-    @required List<BetterListTileEntity> items,
+    required List<BetterListTileEntity> items,
 
     ///
     bool toSliver = false, // 转换成 SliverList()
 
     ///
     Axis scrollDirection = Axis.vertical,
-    ScrollController controller,
+    ScrollController? controller,
     bool shrinkWrap = true,
-    EdgeInsetsGeometry padding,
+    EdgeInsetsGeometry? padding,
 
     ///
     bool hasSeparator = true, // 是否分割线
-    double sepIndent, // 有默认0值 !=null, 否则 = null
-    double sepEndIndent, // 有默认0值 !=null, 否则 = null
-    double sepHeight, // 间隔控制, 原默认=16.0(过大)
-    Color sepColor,
+    double? sepIndent, // 有默认0值 !=null, 否则 = null
+    double? sepEndIndent, // 有默认0值 !=null, 否则 = null
+    double? sepHeight, // 间隔控制, 原默认=16.0(过大)
+    Color? sepColor,
 
     /// for container:
-    double width,
-    double height,
-    double radius, // 圆角
-    Color backgroundColor, // background color
+    double? width,
+    double? height,
+    required double radius, // 圆角
+    Color? backgroundColor, // background color
 
     /// for font:
     bool setFont = false,
@@ -87,31 +87,31 @@ class betterBodyList {
   /// 构建:
   ///
   Widget build({
-    @required int itemCount,
-    @required IndexedWidgetBuilder itemBuilder,
+    required int itemCount,
+    required IndexedWidgetBuilder itemBuilder,
 
     ///
     bool toSliver = false, // 转换成 SliverList()
 
     /// for listView:
     bool shrinkWrap = true,
-    EdgeInsetsGeometry padding,
+    EdgeInsetsGeometry? padding,
     Axis scrollDirection = Axis.vertical,
-    ScrollController controller,
-    ScrollPhysics physics, // 嵌套滑动冲突解决
+    ScrollController? controller,
+    ScrollPhysics? physics, // 嵌套滑动冲突解决
     /// for sep:
     bool hasSeparator = true, // 是否分割线
-    double sepIndent, // 有默认0值 !=null, 否则 = null
-    double sepEndIndent, // 有默认0值 !=null, 否则 = null
-    double sepHeight, // 间隔控制, 原默认=16.0(过大)
-    Color sepColor, // 分割线颜色
+    double? sepIndent, // 有默认0值 !=null, 否则 = null
+    double? sepEndIndent, // 有默认0值 !=null, 否则 = null
+    double? sepHeight, // 间隔控制, 原默认=16.0(过大)
+    Color? sepColor, // 分割线颜色
 
     /// for container:
-    double width,
-    double height,
-    double radius, // 圆角
-    Color bgColor, // background color
-    EdgeInsetsGeometry bgPadding,
+    double? width,
+    double? height,
+    double? radius, // 圆角
+    Color? bgColor, // background color
+    EdgeInsetsGeometry? bgPadding,
   }) {
     /// 分割线: ListView.separate()  vs ListView.builder()
     var v = Container(
@@ -120,7 +120,7 @@ class betterBodyList {
       padding: bgPadding ?? EdgeInsets.all(0.0),
       decoration: BoxDecoration(
         color: bgColor,
-        borderRadius: BorderRadius.circular(radius),
+        borderRadius: BorderRadius.circular(radius ?? 0),
       ),
 
       ///
@@ -159,8 +159,8 @@ class betterBodyList {
   ///   - 实现不同, 上下滑动效果不同
   ///
   Widget buildSliver({
-    @required itemCount,
-    @required IndexedWidgetBuilder itemBuilder,
+    required itemCount,
+    required IndexedWidgetBuilder itemBuilder,
   }) {
     return SliverList(
       delegate: SliverChildBuilderDelegate(
@@ -182,13 +182,13 @@ class betterBodyGrid {
   ///
   Widget build({
     /// 计数:
-    @required int itemCount,
+    required int itemCount,
 
     /// 一行多少个
-    @required int crossAxisCount,
+    required int crossAxisCount,
 
     /// 构造:
-    @required IndexedWidgetBuilder itemBuilder,
+    required IndexedWidgetBuilder itemBuilder,
 
     /// 垂直间隔
     double mainAxisSpacing = 0.0,
@@ -199,13 +199,13 @@ class betterBodyGrid {
     /// 宽高比 默认1, 控制高度
     double childAspectRatio = 1.5,
     Axis scrollDirection = Axis.vertical,
-    ScrollController controller,
+    ScrollController? controller,
 
     ///
     bool toSliver = false, // 转换成 SliverList()
     ///
     bool shrinkWrap = true,
-    EdgeInsetsGeometry padding,
+    EdgeInsetsGeometry? padding,
   }) {
     var v = GridView.builder(
       /// 计数:
@@ -246,10 +246,10 @@ class betterBodyGrid {
   ///
   Widget buildSliver({
     /// 计数:
-    @required int itemCount,
+    required int itemCount,
 
     /// 构造:
-    @required IndexedWidgetBuilder itemBuilder,
+    required IndexedWidgetBuilder itemBuilder,
 
     /// 一行多少个
     int crossAxisCount = 4,

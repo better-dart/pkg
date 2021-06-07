@@ -5,22 +5,22 @@ import '../../better_ui.dart';
 ///
 class BetterListTileEntity {
   // 点击跳转:
-  GestureTapCallback onTap;
+  GestureTapCallback? onTap;
 
   // 二选一:
-  Widget title;
-  String titleText;
+  Widget? title;
+  String? titleText;
 
-  Widget subTitle;
-  String subTitleText;
-
-  // icon:
-  Widget iconStart;
-  String iconStartUrl;
+  Widget? subTitle;
+  String? subTitleText;
 
   // icon:
-  Widget iconEnd;
-  String iconEndUrl;
+  Widget? iconStart;
+  String? iconStartUrl;
+
+  // icon:
+  Widget? iconEnd;
+  String? iconEndUrl;
 
   //
   BetterListTileEntity({

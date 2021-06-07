@@ -3,6 +3,6 @@ import 'package:flutter/material.dart';
 ///
 ///
 ///
-Widget useAboutView() {
+Widget? useAboutView() {
   return null;
 }

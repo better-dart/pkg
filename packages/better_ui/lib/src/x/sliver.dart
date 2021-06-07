@@ -11,11 +11,10 @@ class BetterSliverPersistentHeaderDelegate extends SliverPersistentHeaderDelegat
 
   /// 如果 assert 内部条件不成立，会报错
   BetterSliverPersistentHeaderDelegate({
-    @required this.child,
+    required this.child,
     this.max = 300,
     this.min = 100,
-  })  : assert(child != null),
-        assert(min <= max),
+  })  : assert(min <= max),
         super();
 
   /// 返回展示的内容，如果内容固定可以直接在这定义，如果需要可扩展，这边通过传入值来定义

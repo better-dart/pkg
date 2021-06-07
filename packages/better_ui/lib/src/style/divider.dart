@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 /// 分割线:
 ///
 Divider useDivider({
-  Color color,
-  double height,
-  double indent,
-  double endIndent,
-  double thickness,
+  Color? color,
+  double? height,
+  double? indent,
+  double? endIndent,
+  double? thickness,
 }) {
   return Divider(
     // 控制间隔高度: 原默认=16(过大)

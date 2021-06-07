@@ -10,17 +10,17 @@ class BetterAppBar {
   ///   - 支持压缩 bar 高度
   ///
   Widget classic({
-    Size preferredSize, // 压缩高度 // Size.fromHeight(34.0)
-    Widget title,
-    String titleText,
+    Size? preferredSize, // 压缩高度 // Size.fromHeight(34.0)
+    Widget? title,
+    String? titleText,
 
     /// 控制 bar 标题位置: 是否避开系统状态栏
-    bool primary,
+    bool? primary,
     bool centerTitle = true,
-    Color backgroundColor,
-    VoidCallback backFn, // 返回附加函数
-    Widget leading,
-    List<Widget> actions,
+    Color? backgroundColor,
+    VoidCallback? backFn, // 返回附加函数
+    Widget? leading,
+    List<Widget>? actions,
   }) {
     return build(
       preferredSize: preferredSize,
@@ -45,19 +45,19 @@ class BetterAppBar {
   /// 默认样式:
   ///
   Widget tabBar({
-    @required List<Widget> titles,
-    List<Widget> actions, // 尾
-    VoidCallback backFn, // 返回附加函数
+    required List<Widget> titles,
+    List<Widget>? actions, // 尾
+    VoidCallback? backFn, // 返回附加函数
 
     ///
     bool centerTitle = true,
-    bool isScrollable,
-    double fontSize,
-    double indicatorWeight,
-    Color backgroundColor,
-    Color labelColor,
-    Color unselectedLabelColor,
-    Color indicatorColor,
+    bool? isScrollable,
+    double? fontSize,
+    double? indicatorWeight,
+    Color? backgroundColor,
+    Color? labelColor,
+    Color? unselectedLabelColor,
+    Color? indicatorColor,
   }) {
     return TabBar(
       /// title list
@@ -70,7 +70,7 @@ class BetterAppBar {
       labelStyle: TextStyle(fontSize: fontSize ?? 14, fontWeight: FontWeight.bold),
 
       /// 选中颜色:
-      labelColor: labelColor ?? Get.isDarkMode ? null : Get.theme.primaryColor,
+      labelColor: labelColor ?? (Get.isDarkMode ? null : Get.theme.primaryColor),
 
       /// 选中颜色
       unselectedLabelColor: unselectedLabelColor ?? Get.theme.unselectedWidgetColor,
@@ -95,23 +95,23 @@ class BetterAppBar {
   ///   - 支持压缩 bar 高度
   ///
   Widget withTab({
-    @required List<Widget> titles,
-    VoidCallback backFn, // 返回附加函数
-    Widget leading, // 头
-    List<Widget> actions, // 尾
+    required List<Widget> titles,
+    VoidCallback? backFn, // 返回附加函数
+    Widget? leading, // 头
+    List<Widget>? actions, // 尾
 
     ///
     bool centerTitle = true,
 
     /// 控制 bar 标题位置: 是否避开系统状态栏
-    bool primary,
-    double fontSize,
-    double indicatorWeight,
-    Color backgroundColor,
-    Color indicatorColor,
-    Color labelColor,
-    Color unselectedLabelColor,
-    Size preferredSize, // 压缩高度 // Size.fromHeight(34.0)
+    bool? primary,
+    double? fontSize,
+    double? indicatorWeight,
+    Color? backgroundColor,
+    Color? indicatorColor,
+    Color? labelColor,
+    Color? unselectedLabelColor,
+    Size? preferredSize, // 压缩高度 // Size.fromHeight(34.0)
   }) {
     return build(
       /// 高度压缩:
@@ -161,29 +161,29 @@ class BetterAppBar {
   ///
   Widget sliverHeader({
     String titleText = 'title', // 标题文本
-    Widget title, // 标题组件
-    Widget leading, // 头
-    VoidCallback backFn, // 返回附加函数
-    List<Widget> actions, // 尾
+    Widget? title, // 标题组件
+    Widget? leading, // 头
+    VoidCallback? backFn, // 返回附加函数
+    List<Widget>? actions, // 尾
 
     /// flex part:
-    Widget flexTitle, // 折叠标题
-    Widget flexibleSpace, // 折叠区域
-    Widget flexBackground, // 折叠背景(图片)
+    Widget? flexTitle, // 折叠标题
+    Widget? flexibleSpace, // 折叠区域
+    Widget? flexBackground, // 折叠背景(图片)
 
     ///
     bool isBottomTitle = false,
     bool isSplitSysBar = false, // 是否与系统状态栏切分, 背景图覆盖 // 沉浸式: 合并系统状态栏
     bool centerTitle = true, // 标题居中
-    bool pinned,
-    bool snap,
-    bool floating,
-    IconThemeData iconTheme, // 图标配色
-    Color backgroundColor, // 背景色
-    Brightness brightness, // 状态栏
-    double expandedHeight, // 头部可折叠部分高度
-    double collapsedHeight, // 折叠区域高度
-    double elevation, // 底线
+    bool? pinned,
+    bool? snap,
+    bool? floating,
+    IconThemeData? iconTheme, // 图标配色
+    Color? backgroundColor, // 背景色
+    Brightness? brightness, // 状态栏
+    double? expandedHeight, // 头部可折叠部分高度
+    double? collapsedHeight, // 折叠区域高度
+    double? elevation, // 底线
   }) {
     /// 定制标题:
     var barTitle = (title != null)
@@ -195,7 +195,7 @@ class BetterAppBar {
               fontWeight: FontWeight.bold,
 
               /// 字体颜色: 支持 darkMode
-              color: Get.isDarkMode ? null : Get.textTheme.headline6.color,
+              color: Get.isDarkMode ? null : Get.textTheme.headline6!.color,
             ),
           );
 
@@ -210,7 +210,7 @@ class BetterAppBar {
       title: isBottomTitle ? null : barTitle,
 
       /// 标题位置: 底部
-      bottom: isBottomTitle ? barTitle : null,
+      bottom: isBottomTitle ? barTitle as PreferredSizeWidget? : null,
 
       /// 头:
       leading: leading ?? ui.material.button.back(backFn: backFn),
@@ -222,7 +222,7 @@ class BetterAppBar {
                 icon: Icon(Icons.home, size: 20), // 控制组件大小
                 onPressed: () {
                   Get.snackbar(
-                    null,
+                    '',
                     'Hi, Friend!',
                     colorText: Colors.white,
                     backgroundColor: Colors.orangeAccent,
@@ -286,7 +286,7 @@ class BetterAppBar {
   /// 个人定制 header, 样式要重新写, 参考 appBar() 实现.
   ///
   Widget sliverHeader2({
-    bool pinned,
+    bool? pinned,
   }) {
     return SliverPersistentHeader(
       delegate: BetterSliverPersistentHeaderDelegate(
@@ -305,32 +305,32 @@ class BetterAppBar {
   ///
   Widget build({
     /// 标题:
-    Widget title,
-    String titleText,
+    Widget? title,
+    String? titleText,
     bool centerTitle = true,
 
     /// 返回附加函数
-    VoidCallback backFn,
+    VoidCallback? backFn,
 
     /// 头:
-    Widget leading,
+    Widget? leading,
 
     /// 尾:
-    List<Widget> actions,
+    List<Widget>? actions,
 
     /// 如果不使用, 需要赋值给空.
-    PreferredSizeWidget bottom,
+    PreferredSizeWidget? bottom,
 
     /// 控制 bar 标题位置: 是否避开系统状态栏
-    bool primary,
+    bool? primary,
 
     /// config:
-    Size preferredSize, // 压缩高度 // Size.fromHeight(34.0)
-    Color backgroundColor,
-    IconThemeData iconTheme, //
-    Brightness brightness,
-    double elevation,
-    double titleSpacing,
+    Size? preferredSize, // 压缩高度 // Size.fromHeight(34.0)
+    Color? backgroundColor,
+    IconThemeData? iconTheme, //
+    Brightness? brightness,
+    double? elevation,
+    double? titleSpacing,
   }) {
     var bar = AppBar(
       /// 控制 bar 标题位置: 是否避开系统状态栏
@@ -339,13 +339,13 @@ class BetterAppBar {
       /// 标题:
       title: title ??
           Text(
-            titleText,
+            titleText!,
             style: TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.bold,
 
               /// 字体颜色: 支持 darkMode
-              color: Get.isDarkMode ? null : Get.textTheme.headline6.color,
+              color: Get.isDarkMode ? null : Get.textTheme.headline6!.color,
             ),
           ),
       centerTitle: centerTitle,

@@ -2,19 +2,19 @@ import '../../index.dart';
 
 /// 图片轮播:
 Widget useSlide({
-  Key key,
-  @required int itemCount,
-  @required IndexedWidgetBuilder itemBuilder,
+  Key? key,
+  required int itemCount,
+  required IndexedWidgetBuilder itemBuilder,
 
   ///
-  ValueChanged<int> onIndexChanged,
+  ValueChanged<int>? onIndexChanged,
 
   ///
-  bool autoPlay,
-  int duration,
-  int autoPlayDelay,
-  SwiperPlugin pagination,
-  SwiperLayout layout,
+  bool? autoPlay,
+  int? duration,
+  int? autoPlayDelay,
+  SwiperPlugin? pagination,
+  SwiperLayout? layout,
 }) {
   return Swiper(
     key: key,

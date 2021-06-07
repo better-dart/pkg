@@ -3,6 +3,6 @@ import 'package:flutter/material.dart';
 ///
 ///
 ///
-Widget useAuthView() {
+Widget? useAuthView() {
   return null;
 }

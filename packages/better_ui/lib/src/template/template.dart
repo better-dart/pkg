@@ -13,28 +13,28 @@ class BetterTemplate {
   ///
   /// 我的页面:
   ///
-  Widget meView() {
+  Widget? meView() {
     return null;
   }
 
   ///
   /// 设置页面:
   ///
-  Widget settingView() {
+  Widget? settingView() {
     return null;
   }
 
   ///
   /// 登录页面:
   ///
-  Widget loginView() {
+  Widget? loginView() {
     return null;
   }
 
   ///
   /// 登录页面:
   ///
-  Widget notFoundView({String titleText}) {
+  Widget notFoundView({String? titleText}) {
     return useNotFoundView(titleText: titleText);
   }
 }

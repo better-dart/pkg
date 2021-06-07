@@ -26,19 +26,19 @@ class BetterPage {
 
   /// 标准页面:
   Widget stdView({
-    Size preferredSize, // 压缩高度 // Size.fromHeight(34.0)
-    Widget title,
-    String titleText,
+    Size? preferredSize, // 压缩高度 // Size.fromHeight(34.0)
+    Widget? title,
+    String? titleText,
     bool centerTitle = true,
     bool resizeToAvoidBottomInset = false,
-    Color backgroundColor,
-    VoidCallback backFn, // 返回附加函数
-    Widget leading,
-    List<Widget> actions,
+    Color? backgroundColor,
+    VoidCallback? backFn, // 返回附加函数
+    Widget? leading,
+    List<Widget>? actions,
 
     ///
-    @required Widget body,
-    Widget bottomNavigationBar,
+    required Widget body,
+    Widget? bottomNavigationBar,
   }) {
     return Scaffold(
       /// header:
@@ -51,7 +51,7 @@ class BetterPage {
         backFn: backFn,
         leading: leading,
         actions: actions,
-      ),
+      ) as PreferredSizeWidget?,
 
       /// content:
       body: body,
@@ -73,20 +73,20 @@ class BetterPage {
   ///
   ///
   Widget scrollView({
-    ScrollController controller,
+    ScrollController? controller,
     String titleText = '', // 标题文本
-    Widget title, // 标题组件
-    Widget leading, // 头
-    VoidCallback backFn, // 返回附加函数
-    List<Widget> actions, // 尾
+    Widget? title, // 标题组件
+    Widget? leading, // 头
+    VoidCallback? backFn, // 返回附加函数
+    List<Widget>? actions, // 尾
     ///
-    List<Widget> bodySlivers, // 二选一: [bodySlivers, body] 常用: 内容布局集
-    Widget body, // 二选一: [bodySlivers, body] 嵌套一个页面(支持自身页面嵌套)
+    List<Widget>? bodySlivers, // 二选一: [bodySlivers, body] 常用: 内容布局集
+    Widget? body, // 二选一: [bodySlivers, body] 嵌套一个页面(支持自身页面嵌套)
 
     /// flex part:
-    Widget flexTitle, // 折叠标题
-    Widget flexibleSpace, // 折叠区域
-    Widget flexBackground, // 折叠背景(图片)
+    Widget? flexTitle, // 折叠标题
+    Widget? flexibleSpace, // 折叠区域
+    Widget? flexBackground, // 折叠背景(图片)
 
     ///
     bool hasAppBar = true, // 是否去除 appbar
@@ -97,13 +97,13 @@ class BetterPage {
     bool centerTitle = true, // 标题居中
     /// 页面允许滚动(最末控制)
     bool hasScrollBody = true,
-    IconThemeData iconTheme, // 图标配色
-    Color barBackgroundColor, // appBar 背景色
-    Color pageBackgroundColor, // page 背景色
-    Brightness brightness, // 状态栏
-    double expandedHeight, // 头部可折叠部分高度
-    double collapsedHeight, // 折叠区域高度
-    double elevation, // 底线
+    IconThemeData? iconTheme, // 图标配色
+    Color? barBackgroundColor, // appBar 背景色
+    Color? pageBackgroundColor, // page 背景色
+    Brightness? brightness, // 状态栏
+    double? expandedHeight, // 头部可折叠部分高度
+    double? collapsedHeight, // 折叠区域高度
+    double? elevation, // 底线
   }) {
     /// page body:
     var contents = <Widget>[];
@@ -138,7 +138,7 @@ class BetterPage {
     );
 
     /// add page contents:
-    contents.addAllIf(bodySlivers != null, bodySlivers);
+    contents.addAllIf(bodySlivers != null, bodySlivers!);
 
     /// add nested page:
     contents.addIf(body != null, SliverFillRemaining(child: body));
@@ -227,16 +227,16 @@ class BetterPage {
   /// 可滚动 tab 页面:
   ///
   Widget scrollTabView({
-    ScrollController controller,
-    List<Widget> tabTitles, // 标题组件
-    List<Widget> tabPages, // 页面内容
-    Widget leading, // 头
-    VoidCallback backFn, // 返回附加函数
-    List<Widget> actions, // 尾
+    ScrollController? controller,
+    List<Widget>? tabTitles, // 标题组件
+    List<Widget>? tabPages, // 页面内容
+    Widget? leading, // 头
+    VoidCallback? backFn, // 返回附加函数
+    List<Widget>? actions, // 尾
 
     /// flex part:
-    Widget flexTitle, // 折叠标题
-    Widget flexBackground, // 折叠背景(图片)
+    Widget? flexTitle, // 折叠标题
+    Widget? flexBackground, // 折叠背景(图片)
 
     ///
     bool isBottomTitle = false,
@@ -244,17 +244,17 @@ class BetterPage {
     bool isScrollable = true, // 可滑动
     bool pinned = true,
     bool centerTitle = true, // 标题居中
-    IconThemeData iconTheme, // 图标配色
-    Color labelColor, // tab 选中颜色
-    Color unselectedLabelColor, // tab 未选中颜色
-    Color indicatorColor, // 选择器颜色
-    Color backgroundColor, // 背景色
-    double fontSize,
-    double indicatorWeight, // 选择器
-    double expandedHeight, // 头部可折叠部分高度
-    double collapsedHeight, // 折叠区域高度
-    double elevation, // 底线
-    Brightness brightness, // 状态栏
+    IconThemeData? iconTheme, // 图标配色
+    Color? labelColor, // tab 选中颜色
+    Color? unselectedLabelColor, // tab 未选中颜色
+    Color? indicatorColor, // 选择器颜色
+    Color? backgroundColor, // 背景色
+    double? fontSize,
+    double? indicatorWeight, // 选择器
+    double? expandedHeight, // 头部可折叠部分高度
+    double? collapsedHeight, // 折叠区域高度
+    double? elevation, // 底线
+    Brightness? brightness, // 状态栏
   }) {
     assert(tabTitles?.length == tabPages?.length);
 
@@ -330,15 +330,15 @@ class BetterPage {
   /// tab 结构页面:
   ///
   Widget tabView({
-    List<Widget> tabTitles, // tab 标题
-    List<Widget> tabPages, // tab body
-    Widget drawer, // tab start
-    Widget leading, // tab start
-    List<Widget> actions, // tab actions
+    List<Widget>? tabTitles, // tab 标题
+    List<Widget>? tabPages, // tab body
+    Widget? drawer, // tab start
+    Widget? leading, // tab start
+    List<Widget>? actions, // tab actions
 
     /// 控制标题位置: 是否避开系统状态栏
-    bool primary,
-    Size preferredSize, // 高度压缩
+    bool? primary,
+    Size? preferredSize, // 高度压缩
   }) {
     return DefaultTabController(
       length: tabTitles?.length ?? 2,

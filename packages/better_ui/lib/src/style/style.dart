@@ -7,21 +7,21 @@ class BetterStyle {
   ///
   /// Container 默认样式风格:
   Widget box({
-    @required Widget child,
+    required Widget child,
 
     ///
     bool withCard = false, // 包装
     bool withGradient = false, // 背景渐变色
     bool withSafeArea = false, // 顶部/头部保护区域
-    double width,
-    double height,
-    BorderRadiusGeometry borderRadius,
-    EdgeInsetsGeometry padding,
-    EdgeInsetsGeometry margin,
+    double? width,
+    double? height,
+    BorderRadiusGeometry? borderRadius,
+    EdgeInsetsGeometry? padding,
+    EdgeInsetsGeometry? margin,
 
     //
-    Color backgroundColor, // 背景色
-    List<Color> backgroundColors, // 渐变色:
+    Color? backgroundColor, // 背景色
+    List<Color>? backgroundColors, // 渐变色:
     AlignmentGeometry begin = Alignment.centerLeft,
     AlignmentGeometry end = Alignment.centerRight,
   }) =>
@@ -47,11 +47,11 @@ class BetterStyle {
 
   /// 分割线:
   Widget divider({
-    Color color,
-    double height,
-    double indent,
-    double endIndent,
-    double thickness,
+    Color? color,
+    double? height,
+    double? indent,
+    double? endIndent,
+    double? thickness,
   }) =>
       useDivider(
         color: color,
