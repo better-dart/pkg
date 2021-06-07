@@ -2,6 +2,11 @@
 
 - migrate to flutter 2.x, support null safety.
 
+## [0.0.2]
+
+- fix bugs.
+
+
 
 ## [0.0.1]
 
