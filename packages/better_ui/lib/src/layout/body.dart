@@ -77,7 +77,7 @@ class betterBodyList {
           data: item,
           backgroundColor: sepColor,
           radius: radius,
-          setFont: setFont ?? false,
+          setFont: setFont,
         );
       },
     );
@@ -144,7 +144,7 @@ class betterBodyList {
           indent: sepIndent ?? Get.width * 0.18,
           endIndent: sepEndIndent,
         ),
-        itemCount: itemCount ?? 0,
+        itemCount: itemCount ,
         // do here:
         itemBuilder: itemBuilder,
       ),
@@ -185,7 +185,7 @@ class betterBodyGrid {
     required int itemCount,
 
     /// 一行多少个
-    required int crossAxisCount,
+    int? crossAxisCount,
 
     /// 构造:
     required IndexedWidgetBuilder itemBuilder,

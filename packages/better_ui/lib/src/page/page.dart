@@ -299,7 +299,7 @@ class BetterPage {
                 backFn: backFn,
 
                 ///
-                isBottomTitle: isBottomTitle ?? true,
+                isBottomTitle: isBottomTitle,
                 pinned: pinned,
 
                 /// 滚动部分:

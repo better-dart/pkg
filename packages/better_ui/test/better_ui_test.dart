@@ -1,13 +1,28 @@
-// import 'package:flutter_test/flutter_test.dart';
-//
-// import 'package:better_ui/better_ui.dart';
+import 'package:better_ui/better_ui.dart';
+import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  // test('adds one to input values', () {
-  //   final calculator = Calculator();
-  //   expect(calculator.addOne(2), 3);
-  //   expect(calculator.addOne(-7), -6);
-  //   expect(calculator.addOne(0), 1);
-  //   expect(() => calculator.addOne(null), throwsNoSuchMethodError);
-  // });
+  test('adds one to input values', () {
+    expect(3, 3);
+  });
+
+  // widget test:
+  testWidgets('test view:', (WidgetTester tester) async {
+    // Test code goes here.
+    await tester.pumpWidget(
+      MaterialApp(
+        home: ui.buildStdView(
+          title: Text('test1'),
+          titleText: 'test',
+          body: Container(
+            child: Text('test'),
+          ),
+        ),
+      ),
+    );
+
+    // expect:
+    expect(find.text('test1'), findsOneWidget);
+    expect(find.text('test'), findsWidgets);
+  });
 }

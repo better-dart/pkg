@@ -291,8 +291,6 @@ class BetterUI {
 
   /////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-
   /// 构造 list:
   Widget buildList({
     required int itemCount,
@@ -318,7 +316,7 @@ class BetterUI {
     /// for container:
     double? width,
     double? height,
-     double? radius, // 圆角
+    double? radius, // 圆角
     Color? bgColor, // background color
     EdgeInsetsGeometry? bgPadding,
   }) {
@@ -365,10 +363,10 @@ class BetterUI {
 
     ///
     bool toSliver = false, // 转换成 SliverList()
-    int crossAxisCount = 4, // 单行个数
-    double mainAxisSpacing = 0.0, // 垂直间隔
-    double crossAxisSpacing = 0.0, // 水平间隔
-    double childAspectRatio = 1.5, // 宽高比 默认1, 控制高度
+    int? crossAxisCount = 4, // 单行个数
+    double? mainAxisSpacing = 0.0, // 垂直间隔
+    double? crossAxisSpacing = 0.0, // 水平间隔
+    double? childAspectRatio = 1.5, // 宽高比 默认1, 控制高度
     Axis scrollDirection = Axis.vertical,
     ScrollController? controller,
     bool shrinkWrap = true,
@@ -385,9 +383,9 @@ class BetterUI {
       padding: padding ?? EdgeInsets.all(0),
       // required: 去掉 list 外部的间隙 + fix 滚动冲突
       crossAxisCount: crossAxisCount ?? 4,
-      mainAxisSpacing: mainAxisSpacing,
-      crossAxisSpacing: crossAxisSpacing,
-      childAspectRatio: childAspectRatio,
+      mainAxisSpacing: mainAxisSpacing!,
+      crossAxisSpacing: crossAxisSpacing!,
+      childAspectRatio: childAspectRatio!,
     );
   }
 

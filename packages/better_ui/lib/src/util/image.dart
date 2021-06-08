@@ -12,7 +12,7 @@ Widget networkImage({
   print('image url: $url');
 
   return CachedNetworkImage(
-    imageUrl: url ?? 'http://via.placeholder.com/45x45',
+    imageUrl: url,
 
     ///
     imageBuilder: (context, imageProvider) => Container(

@@ -103,7 +103,7 @@ class BetterButton {
   /// 构建按钮(Icon or Text):
   ///
   Widget buildIcon({
-    required Widget child,
+    Widget? child,
     VoidCallback? onTap,
     Color? color,
     BorderRadiusGeometry? borderRadius,

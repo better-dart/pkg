@@ -43,7 +43,7 @@ class BetterWrap {
 
           /// 延迟:
           Future.delayed(
-            Duration(milliseconds: milliseconds ?? 1000),
+            Duration(milliseconds: milliseconds),
             () {
               /// auto close:
               // Navigator.of(context).pop();
