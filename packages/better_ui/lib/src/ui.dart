@@ -165,7 +165,9 @@ class BetterUI {
 
     /// 转换适配 sliver 页面:
     bool toSliver = false,
-
+    bool centerTitle,
+    Size preferredSize,
+    EdgeInsetsGeometry padding,
     /// 避免底部空白, 页面允许滚动(最末控制)
     bool hasScrollBody = true,
   }) {
@@ -180,9 +182,10 @@ class BetterUI {
       primary: false,
 
       /// 内嵌 tab 页面, 压缩标题栏高度
-      preferredSize: Size.fromHeight(10.0),
+      preferredSize: preferredSize ?? Size.fromHeight(10.0),
       toSliver: toSliver,
-
+      centerTitle: centerTitle,
+      padding:padding,
       /// 避免底部空白, 页面允许滚动(最末控制)
       hasScrollBody: hasScrollBody,
     );
@@ -202,7 +205,9 @@ class BetterUI {
 
     /// 控制 bar 标题位置: 是否避开系统状态栏
     bool primary,
+    bool centerTitle,
     Size preferredSize, // 高度压缩
+    EdgeInsetsGeometry padding,
     bool toSliver = false,
 
     /// 避免底部空白, 页面允许滚动(最末控制)
@@ -219,7 +224,9 @@ class BetterUI {
 
       /// 控制 bar 标题位置: 是否避开系统状态栏
       primary: primary,
+      centerTitle:centerTitle,
       preferredSize: preferredSize,
+        padding:padding,
     );
 
     return toSliver ? SliverFillRemaining(child: v, hasScrollBody: hasScrollBody) : v;

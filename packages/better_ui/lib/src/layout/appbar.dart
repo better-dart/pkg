@@ -100,7 +100,7 @@ class BetterAppBar {
     Widget leading, // 头
     List<Widget> actions, // 尾
 
-    ///
+    ///控制标题是否居中/居左
     bool centerTitle = true,
 
     /// 控制 bar 标题位置: 是否避开系统状态栏

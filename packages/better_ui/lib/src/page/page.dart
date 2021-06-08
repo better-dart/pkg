@@ -41,6 +41,7 @@ class BetterPage {
     Widget bottomNavigationBar,
   }) {
     return Scaffold(
+
       /// header:
       appBar: ui.layout.appBar.classic(
         preferredSize: preferredSize,
@@ -179,48 +180,51 @@ class BetterPage {
     /// 是否去除 appbar
     return hasAppBar
         ? Scaffold(
-            /// 页面 page 整体背景色: // Colors.white30
-            backgroundColor: pageBackgroundColor ?? (Get.isDarkMode ? null : Colors.white),
 
-            /// 输入框问题:
-            resizeToAvoidBottomPadding: false, //输入框抵住键盘 内容不随键盘滚动
+      /// 页面 page 整体背景色: // Colors.white30
+      backgroundColor: pageBackgroundColor ?? (Get.isDarkMode ? null : Colors.white),
 
-            /// 清除默认 bar: 下面基于 SliverAppBar 定制
-            appBar: isSplitSysBar
-                ? PreferredSize(
-                    /// 清除默认:
-                    preferredSize: Size.fromHeight(0),
-                    child: AppBar(
-                      /// 设置背景为全白色:
-                      backgroundColor: barBackgroundColor ?? (Get.isDarkMode ? null : Colors.white),
+      /// 输入框问题:
+      resizeToAvoidBottomPadding: false, //输入框抵住键盘 内容不随键盘滚动
 
-                      /// 控制系统状态栏字体颜色:
-                      brightness: brightness ?? (Get.isDarkMode ? Brightness.dark : Brightness.light),
+      /// 清除默认 bar: 下面基于 SliverAppBar 定制
+      appBar: isSplitSysBar
+          ? PreferredSize(
 
-                      /// AppBar 底部下划线-隐藏阴影
-                      elevation: elevation ?? 0.0,
-                    ),
-                  )
-                : null,
+        /// 清除默认:
+        preferredSize: Size.fromHeight(0),
+        child: AppBar(
 
-            /// 滑动吸顶折叠:
-            body: CustomScrollView(
-              controller: controller ?? ScrollController(),
+          /// 设置背景为全白色:
+          backgroundColor: barBackgroundColor ?? (Get.isDarkMode ? null : Colors.white),
 
-              /// page contents:
-              /// 支持灵活嵌套: sliver 组件
-              ///
-              slivers: contents,
-            ),
-          )
+          /// 控制系统状态栏字体颜色:
+          brightness: brightness ?? (Get.isDarkMode ? Brightness.dark : Brightness.light),
+
+          /// AppBar 底部下划线-隐藏阴影
+          elevation: elevation ?? 0.0,
+        ),
+      )
+          : null,
+
+      /// 滑动吸顶折叠:
+      body: CustomScrollView(
+        controller: controller ?? ScrollController(),
+
+        /// page contents:
+        /// 支持灵活嵌套: sliver 组件
+        ///
+        slivers: contents,
+      ),
+    )
         : CustomScrollView(
-            controller: controller ?? ScrollController(),
+      controller: controller ?? ScrollController(),
 
-            /// page contents:
-            /// 支持灵活嵌套: sliver 组件
-            ///
-            slivers: contents,
-          );
+      /// page contents:
+      /// 支持灵活嵌套: sliver 组件
+      ///
+      slivers: contents,
+    );
   }
 
   ///
@@ -264,66 +268,67 @@ class BetterPage {
         ///
         child: Material(
             child: NestedScrollView(
-          ///
-          /// header:
-          ///
-          headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-            return [
-              ui.layout.appBar.sliverHeader(
-                expandedHeight: expandedHeight,
 
-                /// 折叠区域高度
-                collapsedHeight: collapsedHeight,
+              ///
+              /// header:
+              ///
+              headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+                return [
+                  ui.layout.appBar.sliverHeader(
+                    expandedHeight: expandedHeight,
 
-                /// 标题:
-                title: ui.layout.appBar.tabBar(
-                  titles: tabTitles ??
-                      [
-                        Tab(text: 'tab1'),
-                        Tab(text: 'tab2'),
-                      ],
-                  actions: actions,
-                  backFn: backFn,
-                  centerTitle: centerTitle,
-                  isScrollable: isScrollable,
-                  fontSize: fontSize,
-                  indicatorWeight: indicatorWeight,
-                  indicatorColor: indicatorColor,
-                  labelColor: labelColor,
-                  unselectedLabelColor: unselectedLabelColor,
-                  backgroundColor: backgroundColor,
-                ),
+                    /// 折叠区域高度
+                    collapsedHeight: collapsedHeight,
 
-                leading: leading,
-                actions: actions,
-                backFn: backFn,
+                    /// 标题:
+                    title: ui.layout.appBar.tabBar(
+                      titles: tabTitles ??
+                          [
+                            Tab(text: 'tab1'),
+                            Tab(text: 'tab2'),
+                          ],
+                      actions: actions,
+                      backFn: backFn,
+                      centerTitle: centerTitle,
+                      isScrollable: isScrollable,
+                      fontSize: fontSize,
+                      indicatorWeight: indicatorWeight,
+                      indicatorColor: indicatorColor,
+                      labelColor: labelColor,
+                      unselectedLabelColor: unselectedLabelColor,
+                      backgroundColor: backgroundColor,
+                    ),
 
-                ///
-                isBottomTitle: isBottomTitle ?? true,
-                pinned: pinned,
+                    leading: leading,
+                    actions: actions,
+                    backFn: backFn,
 
-                /// 滚动部分:
-                flexTitle: flexTitle ?? ui.empty,
-                flexBackground: flexBackground,
+                    ///
+                    isBottomTitle: isBottomTitle ?? true,
+                    pinned: pinned,
+
+                    /// 滚动部分:
+                    flexTitle: flexTitle ?? ui.empty,
+                    flexBackground: flexBackground,
+                  ),
+
+                  //
+                ];
+              },
+
+              ///
+              /// tab pages:
+              ///
+              body: TabBarView(
+                children: tabPages ??
+                    [
+                      scrollView(titleText: 'title', flexTitle: ui.empty), // 默认嵌套
+
+                      // Scaffold(body: Container(child: Center(child: Text('page1')))),
+                      Scaffold(body: Container(child: Center(child: Text('page1')))),
+                    ],
               ),
-
-              //
-            ];
-          },
-
-          ///
-          /// tab pages:
-          ///
-          body: TabBarView(
-            children: tabPages ??
-                [
-                  scrollView(titleText: 'title', flexTitle: ui.empty), // 默认嵌套
-
-                  // Scaffold(body: Container(child: Center(child: Text('page1')))),
-                  Scaffold(body: Container(child: Center(child: Text('page1')))),
-                ],
-          ),
-        )));
+            )));
   }
 
   ///
@@ -338,24 +343,31 @@ class BetterPage {
 
     /// 控制标题位置: 是否避开系统状态栏
     bool primary,
+    bool centerTitle,
     Size preferredSize, // 高度压缩
+    EdgeInsetsGeometry padding,
   }) {
-    return DefaultTabController(
+
+
+    var page =DefaultTabController(
       length: tabTitles?.length ?? 2,
 
       ///
       child: Scaffold(
+
         /// 抽屉:
         drawer: drawer,
 
         ///
         appBar: PreferredSize(
+
           /// 压缩导航栏高度:
           preferredSize: preferredSize ?? Size.fromHeight(40.0),
 
           /// 导航栏:
           child: ui.layout.appBar.withTab(
             leading: leading,
+            centerTitle:centerTitle,
             titles: tabTitles ??
                 [
                   Text('tab1'),
@@ -384,6 +396,12 @@ class BetterPage {
         resizeToAvoidBottomPadding: false, //输入框抵住键盘 内容不随键盘滚动
       ),
     );
+
+    var c = Container(
+      child: page,
+      padding: padding,
+    );
+    return c;
   }
 
   /// backup, 样式:
