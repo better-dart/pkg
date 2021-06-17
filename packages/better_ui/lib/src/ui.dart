@@ -165,6 +165,7 @@ class BetterUI {
 
     /// 转换适配 sliver 页面:
     bool toSliver = false,
+    bool centerTitle = false,
 
     /// 避免底部空白, 页面允许滚动(最末控制)
     bool hasScrollBody = true,
@@ -182,6 +183,7 @@ class BetterUI {
       /// 内嵌 tab 页面, 压缩标题栏高度
       preferredSize: Size.fromHeight(10.0),
       toSliver: toSliver,
+      centerTitle: centerTitle,
 
       /// 避免底部空白, 页面允许滚动(最末控制)
       hasScrollBody: hasScrollBody,
@@ -204,6 +206,7 @@ class BetterUI {
     bool? primary,
     Size? preferredSize, // 高度压缩
     bool toSliver = false,
+    bool? centerTitle,
 
     /// 避免底部空白, 页面允许滚动(最末控制)
     bool hasScrollBody = true,
@@ -211,6 +214,8 @@ class BetterUI {
     var v = page.tabView(
       tabTitles: titles,
       tabPages: pages,
+
+      centerTitle: centerTitle,
 
       ///
       drawer: drawer,

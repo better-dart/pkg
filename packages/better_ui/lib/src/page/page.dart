@@ -335,6 +335,7 @@ class BetterPage {
     Widget? drawer, // tab start
     Widget? leading, // tab start
     List<Widget>? actions, // tab actions
+    bool? centerTitle,
 
     /// 控制标题位置: 是否避开系统状态栏
     bool? primary,
@@ -356,6 +357,7 @@ class BetterPage {
           /// 导航栏:
           child: ui.layout.appBar.withTab(
             leading: leading,
+            centerTitle: centerTitle ?? true,
             titles: tabTitles ??
                 [
                   Text('tab1'),
