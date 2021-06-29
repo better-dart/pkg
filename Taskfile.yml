@@ -15,7 +15,7 @@ vars:
   PKG_WEB3: "packages/web3"
   PKG_BETTER_UI: "packages/better_ui"
   PKG_KIT: "packages/kit"
-  PKG_DUST: "packages/dust"
+  PKG_kit: "packages/kit"
 
 
 # global env:
@@ -38,16 +38,16 @@ tasks:
   init:
     cmds:
       - cp .env.local .env
-      - task: get-dust
+      - task: get-kit
       - task: get-web3
       - task: get-better-ui
 
   #########################################################################
 
-  get-dust:
+  get-kit:
     cmds:
       - task: get
-        vars: {PKG_DIR: "packages/dust"}
+        vars: {PKG_DIR: "packages/kit"}
 
   get-web3:
     cmds:
@@ -61,7 +61,7 @@ tasks:
 
   get:
     cmds:
-      - cd {{.PKG_DIR}}; flutter pub get
+      - cd {{.PKG_DIR}}; fvm flutter pub get
 
   #########################################################################
 
@@ -73,10 +73,10 @@ tasks:
     cmds:
       - cd {{.PKG_DIR}}; dart pub publish --dry-run
 
-  publish-dust:
+  publish-kit:
     cmds:
       - task: publish
-        vars: {PKG_DIR: "packages/dust"}
+        vars: {PKG_DIR: "packages/kit"}
 
   publish-web3:
     cmds:
