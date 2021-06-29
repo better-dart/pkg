@@ -67,7 +67,12 @@ tasks:
 
   publish:
     cmds:
-      - cd {{.PKG_DIR}}; dart pub publish -v # --dry-run
+      - PUB_HOSTED_URL=https://pub.dartlang.org; FLUTTER_STORAGE_BASE_URL=https://storage.dartlang.org; cd {{.PKG_DIR}}; dart pub publish -v # --dry-run
+
+  publish-check-web3:
+    cmds:
+      - task: publish-check
+        vars: {PKG_DIR: "packages/web3"}
 
   publish-check:
     cmds:
@@ -98,8 +103,14 @@ tasks:
   pub-proxy: # fix error: template not found
     cmds:
       - export PUB_HOSTED_URL=https://pub.dartlang.org; \
-        export FLUTTER_STORAGE_BASE_URL=https://storage.dartlang.org; \
-        pub global activate melos
+        export FLUTTER_STORAGE_BASE_URL=https://storage.dartlang.org;
+
+
+
+  activate:
+    cmds:
+      - pub global activate melos
+
 
   clean:
     cmds:
