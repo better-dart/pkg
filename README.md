@@ -34,20 +34,32 @@ These are the available plugins in this repository.
 - https://github.com/better-dart/pkg/wiki
 
 
-## Dart/Flutter Packages:
-
-- https://github.com/better-dart/pkg
-
-
 ## Development:
 
-- 添加一个新 lib:
-- 参见: `Makefile`:
+- [Makefile](Makefile)
+- [Taskfile.yml](Taskfile.yml)
+- install:
+
+```bash
+make install
+
+make init
 
 ```
-# https://github.com/hhstore/blog/issues/245
-create-pkg:
-	cd packages; flutter create --template=package better_ui
+
+- create a new pkg:
+
+```bash
+
+task create-pkg
+
+```
+
+- publish a pkg:
+
+```bash
+
+task publish-web3
 
 ```
 
@@ -119,19 +131,3 @@ create-pkg:
 
 ```
 
-
-## publish pkg:
-
-- https://dart.cn/tools/pub/publishing
-
-
-```
-
-# double check:
-dart pub publish --dry-run
-
-
-# do publish:
-dart pub publish
-
-```
