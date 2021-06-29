@@ -1,0 +1,127 @@
+version: '3'
+
+################################################################################################
+#
+# local dev:
+#   - run:
+#   - clean:
+#
+################################################################################################
+
+#
+# global vars: https://taskfile.dev/#/usage?id=variables
+#
+vars:
+  PKG_WEB3: "packages/web3"
+  PKG_BETTER_UI: "packages/better_ui"
+  PKG_KIT: "packages/kit"
+  PKG_DUST: "packages/dust"
+
+
+# global env:
+env:
+  ENV1: testing
+
+# env file:
+dotenv:
+  - .env
+
+################################################################################################
+
+
+# task groups:
+tasks:
+  default:
+    cmds:
+      - task: init
+
+  init:
+    cmds:
+      - cp .env.local .env
+      - task: get-dust
+      - task: get-web3
+      - task: get-better-ui
+
+  #########################################################################
+
+  get-dust:
+    cmds:
+      - task: get
+        vars: {PKG_DIR: "packages/dust"}
+
+  get-web3:
+    cmds:
+      - task: get
+        vars: {PKG_DIR: "packages/web3"}
+
+  get-better-ui:
+    cmds:
+      - task: get
+        vars: {PKG_DIR: "packages/better_ui"}
+
+  get:
+    cmds:
+      - cd {{.PKG_DIR}}; flutter pub get
+
+  #########################################################################
+
+  publish:
+    cmds:
+      - cd {{.PKG_DIR}}; dart pub publish -v # --dry-run
+
+  publish-check:
+    cmds:
+      - cd {{.PKG_DIR}}; dart pub publish --dry-run
+
+  publish-dust:
+    cmds:
+      - task: publish
+        vars: {PKG_DIR: "packages/dust"}
+
+  publish-web3:
+    cmds:
+      - task: publish
+        vars: {PKG_DIR: "packages/web3"}
+
+  publish-better-ui:
+    cmds:
+      - task: publish
+        vars: {PKG_DIR: "packages/better_ui"}
+
+  #########################################################################
+
+
+  create-pkg:
+    cmds:
+      - cd packages; flutter create --template=package $NEW_PKG_NAME
+
+  pub-proxy: # fix error: template not found
+    cmds:
+      - export PUB_HOSTED_URL=https://pub.dartlang.org; \
+        export FLUTTER_STORAGE_BASE_URL=https://storage.dartlang.org; \
+        pub global activate melos
+
+  clean:
+    cmds:
+      - melos clean
+      - fvm flutter clean
+
+  melos-init:
+    cmds:
+      - melos bootstrap # fix error: do not use pub get proxy url
+
+  melos-clean:
+    cmds:
+      - melos clean
+
+  version-check:
+    cmds:
+      - fvm releases
+      - fvm list
+
+  mkdir:
+    desc: "create app folder"
+    cmds:
+      - mkdir -p {{.FOLDER}}
+
+

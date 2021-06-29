@@ -88,7 +88,7 @@ extension Web3DartExt on Web3Client {
 
     try {
       var ret = await call(contract: contract, function: contract.function(functionName), params: params);
-      print('debugX: _readFromContract done: name:$contractName, address: $contractAddress, fn:$functionName, args:$params, result:$ret');
+      // print('debugX: _readFromContract done: name:$contractName, address: $contractAddress, fn:$functionName, args:$params, result:$ret');
       return ret;
     } catch (error, trace) {
       logger.e('debugX: _readFromContract error : name:$contractName, address: $contractAddress, fn:$functionName, args:$params, error:$error, trace:$trace');
@@ -104,7 +104,7 @@ extension Web3DartExt on Web3Client {
     /// 合约 abi get:
     ///
     String abi = ABI.get(contractName);
-    print('abi name: $contractName,address: $contractAddress, abi: $abi');
+    // print('abi name: $contractName,address: $contractAddress, abi: $abi');
 
     ///
     /// deploy contract abi:
@@ -114,7 +114,7 @@ extension Web3DartExt on Web3Client {
       EthereumAddress.fromHex(contractAddress),
     );
 
-    print('debugX: web3 - _contract: $contractName, $contractAddress');
+    // print('debugX: web3 - _contract: $contractName, $contractAddress');
     return contract;
   }
 
