@@ -336,6 +336,7 @@ class BetterPage {
     Widget? leading, // tab start
     List<Widget>? actions, // tab actions
     bool? centerTitle,
+    Widget? bottomNavigationBar,
 
     /// 控制标题位置: 是否避开系统状态栏
     bool? primary,
@@ -381,6 +382,9 @@ class BetterPage {
                 Container(child: Center(child: Text('New Page2'))),
               ],
         ),
+
+        /// bottom:
+        bottomNavigationBar: bottomNavigationBar,
 
         /// 输入框问题:
         resizeToAvoidBottomInset: false, //输入框抵住键盘 内容不随键盘滚动

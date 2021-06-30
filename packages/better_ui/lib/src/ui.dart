@@ -166,6 +166,7 @@ class BetterUI {
     /// 转换适配 sliver 页面:
     bool toSliver = false,
     bool centerTitle = false,
+    Widget? bottomNavigationBar,
 
     /// 避免底部空白, 页面允许滚动(最末控制)
     bool hasScrollBody = true,
@@ -184,6 +185,7 @@ class BetterUI {
       preferredSize: Size.fromHeight(10.0),
       toSliver: toSliver,
       centerTitle: centerTitle,
+      bottomNavigationBar:bottomNavigationBar,
 
       /// 避免底部空白, 页面允许滚动(最末控制)
       hasScrollBody: hasScrollBody,
@@ -207,6 +209,7 @@ class BetterUI {
     Size? preferredSize, // 高度压缩
     bool toSliver = false,
     bool? centerTitle,
+    Widget? bottomNavigationBar,
 
     /// 避免底部空白, 页面允许滚动(最末控制)
     bool hasScrollBody = true,
@@ -221,6 +224,8 @@ class BetterUI {
       drawer: drawer,
       leading: leading,
       actions: actions,
+
+      bottomNavigationBar: bottomNavigationBar,
 
       /// 控制 bar 标题位置: 是否避开系统状态栏
       primary: primary,
