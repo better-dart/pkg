@@ -22,9 +22,6 @@ extension BetterUI on BetterUIInterface {
   /// 自定义通用模板页面集: (常用注册/登录/设置/我的/购物车等)
   BetterTemplate get template => BetterTemplate();
 
-  /// 自定义页面: 常用组合范式
-  BetterPage get page => BetterPage();
-
   /// 页面 wrap 方法集:
   BetterWrap get wrap => BetterWrap();
 
@@ -128,7 +125,7 @@ extension BetterUI on BetterUIInterface {
     /// 避免底部空白, 页面允许滚动(最末控制)
     bool hasScrollBody = true,
   }) {
-    var v = page.tabView(
+    var v = tabView(
       tabTitles: titles,
       tabPages: pages,
 
@@ -182,7 +179,7 @@ extension BetterUI on BetterUIInterface {
     double? elevation, // 底线
     Brightness? brightness, // 状态栏
   }) {
-    return page.scrollTabView(
+    return scrollTabView(
       controller: controller,
       tabTitles: tabTitles,
       tabPages: tabPages,
