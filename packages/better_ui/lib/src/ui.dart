@@ -56,37 +56,7 @@ extension BetterUI on BetterUIInterface {
   /////////////////////////////////////////////////////////////////////////////////////////////////
 
   /// 标准页面:
-  Widget buildStdView({
-    Size? preferredSize, // 压缩高度 // Size.fromHeight(34.0)
-    Widget? title,
-    String? titleText,
-    bool centerTitle = true,
-    bool resizeToAvoidBottomPadding = false,
-    Color? backgroundColor,
-    VoidCallback? backFn, // 返回附加函数
-    Widget? leading,
-    List<Widget>? actions,
-
-    ///
-    required Widget body,
-    Widget? bottomNavigationBar,
-  }) {
-    return page.stdView(
-      preferredSize: preferredSize,
-      title: title,
-      titleText: titleText,
-      centerTitle: centerTitle,
-      resizeToAvoidBottomInset: resizeToAvoidBottomPadding,
-      backgroundColor: backgroundColor,
-      backFn: backFn,
-      leading: leading,
-      actions: actions,
-
-      ///
-      body: body,
-      bottomNavigationBar: bottomNavigationBar,
-    );
-  }
+  StdViewFunc get buildStdView => stdView;
 
   ///
   /// 默认页面布局:

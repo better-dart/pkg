@@ -1,5 +1,20 @@
 import '../../better_ui.dart';
 
+///
+typedef Widget StdViewFunc({
+  Size? preferredSize,
+  Widget? title,
+  String? titleText,
+  bool centerTitle,
+  bool resizeToAvoidBottomInset,
+  Color? backgroundColor,
+  void Function()? backFn,
+  Widget? leading,
+  List<Widget>? actions,
+  required Widget body,
+  Widget? bottomNavigationBar,
+});
+
 /// 标准页面:
 Widget stdView({
   Size? preferredSize, // 压缩高度 // Size.fromHeight(34.0)
