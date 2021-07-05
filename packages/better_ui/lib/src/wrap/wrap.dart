@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 import '../index.dart';
 
 ///
@@ -10,7 +8,7 @@ class BetterWrap {
   /// 含输入组件的页面:
   ///   - 自动隐藏键盘输入法
   ///
-  Widget inputView({required Widget child}) => useInputWrap(child: child);
+  WrapFunc get inputView => useInputWrap;
 
   /// 单行布局均匀分布:
   RowFunc get rowFit => wrapRowFit;

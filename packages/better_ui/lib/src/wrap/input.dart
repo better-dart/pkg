@@ -1,5 +1,7 @@
 import '../index.dart';
 
+typedef Widget WrapFunc({required Widget child});
+
 ///
 /// 含输入组件的页面:
 ///   - 自动隐藏键盘输入法
