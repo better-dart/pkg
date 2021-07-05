@@ -115,6 +115,8 @@ Widget useGrassyBox({
   return box;
 }
 
+typedef Widget RowFunc({required List<Widget> children});
+
 /// 单行均匀布局: 填充/铺满间隙
 Widget wrapRowFit({required List<Widget> children}) {
   var items = <Widget>[Spacer()];
@@ -127,6 +129,14 @@ Widget wrapRowFit({required List<Widget> children}) {
   return Container(child: Row(children: items));
 }
 
+typedef Widget SafeAreaFunc({
+  required Widget child,
+  bool left,
+  bool top,
+  bool right,
+  bool bottom,
+});
+
 /// 组件安全区域保护:
 Widget wrapSafeArea({
   required Widget child,
@@ -137,5 +147,9 @@ Widget wrapSafeArea({
 }) {
   return SafeArea(
     child: child,
+    left: left,
+    top: top,
+    right: right,
+    bottom: bottom,
   );
 }

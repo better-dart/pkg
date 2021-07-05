@@ -55,6 +55,9 @@ extension BetterUI on BetterUIInterface {
   ///
   /////////////////////////////////////////////////////////////////////////////////////////////////
 
+  /// box style:
+  BoxFunction get boxStyle => useBox;
+
   /// 标准页面:
   StdViewFunc get buildStdView => stdView;
 
@@ -62,74 +65,7 @@ extension BetterUI on BetterUIInterface {
   /// 默认页面布局:
   ///   - 支持 滑动 标题(也支持隐藏: hasHeader = false)
   ///
-  Widget buildScrollView({
-    ScrollController? controller,
-    String titleText = '', // 标题文本
-    Widget? title, // 标题组件
-    Widget? leading, // 头
-    VoidCallback? backFn, // 返回附加函数
-    List<Widget>? actions, // 尾
-
-    ///
-    required List<Widget> bodySlivers, // 二选一: [bodySlivers, body] 常用: 内容布局集
-    Widget? body, // 二选一: [bodySlivers, body] 嵌套一个页面(支持自身页面嵌套)
-
-    /// flex part:
-    Widget? flexTitle, // 折叠标题
-    Widget? flexibleSpace, // 折叠区域
-    Widget? flexBackground, // 折叠背景(图片)
-
-    ///
-    bool hasAppBar = true, // 是否去除 appbar
-    bool hasHeader = true, // 默认添加 可折叠 header 部分, 可隐藏
-    bool isBottomTitle = false,
-    bool isSplitSysBar = false, // 是否与系统状态栏切分, 背景图覆盖 // 沉浸式: 合并系统状态栏
-    bool pinned = true,
-    bool centerTitle = true, // 标题居中
-    /// 页面允许滚动(最末控制)
-    bool hasScrollBody = true,
-    IconThemeData? iconTheme, // 图标配色
-    Color? backgroundColor, // 背景色
-    Brightness? brightness, // 状态栏
-    double? expandedHeight, // 头部可折叠部分高度
-    double? collapsedHeight, // 折叠区域高度
-    double? elevation, // 底线
-  }) {
-    return page.scrollView(
-      controller: controller,
-      titleText: titleText,
-      title: title,
-      leading: leading,
-      backFn: backFn,
-      actions: actions,
-
-      ///
-      bodySlivers: bodySlivers,
-      body: body,
-
-      ///
-      flexTitle: flexTitle,
-      flexibleSpace: flexibleSpace,
-      flexBackground: flexBackground,
-
-      ///
-      hasAppBar: hasAppBar,
-      hasHeader: hasHeader,
-      isBottomTitle: isBottomTitle,
-      isSplitSysBar: isSplitSysBar,
-      pinned: pinned,
-      centerTitle: centerTitle,
-      hasScrollBody: hasScrollBody,
-      iconTheme: iconTheme,
-      barBackgroundColor: backgroundColor,
-      brightness: brightness,
-      expandedHeight: expandedHeight,
-
-      /// 折叠区域高度
-      collapsedHeight: collapsedHeight,
-      elevation: elevation,
-    );
-  }
+  ScrollViewFunc get buildScrollView => scrollView;
 
   /// 内嵌 tab 页面: 压缩标题高度
   Widget buildTabNestedView({
