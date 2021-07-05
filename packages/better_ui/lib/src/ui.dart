@@ -1,45 +1,53 @@
 import 'index.dart';
 
 ///
+/// 注入到此:
+///
+abstract class BetterUIInterface {}
+
+class BetterUIInterfaceImpl extends BetterUIInterface {}
+
+///
 /// for global use
 ///
-final betterUI = BetterUI();
+final betterUI = BetterUIInterfaceImpl();
 final ui = betterUI;
+final UI = betterUI;
 
 ///
 /// 常用默认统一 UI:
 ///   - 避免重复代码
 ///
-class BetterUI {
+extension BetterUI on BetterUIInterface {
   /// 自定义通用模板页面集: (常用注册/登录/设置/我的/购物车等)
-  final BetterTemplate template = BetterTemplate();
+  BetterTemplate get template => BetterTemplate();
 
   /// 自定义页面: 常用组合范式
-  final BetterPage page = BetterPage();
+  BetterPage get page => BetterPage();
 
   /// 页面 wrap 方法集:
-  final BetterWrap wrap = BetterWrap();
+  BetterWrap get wrap => BetterWrap();
 
   /// 第三方插件 wrap 集合:
-  final BetterPlugin plugin = BetterPlugin();
+  BetterPlugin get plugin => BetterPlugin();
 
   /// 自定义布局:
-  final BetterLayout layout = BetterLayout();
+  BetterLayout get layout => BetterLayout();
 
   /// 自定义样式:
-  final BetterStyle style = BetterStyle();
+  BetterStyle get style => BetterStyle();
 
   /// 自定义组件集合:
-  final BetterMaterial material = BetterMaterial();
+  BetterMaterial get material => BetterMaterial();
 
   /// 自定义颜色:
-  final BetterColor color = BetterColor();
+  BetterColor get color => BetterColor();
 
   /// 工具方法:
-  final BetterUtil util = BetterUtil();
+  BetterUtil get util => BetterUtil();
 
   /// 空组件 占位符:
-  final Widget empty = SizedBox();
+  Widget get empty => SizedBox();
 
   /////////////////////////////////////////////////////////////////////////////////////////////////
   /// shortcuts for api:
@@ -185,7 +193,7 @@ class BetterUI {
       preferredSize: Size.fromHeight(10.0),
       toSliver: toSliver,
       centerTitle: centerTitle,
-      bottomNavigationBar:bottomNavigationBar,
+      bottomNavigationBar: bottomNavigationBar,
 
       /// 避免底部空白, 页面允许滚动(最末控制)
       hasScrollBody: hasScrollBody,

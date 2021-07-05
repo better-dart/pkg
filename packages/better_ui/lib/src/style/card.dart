@@ -2,6 +2,22 @@ import 'dart:ui';
 
 import '../index.dart';
 
+typedef Widget BoxFunction({
+  Color? backgroundColor,
+  List<Color>? backgroundColors,
+  AlignmentGeometry begin,
+  BorderRadiusGeometry? borderRadius,
+  required Widget child,
+  AlignmentGeometry end,
+  double? height,
+  EdgeInsetsGeometry? margin,
+  EdgeInsetsGeometry? padding,
+  double? width,
+  bool withCard,
+  bool withGradient,
+  bool withSafeArea,
+});
+
 ///
 /// 默认样式风格:
 ///   - 支持 card wrap

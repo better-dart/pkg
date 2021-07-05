@@ -1,5 +1,14 @@
 import 'package:flutter/material.dart';
 
+
+typedef Divider DividerFunction({
+  Color? color,
+  double? endIndent,
+  double? height,
+  double? indent,
+  double? thickness,
+});
+
 ///
 /// 分割线:
 ///

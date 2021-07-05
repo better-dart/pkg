@@ -1,11 +1,6 @@
 import '../../better_ui.dart';
 
 ///
-/// 自定义 完整页面构图:
-///
-var page = BetterPage();
-
-///
 /// 自定义布局:
 ///
 /// CustomScrollView() 和 NestedScrollView() 使用对比.
