@@ -1,3 +1,8 @@
+## [1.0.2]
+
+- refactor some functions.
+
+
 ## [1.0.1] - 2021-06-07
 
 - migrate to flutter 2.x, support null safety.
