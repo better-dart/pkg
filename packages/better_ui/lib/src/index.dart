@@ -4,8 +4,6 @@ export 'package:flutter_svg/flutter_svg.dart';
 export 'package:flutter_swiper_null_safety/flutter_swiper_null_safety.dart';
 export 'package:get/get.dart';
 export 'package:kit/kit.dart';
-
-export 'const/index.dart';
 export 'gesture/gesture.dart';
 export 'gesture/option.dart';
 export 'layout/index.dart';

@@ -47,19 +47,6 @@ class BetterButton {
         onTap: onTap,
       );
 
-  /// 扫描二维码:
-  Widget qrScan({VoidCallback? onTap, Color? color, double? size, EdgeInsetsGeometry? margin}) => buildIcon(
-        margin: margin,
-        child: SvgPicture.asset(
-          iconScan,
-          color: color ?? (Get.isDarkMode ? Colors.white : null),
-          height: 18.0,
-          width: 18.0,
-        ),
-        onTap: onTap,
-        useInk: true,
-      );
-
   ////////////////////////////////////////////////////////////////////////////////////
 
   /// 三元按钮组:
