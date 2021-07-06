@@ -1,5 +1,9 @@
 ## [1.0.2]
 
+- fix sendTx bugs, miss `chainID` argument;
+
+## [1.0.2]
+
 - disable some logs
 
 ## [1.0.1] - 2021-06-07
