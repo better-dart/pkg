@@ -127,14 +127,13 @@ extension Web3DartExt on Web3Client {
   }
 
   Future<String> _sendTransactionAndWaitForReceipt(Transaction transaction, String privateKey) async {
-    print('sendTransactionAndWaitForReceipt');
-
-    ///
     var _credentials = await setCredentials(privateKey);
     var _networkId = await getNetworkId();
 
+    print('sendTransactionAndWaitForReceipt: chainID:$_networkId');
+
     /// send:
-    String txHash = await sendTransaction(_credentials, transaction);
+    String txHash = await sendTransaction(_credentials, transaction, chainId: _networkId);
 
     /// async watch tx done: not add await
     watchTxStatus(txHash);
