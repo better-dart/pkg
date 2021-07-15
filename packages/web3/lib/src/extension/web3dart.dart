@@ -14,7 +14,7 @@ extension Web3DartExt on Web3Client {
   }
 
   Future<String> transfer(String receiverAddress, int amountInWei, String privateKey) async {
-    print('transfer --> receiver: $receiverAddress, amountInWei: $amountInWei');
+    print('transfer start --> receiver: $receiverAddress, amountInWei: $amountInWei');
 
     /// todo: check approved
 
@@ -26,7 +26,7 @@ extension Web3DartExt on Web3Client {
       Transaction(to: receiver, value: amount),
       privateKey,
     );
-    print('transfer done, txID: $txHash successful');
+    print('transfer done --> txID: $txHash successful');
     return txHash;
   }
 

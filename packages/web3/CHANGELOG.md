@@ -1,3 +1,8 @@
+## [1.0.4]
+
+- fix getBalance bugs, log and throw socket io error.
+- update required pkg version:  `web3dart: ^2.1.4`
+
 ## [1.0.3]
 
 - fix sendTx bugs, miss `chainID` argument;

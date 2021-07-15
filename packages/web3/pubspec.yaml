@@ -1,6 +1,6 @@
 name: web3
 description: web3dart wrapper.
-version: 1.0.3
+version: 1.0.4
 homepage: https://github.com/better-dart/pkg
 
 environment:
@@ -29,7 +29,7 @@ dependencies:
 #  tweetnacl: ^0.3.1
 #  bech32:
 
-  web3dart: ^2.1.3
+  web3dart: ^2.1.4
 #  web3dart:
 #    git:
 #      url: https://github.com/better-dart/web3dart.git
