@@ -92,8 +92,8 @@ extension Web3DartExt on Web3Client {
       return ret;
     } catch (error, trace) {
       logger.e('debugX: _readFromContract error : name:$contractName, address: $contractAddress, fn:$functionName, args:$params, error:$error, trace:$trace');
+      throw error; // need throw
     }
-    return [];
   }
 
   ///

@@ -40,6 +40,7 @@ tasks:
       - cp .env.local .env
       - task: get-kit
       - task: get-web3
+      - task: get-wallet-connect
       - task: get-better-ui
 
   #########################################################################
@@ -53,6 +54,11 @@ tasks:
     cmds:
       - task: get
         vars: {PKG_DIR: "packages/web3"}
+
+  get-wallet-connect:
+    cmds:
+      - task: get
+        vars: {PKG_DIR: "packages/wallet_connect"}
 
   get-better-ui:
     cmds:
