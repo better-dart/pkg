@@ -7,7 +7,7 @@
 
 ```yaml
 
-  web3: ^0.0.1
+  web3: ^1.0.5
 
 ```
 
@@ -16,8 +16,24 @@
 ```dart
 import 'package:web3/web3.dart';
 
+void main() async {
+    const rpcUrl = 'https://kovan.infura.io/v3/your_api_key';
+
+    /// wallet client:
+    var client = EthWallet(url: rpcUrl);
+
+    /// hd wallet:
+    var hd = await client.genHDWallet();
+
+    var address = 'your_wallet_address';
+    var result = await client.getBalance(address: address);
+    print('get balance : $result');
+}
+
 
 ```
+
+- [unit test](./test)
 
 
 ## ref:
