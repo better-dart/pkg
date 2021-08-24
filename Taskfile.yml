@@ -142,3 +142,6 @@ tasks:
       - mkdir -p {{.FOLDER}}
 
 
+  push:
+    cmds:
+      - git push origin main --tags
