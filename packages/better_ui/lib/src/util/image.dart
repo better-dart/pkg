@@ -9,7 +9,7 @@ Widget networkImage({
   double? radius,
   double? size,
 }) {
-  print('image url: $url');
+  // print('image url: $url');
 
   return CachedNetworkImage(
     imageUrl: url,
