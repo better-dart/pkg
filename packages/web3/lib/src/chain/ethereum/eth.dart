@@ -69,7 +69,7 @@ class EthWallet {
     var publicAddress = (await genPublicAddress(privateKey)).hex.toLowerCase();
 
     return HDWallet(
-      mnemonic: genMnemonic(),
+      mnemonic: mnemonic,
       privateKey: privateKey,
       publicAddress: publicAddress,
     );

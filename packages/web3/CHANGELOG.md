@@ -1,3 +1,8 @@
+## [1.0.5]
+
+- fix: fix generate hd wallet bugs.
+- unit tests: add test cases;
+
 ## [1.0.4]
 
 - fix getBalance bugs, log and throw socket io error.

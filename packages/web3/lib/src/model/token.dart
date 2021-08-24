@@ -30,4 +30,9 @@ class TokenOption {
     this.isErc721,
     this.decimals,
   });
+
+  @override
+  String toString() {
+    return 'TokenOption{address: $address, addressTest: $addressTest, symbol: $symbol, logo: $logo, name: $name, isErc20: $isErc20, isErc721: $isErc721, decimals: $decimals}';
+  }
 }
