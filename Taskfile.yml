@@ -141,7 +141,8 @@ tasks:
     cmds:
       - mkdir -p {{.FOLDER}}
 
+  #########################################################################
 
   push:
     cmds:
-      - git push origin main --tags
+      - git push origin null-safety:null-safety --tags
