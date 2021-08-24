@@ -151,4 +151,4 @@ tasks:
 
   push:
     cmds:
-      - git push origin null-safety:null-safety --tags
+      - git push origin main --tags
