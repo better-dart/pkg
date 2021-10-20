@@ -105,6 +105,12 @@ tasks:
       - task: publish
         vars: {PKG_DIR: "packages/better_ui"}
 
+  publish:better-app:
+    cmds:
+      - task: publish
+        vars: {PKG_DIR: "packages/better_app"}
+
+
   #########################################################################
 
   pkg:new:
