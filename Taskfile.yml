@@ -107,10 +107,9 @@ tasks:
 
   #########################################################################
 
-
-  create-pkg:
+  pkg:new:
     cmds:
-      - cd packages; flutter create --template=package $NEW_PKG_NAME
+      - cd packages; fvm flutter create --template=package $NEW_PKG_NAME
 
   pub-proxy: # fix error: template not found
     cmds:
