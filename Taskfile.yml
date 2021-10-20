@@ -110,6 +110,11 @@ tasks:
       - task: publish
         vars: {PKG_DIR: "packages/better_app"}
 
+  publish:better-cli:
+    cmds:
+      - task: publish
+        vars: {PKG_DIR: "packages/better_cli"}
+
 
   #########################################################################
 
