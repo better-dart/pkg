@@ -5,6 +5,14 @@
   - [x] flutter packages.
 
 [![melos](https://img.shields.io/badge/maintained%20with-melos-f700ff.svg?style=flat-square)](https://github.com/invertase/melos)
+<a href="https://discord.com/invite/MnDA9pfWAW" target="_blank">
+      <img src="https://img.shields.io/badge/Discord-GossipCoder-%237289DA.svg?logo=iscord&logoColor=white" alt="Discord">
+</a> 
+<a href="https://discord.com/invite/MnDA9pfWAW" target="_blank">
+      <img src="https://img.shields.io/discord/877031318272217179" alt="Discord">
+</a> 
+
+
 
 
 ## Packages:
