@@ -1,9 +1,11 @@
 import '../../better_ui.dart';
 
+class BetterAppBar with AppBarMixin {}
+
 ///
 /// 典型布局:
 ///
-class BetterAppBar {
+mixin AppBarMixin {
   ///
   /// 通用 bar:
   ///   - 支持居中
@@ -22,7 +24,7 @@ class BetterAppBar {
     Widget? leading,
     List<Widget>? actions,
   }) {
-    return build(
+    return buildAppBar(
       preferredSize: preferredSize,
       title: title,
       titleText: titleText,
@@ -34,7 +36,7 @@ class BetterAppBar {
       backFn: backFn,
 
       ///
-      leading: leading ?? ui.material.button.back(backFn: backFn),
+      leading: leading ?? ui.button.back(backFn: backFn),
 
       ///
       actions: actions,
@@ -113,7 +115,7 @@ class BetterAppBar {
     Color? unselectedLabelColor,
     Size? preferredSize, // 压缩高度 // Size.fromHeight(34.0)
   }) {
-    return build(
+    return buildAppBar(
       /// 高度压缩:
       preferredSize: preferredSize,
 
@@ -213,7 +215,7 @@ class BetterAppBar {
       bottom: isBottomTitle ? barTitle as PreferredSizeWidget? : null,
 
       /// 头:
-      leading: leading ?? ui.material.button.back(backFn: backFn),
+      leading: leading ?? ui.button.back(backFn: backFn),
 
       /// 尾:
       actions: actions ??
@@ -303,7 +305,7 @@ class BetterAppBar {
   /// - 支持居中
   /// - 支持压缩 bar 高度
   ///
-  Widget build({
+  Widget buildAppBar({
     /// 标题:
     Widget? title,
     String? titleText,

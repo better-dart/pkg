@@ -1,28 +1,8 @@
 import '../../better_ui.dart';
 
-///
-///
-///
-class BetterColor {
-  //
-  Color? iconBlue() {
-    return Colors.blue[200];
-  }
+class BetterColor with ColorMixin {}
 
-  //
-  Color? buttonBlue() {
-    return Colors.blue[200];
-  }
-
-  //
-  Color? barBlue() {
-    return Colors.blue[200];
-  }
-
-  Color white() {
-    return Colors.white70;
-  }
-
+mixin ColorMixin {
   /// color table:
   Color PRIMARY = Color(0xff3880FF);
   Color SECONDARY = Color(0xffAA66CC);

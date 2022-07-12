@@ -15,7 +15,11 @@ dependencies:
   flutter_svg: ^0.22.0
   flutter_swiper_null_safety: ^1.0.2
   cached_network_image: ^3.0.0
-  kit: ^1.0.2
+  flutter_form_builder: ^6.0.1   # form
+  scan: ^1.4.3                   # fix qr code scan
+  google_fonts: ^2.1.0           # 字体集
+  catcher: ^0.6.8                # debug
+  sentry_flutter: ^5.1.0         # by catcher
 
 
 dev_dependencies:

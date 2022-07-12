@@ -7,7 +7,7 @@ Widget useNotFoundView({String? titleText}) {
   var pagePath = Get.routing.current;
 
   return Scaffold(
-    appBar: ui.layout.appBar.classic(titleText: titleText ?? 'Not Found') as PreferredSizeWidget?,
+    appBar: ui.appBar.classic(titleText: titleText ?? 'Not Found') as PreferredSizeWidget?,
     backgroundColor: Get.isDarkMode ? null : Colors.white,
     body: ui.style.box(
       child: Center(

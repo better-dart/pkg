@@ -1,11 +1,13 @@
 import '../../better_ui.dart';
 
+class BetterButton with ButtonMixin {}
+
 ///
 ///
 ///
-class BetterButton {
+mixin ButtonMixin {
   /// 后退:
-  Widget back({VoidCallback? backFn, Color? color, double? size, EdgeInsetsGeometry? margin}) => buildIcon(
+  Widget back({VoidCallback? backFn, Color? color, double? size, EdgeInsetsGeometry? margin}) => buildIconButton(
         margin: margin,
         child: Icon(Icons.arrow_back_ios, size: size ?? 18, color: color),
         onTap: () {
@@ -20,28 +22,28 @@ class BetterButton {
       );
 
   /// 前进:
-  Widget forward({VoidCallback? onTap, Color? color, double? size, EdgeInsetsGeometry? margin}) => buildIcon(
+  Widget forward({VoidCallback? onTap, Color? color, double? size, EdgeInsetsGeometry? margin}) => buildIconButton(
         margin: margin,
         child: Icon(Icons.arrow_forward_ios, size: size ?? 18, color: color),
         onTap: onTap,
       );
 
   /// 添加:
-  Widget add({VoidCallback? onTap, Color? color, double? size, EdgeInsetsGeometry? margin}) => buildIcon(
+  Widget add({VoidCallback? onTap, Color? color, double? size, EdgeInsetsGeometry? margin}) => buildIconButton(
         margin: margin,
         child: Icon(Icons.add, size: size ?? 18, color: color),
         onTap: onTap,
       );
 
   /// 搜索:
-  Widget search({VoidCallback? onTap, Color? color, double? size, EdgeInsetsGeometry? margin}) => buildIcon(
+  Widget search({VoidCallback? onTap, Color? color, double? size, EdgeInsetsGeometry? margin}) => buildIconButton(
         margin: margin,
         child: Icon(Icons.search, size: size ?? 18, color: color),
         onTap: onTap,
       );
 
   /// 关闭:
-  Widget close({VoidCallback? onTap, Color? color, double? size, EdgeInsetsGeometry? margin}) => buildIcon(
+  Widget close({VoidCallback? onTap, Color? color, double? size, EdgeInsetsGeometry? margin}) => buildIconButton(
         margin: margin,
         child: Icon(Icons.close, size: size ?? 18, color: color),
         onTap: onTap,
@@ -55,7 +57,7 @@ class BetterButton {
   }
 
   /// 文本按钮:
-  Widget buildText({
+  Widget buildTextButton({
     Widget? title,
     String? titleText,
     VoidCallback? onTap,
@@ -63,9 +65,10 @@ class BetterButton {
     BorderRadiusGeometry? borderRadius,
     double? width,
     double? height,
-    EdgeInsetsGeometry? padding,
+    EdgeInsetsGeometry? padding, // in
+    EdgeInsetsGeometry? margin, // out
   }) {
-    return InkWell(
+    var btn = InkWell(
       onTap: onTap,
       child: Container(
         height: height,
@@ -84,12 +87,14 @@ class BetterButton {
         ),
       ),
     );
+
+    return margin != null ? Padding(padding: margin, child: btn) : btn;
   }
 
   ///
   /// 构建按钮(Icon or Text):
   ///
-  Widget buildIcon({
+  Widget buildIconButton({
     Widget? child,
     VoidCallback? onTap,
     Color? color,
@@ -132,7 +137,7 @@ class BetterButton {
   ///   - 支持 垂直/水平 布局
   ///   - 支持 text/icon 位置互换
   ///
-  Widget buildIconText({
+  Widget buildIconTextButton({
     Widget? title,
     Widget? icon,
     String titleText = 'click',
@@ -212,6 +217,44 @@ class BetterButton {
           color: backgroundColor,
         ),
       ),
+    );
+  }
+
+  Widget bottomTextButton({
+    String? titleText,
+    Widget? title,
+    double? height,
+    EdgeInsetsGeometry? padding,
+    Color? btnColor,
+    required VoidCallback? onPressed,
+  }) {
+    assert(titleText != null || title != null);
+
+    return ui.style.box(
+      child: Padding(
+        padding: padding ?? EdgeInsets.only(left: 20, right: 20),
+        child: SizedBox(
+          height: height ?? 48,
+          child: TextButton(
+            onPressed: onPressed,
+            child: titleText != null
+                ? Text(
+                    titleText,
+                    style: TextStyle(color: Colors.white),
+                  )
+                : title!,
+            style: ButtonStyle(
+              shape: MaterialStateProperty.all(
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+              ),
+              backgroundColor: MaterialStateProperty.all(Get.theme.accentColor),
+            ),
+          ),
+        ),
+      ),
+      backgroundColor: btnColor,
+      borderRadius: BorderRadius.circular(0),
+      withSafeArea: true,
     );
   }
 }

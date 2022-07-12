@@ -1,92 +1,13 @@
 import '../../better_ui.dart';
 
 ///
-///
-///
-class BetterBody {
-  // 列式菜单:
-  final list = betterBodyList();
-
-  // 网格菜单:
-  final grid = betterBodyGrid();
-}
-
-///
 /// 列式菜单
 ///
-class betterBodyList {
-  ///
-  /// 典型用法:
-  ///
-  Widget classic({
-    required List<BetterListTileEntity> items,
-
-    ///
-    bool toSliver = false, // 转换成 SliverList()
-
-    ///
-    Axis scrollDirection = Axis.vertical,
-    ScrollController? controller,
-    bool shrinkWrap = true,
-    EdgeInsetsGeometry? padding,
-
-    ///
-    bool hasSeparator = true, // 是否分割线
-    double? sepIndent, // 有默认0值 !=null, 否则 = null
-    double? sepEndIndent, // 有默认0值 !=null, 否则 = null
-    double? sepHeight, // 间隔控制, 原默认=16.0(过大)
-    Color? sepColor,
-
-    /// for container:
-    double? width,
-    double? height,
-    required double radius, // 圆角
-    Color? backgroundColor, // background color
-
-    /// for font:
-    bool setFont = false,
-  }) {
-    return build(
-      toSliver: toSliver,
-
-      //
-      scrollDirection: scrollDirection,
-      controller: controller,
-      shrinkWrap: shrinkWrap,
-      padding: padding,
-
-      //
-      hasSeparator: hasSeparator,
-      sepIndent: sepIndent,
-      sepEndIndent: sepEndIndent,
-      sepHeight: sepHeight,
-      sepColor: sepColor,
-
-      //
-      width: width,
-      height: height,
-      radius: radius,
-      bgColor: backgroundColor,
-
-      //
-      itemCount: items.length,
-      itemBuilder: (BuildContext context, int index) {
-        var item = items[index];
-
-        return ui.material.listTile.classic(
-          data: item,
-          backgroundColor: sepColor,
-          radius: radius,
-          setFont: setFont,
-        );
-      },
-    );
-  }
-
+mixin ListMixin {
   ///
   /// 构建:
   ///
-  Widget build({
+  Widget buildList({
     required int itemCount,
     required IndexedWidgetBuilder itemBuilder,
 
@@ -144,7 +65,7 @@ class betterBodyList {
           indent: sepIndent ?? Get.width * 0.18,
           endIndent: sepEndIndent,
         ),
-        itemCount: itemCount ,
+        itemCount: itemCount,
         // do here:
         itemBuilder: itemBuilder,
       ),
@@ -158,7 +79,7 @@ class betterBodyList {
   /// SliverList vs SliverToBoxAdapter:
   ///   - 实现不同, 上下滑动效果不同
   ///
-  Widget buildSliver({
+  Widget buildSliverList({
     required itemCount,
     required IndexedWidgetBuilder itemBuilder,
   }) {
@@ -176,11 +97,11 @@ class betterBodyList {
 ///   - 支持普通网格
 ///   - 支持 SliverGrid
 ///
-class betterBodyGrid {
+mixin GridMixin {
   ///
   /// 构建普通网格:
   ///
-  Widget build({
+  Widget buildGrid({
     /// 计数:
     required int itemCount,
 
@@ -244,7 +165,7 @@ class betterBodyGrid {
   ///   - 二者实现有差别, 上下滑动, 效果不一样.
   ///   - SliverGrid 更自然. 尽量不使用 SliverToBoxAdapter 方式
   ///
-  Widget buildSliver({
+  Widget buildSliverGrid({
     /// 计数:
     required int itemCount,
 
