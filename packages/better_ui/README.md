@@ -9,7 +9,7 @@
 - pkg:
 
 ```
-  better_ui: ^0.0.1
+  better_ui: ^1.0.3
 
 ```
 

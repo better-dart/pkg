@@ -8,6 +8,17 @@ version: '3'
 #
 ################################################################################################
 
+
+#
+# sub namespace: https://taskfile.dev/#/usage?id=including-other-taskfiles
+#
+includes:
+  ui:
+    taskfile: packages/better_ui/Taskfile.yml
+    dir: packages/better_ui/ # global path
+    optional: true # safeguard, if not found, no error
+
+
 #
 # global vars: https://taskfile.dev/#/usage?id=variables
 #
