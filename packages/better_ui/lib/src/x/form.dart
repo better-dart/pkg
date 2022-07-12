@@ -1,5 +1,5 @@
 import 'package:better_ui/better_ui.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 
 mixin FormMixin {
   Widget searchForm({
