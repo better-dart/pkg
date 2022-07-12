@@ -1,3 +1,7 @@
+## [1.0.4]
+
+- update requirements, fix bugs
+
 ## [1.0.3]
 
 - refactor many functions.
