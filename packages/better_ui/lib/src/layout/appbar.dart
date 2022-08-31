@@ -24,7 +24,7 @@ mixin AppBarMixin {
     Widget? leading,
     List<Widget>? actions,
   }) {
-    return buildAppBar(
+    return newAppBar(
       preferredSize: preferredSize,
       title: title,
       titleText: titleText,
@@ -46,7 +46,7 @@ mixin AppBarMixin {
   ///
   /// 默认样式:
   ///
-  Widget tabBar({
+  Widget newTabBar({
     required List<Widget> titles,
     List<Widget>? actions, // 尾
     VoidCallback? backFn, // 返回附加函数
@@ -115,7 +115,7 @@ mixin AppBarMixin {
     Color? unselectedLabelColor,
     Size? preferredSize, // 压缩高度 // Size.fromHeight(34.0)
   }) {
-    return buildAppBar(
+    return newAppBar(
       /// 高度压缩:
       preferredSize: preferredSize,
 
@@ -123,7 +123,7 @@ mixin AppBarMixin {
       primary: primary,
 
       ///
-      title: tabBar(
+      title: newTabBar(
         titles: titles,
         actions: actions,
         backFn: backFn,
@@ -157,11 +157,14 @@ mixin AppBarMixin {
     );
   }
 
+  @deprecated
+  Widget Function() get sliverHeader => newSliverAppBar;
+
   ///
   ///
   /// 内部最终是依赖 AppBar()
   ///
-  Widget sliverHeader({
+  Widget newSliverAppBar({
     String titleText = 'title', // 标题文本
     Widget? title, // 标题组件
     Widget? leading, // 头
@@ -203,8 +206,8 @@ mixin AppBarMixin {
 
     /// 适配 bottom:
     barTitle = PreferredSize(
-      child: barTitle,
       preferredSize: Size.fromHeight(0),
+      child: barTitle,
     );
 
     return SliverAppBar(
@@ -305,7 +308,7 @@ mixin AppBarMixin {
   /// - 支持居中
   /// - 支持压缩 bar 高度
   ///
-  Widget buildAppBar({
+  Widget newAppBar({
     /// 标题:
     Widget? title,
     String? titleText,

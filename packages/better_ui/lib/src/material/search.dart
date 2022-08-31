@@ -184,7 +184,7 @@ class SearchBarViewDelegate extends SearchDelegate<String?> {
           ///
           ///
           Text('热门推荐:'),
-          ui.buildList(
+          ui.newList(
             shrinkWrap: true,
             physics: NeverScrollableScrollPhysics(),
             itemCount: suggest.length,

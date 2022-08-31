@@ -105,7 +105,7 @@ mixin ViewMixin {
     /// add page header:
     contents.addIf(
       hasAppBar == true && hasHeader == true,
-      ui.appBar.sliverHeader(
+      ui.appBar.newSliverAppBar(
         titleText: titleText,
         title: title,
         leading: leading,
@@ -151,7 +151,7 @@ mixin ViewMixin {
               ),
             );
           }),
-      ui.buildSliverList(
+      ui.newSliverList(
           itemCount: 10,
           itemBuilder: (context, index) {
             return Card(
@@ -263,14 +263,14 @@ mixin ViewMixin {
           ///
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
             return [
-              ui.appBar.sliverHeader(
+              ui.appBar.newSliverAppBar(
                 expandedHeight: expandedHeight,
 
                 /// 折叠区域高度
                 collapsedHeight: collapsedHeight,
 
                 /// 标题:
-                title: ui.appBar.tabBar(
+                title: ui.appBar.newTabBar(
                   titles: tabTitles ??
                       [
                         Tab(text: 'tab1'),
@@ -311,7 +311,8 @@ mixin ViewMixin {
           body: TabBarView(
             children: tabPages ??
                 [
-                  buildScrollView(titleText: 'title', flexTitle: ui.empty), // 默认嵌套
+                  buildScrollView(titleText: 'title', flexTitle: ui.empty),
+                  // 默认嵌套
 
                   // Scaffold(body: Container(child: Center(child: Text('page1')))),
                   Scaffold(body: Container(child: Center(child: Text('page1')))),
@@ -323,10 +324,13 @@ mixin ViewMixin {
   ///
   /// tab 结构页面:
   ///
-  Widget tabView({
-    List<Widget>? tabTitles, // tab 标题
-    List<Widget>? tabPages, // tab body
+  Widget newTabView({
+    List<Widget>? tabs, // tab 标题
+    List<Widget>? views, // tab body
+
+    /// tab part:
     Widget? drawer, // tab start
+    Widget? endDrawer, // tab start
     Widget? leading, // tab start
     List<Widget>? actions, // tab actions
     bool? centerTitle,
@@ -335,14 +339,19 @@ mixin ViewMixin {
     /// 控制标题位置: 是否避开系统状态栏
     bool? primary,
     Size? preferredSize, // 高度压缩
+    Color? backgroundColor,
   }) {
+    /// check:
+    assert(tabs?.length == views?.length);
+
     return DefaultTabController(
-      length: tabTitles?.length ?? 2,
+      length: tabs?.length ?? 2,
 
       ///
       child: Scaffold(
         /// 抽屉:
         drawer: drawer,
+        endDrawer: endDrawer,
 
         ///
         appBar: PreferredSize(
@@ -351,9 +360,11 @@ mixin ViewMixin {
 
           /// 导航栏:
           child: ui.appBar.withTab(
+            backgroundColor: backgroundColor,
+
             leading: leading,
             centerTitle: centerTitle ?? true,
-            titles: tabTitles ??
+            titles: tabs ??
                 [
                   Text('tab1'),
                   Text('tab2'),
@@ -370,7 +381,7 @@ mixin ViewMixin {
 
         /// body:
         body: TabBarView(
-          children: tabPages ??
+          children: views ??
               [
                 Container(child: Center(child: Text('New Page1'))),
                 Container(child: Center(child: Text('New Page2'))),
@@ -434,12 +445,14 @@ mixin ViewMixin {
 
     ///
     Widget? drawer,
+    Widget? endDrawer,
     Widget? leading,
     List<Widget>? actions, // tab actions
 
     /// 控制 bar 标题位置: 是否避开系统状态栏
     bool? primary,
     Size? preferredSize, // 高度压缩
+    Color? backgroundColor,
     bool toSliver = false,
     bool? centerTitle,
     Widget? bottomNavigationBar,
@@ -447,14 +460,15 @@ mixin ViewMixin {
     /// 避免底部空白, 页面允许滚动(最末控制)
     bool hasScrollBody = true,
   }) {
-    var v = tabView(
-      tabTitles: titles,
-      tabPages: pages,
+    var v = newTabView(
+      tabs: titles,
+      views: pages,
 
       centerTitle: centerTitle,
 
       ///
       drawer: drawer,
+      endDrawer: endDrawer,
       leading: leading,
       actions: actions,
 
@@ -463,6 +477,7 @@ mixin ViewMixin {
       /// 控制 bar 标题位置: 是否避开系统状态栏
       primary: primary,
       preferredSize: preferredSize,
+      backgroundColor: backgroundColor,
     );
 
     return toSliver ? SliverFillRemaining(child: v, hasScrollBody: hasScrollBody) : v;
@@ -584,7 +599,10 @@ mixin ViewMixin {
       tabs: titles,
       controller: controller,
       isScrollable: isScrollable ?? true,
-      labelStyle: TextStyle(fontSize: fontSize ?? 14, fontWeight: FontWeight.bold),
+      labelStyle: TextStyle(
+        fontSize: fontSize ?? 14,
+        fontWeight: FontWeight.bold,
+      ),
       labelColor: labelColor ?? (Get.isDarkMode ? null : Get.theme.primaryColor),
       unselectedLabelColor: unselectedLabelColor ?? Get.theme.unselectedWidgetColor,
       indicatorColor: indicatorColor ?? Get.theme.primaryColor,
@@ -610,7 +628,7 @@ mixin ViewMixin {
     Color? unselectedLabelColor,
     Size? preferredSize,
   }) {
-    return ui.appBar.buildAppBar(
+    return ui.appBar.newAppBar(
       preferredSize: preferredSize,
       primary: primary,
       title: tabBar(

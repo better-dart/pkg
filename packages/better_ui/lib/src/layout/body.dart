@@ -7,7 +7,7 @@ mixin ListMixin {
   ///
   /// 构建:
   ///
-  Widget buildList({
+  Widget newList({
     required int itemCount,
     required IndexedWidgetBuilder itemBuilder,
 
@@ -79,7 +79,7 @@ mixin ListMixin {
   /// SliverList vs SliverToBoxAdapter:
   ///   - 实现不同, 上下滑动效果不同
   ///
-  Widget buildSliverList({
+  Widget newSliverList({
     required itemCount,
     required IndexedWidgetBuilder itemBuilder,
   }) {
@@ -101,7 +101,7 @@ mixin GridMixin {
   ///
   /// 构建普通网格:
   ///
-  Widget buildGrid({
+  Widget newGrid({
     /// 计数:
     required int itemCount,
 
