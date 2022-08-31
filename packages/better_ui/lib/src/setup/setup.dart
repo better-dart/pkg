@@ -2,7 +2,7 @@ import 'package:better_ui/better_ui.dart';
 import 'package:catcher/catcher.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
+// import 'package:sentry_flutter/sentry_flutter.dart';
 
 mixin SetupMixin {
   ///
@@ -113,12 +113,13 @@ mixin SetupMixin {
       SilentReportMode(),
       [
         ConsoleHandler(),
-        if (sentryDSN != null)
-          SentryHandler(
-            SentryClient(
-              SentryOptions(dsn: sentryDSN),
-            ),
-          )
+
+        // if (sentryDSN != null)
+        //   SentryHandler(
+        //     SentryClient(
+        //       SentryOptions(dsn: sentryDSN),
+        //     ),
+        //   )
       ],
       // logger: CatcherLoggerEx(),
     );
